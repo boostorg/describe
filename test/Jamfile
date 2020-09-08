@@ -11,3 +11,5 @@ project : requirements
   <toolset>gcc:<warnings-as-errors>on ;
 
 run quick.cpp ;
+
+run pp_for_each_test.cpp ;
