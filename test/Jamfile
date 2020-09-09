@@ -14,4 +14,4 @@ run quick.cpp ;
 
 run pp_for_each_test.cpp ;
 
-run describe_enumerators_test.cpp ;
+run enumerators_test.cpp ;
