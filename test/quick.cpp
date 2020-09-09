@@ -6,7 +6,7 @@
 #include <boost/core/lightweight_test.hpp>
 #include <boost/mp11.hpp>
 
-BOOST_DEFINE_ENUM(E,, v1, v2, v3)
+BOOST_DEFINE_ENUM(E, v1, v2, v3)
 
 int main()
 {

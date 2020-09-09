@@ -24,11 +24,11 @@ enum class E2
 
 BOOST_DESCRIBE_ENUM_CLASS(E2, v2_1, v2_2);
 
-BOOST_DEFINE_ENUM(E3,, v3_1, v3_2, v3_3);
-BOOST_DEFINE_ENUM(E4,: int, v4_1, v4_2, v4_3, v4_4);
+BOOST_DEFINE_ENUM(E3, v3_1, v3_2, v3_3);
+BOOST_DEFINE_FIXED_ENUM(E4, int, v4_1, v4_2, v4_3, v4_4);
 
-BOOST_DEFINE_ENUM_CLASS(E5,, v5_1, v5_2, v5_3, v5_4, v5_5);
-BOOST_DEFINE_ENUM_CLASS(E6,: int, v6_1, v6_2, v6_3, v6_4, v6_5, v6_6);
+BOOST_DEFINE_ENUM_CLASS(E5, v5_1, v5_2, v5_3, v5_4, v5_5);
+BOOST_DEFINE_FIXED_ENUM_CLASS(E6, int, v6_1, v6_2, v6_3, v6_4, v6_5, v6_6);
 
 int main()
 {

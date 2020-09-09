@@ -30,24 +30,27 @@ template<class... T> auto enum_descriptor_fn_impl( int, T... )
     return descriptor_list<enum_descriptor<T>...>();
 }
 
-} // namespace detail
-
 #define BOOST_DESCRIBE_ENUM_IMPL(E, e) , []{ struct D { \
     static constexpr auto value() noexcept { return e; } \
     static constexpr auto name() noexcept { return #e; } }; return D(); }()
-
-#define BOOST_DESCRIBE_ENUM(E, ...) inline auto _enum_descriptor_fn( E* ) \
-{ return boost::describe::detail::enum_descriptor_fn_impl( 0 BOOST_DESCRIBE_PP_FOR_EACH(BOOST_DESCRIBE_ENUM_IMPL, E, __VA_ARGS__) ); }
 
 #define BOOST_DESCRIBE_ENUM_CLASS_IMPL(E, e) , []{ struct D { \
     static constexpr auto value() noexcept { return E::e; } \
     static constexpr auto name() noexcept { return #e; } }; return D(); }()
 
+} // namespace detail
+
+#define BOOST_DESCRIBE_ENUM(E, ...) inline auto _enum_descriptor_fn( E* ) \
+{ return boost::describe::detail::enum_descriptor_fn_impl( 0 BOOST_DESCRIBE_PP_FOR_EACH(BOOST_DESCRIBE_ENUM_IMPL, E, __VA_ARGS__) ); }
+
 #define BOOST_DESCRIBE_ENUM_CLASS(E, ...) inline auto _enum_descriptor_fn( E* ) \
 { return boost::describe::detail::enum_descriptor_fn_impl( 0 BOOST_DESCRIBE_PP_FOR_EACH(BOOST_DESCRIBE_ENUM_CLASS_IMPL, E, __VA_ARGS__) ); }
 
-#define BOOST_DEFINE_ENUM(E, Base, ...) enum E Base { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM(E, __VA_ARGS__)
-#define BOOST_DEFINE_ENUM_CLASS(E, Base, ...) enum class E Base { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM_CLASS(E, __VA_ARGS__)
+#define BOOST_DEFINE_ENUM(E, ...) enum E { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM(E, __VA_ARGS__)
+#define BOOST_DEFINE_ENUM_CLASS(E, ...) enum class E { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM_CLASS(E, __VA_ARGS__)
+
+#define BOOST_DEFINE_FIXED_ENUM(E, Base, ...) enum E: Base { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM(E, __VA_ARGS__)
+#define BOOST_DEFINE_FIXED_ENUM_CLASS(E, Base, ...) enum class E: Base { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM_CLASS(E, __VA_ARGS__)
 
 } // namespace describe
 } // namespace boost
