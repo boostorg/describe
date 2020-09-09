@@ -48,6 +48,9 @@ template<class... T> auto enum_descriptor_fn_impl( int, T... )
 
 template<class E> using describe_enumerators = decltype( _enum_descriptor_fn( static_cast<E*>(0) ) );
 
+#define BOOST_DEFINE_ENUM(E, Base, ...) enum E Base { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM(E, __VA_ARGS__)
+#define BOOST_DEFINE_ENUM_CLASS(E, Base, ...) enum class E Base { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM_CLASS(E, __VA_ARGS__)
+
 } // namespace describe
 } // namespace boost
 
