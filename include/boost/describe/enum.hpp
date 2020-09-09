@@ -17,13 +17,14 @@ namespace detail
 
 template<class D> struct enum_descriptor
 {
-    // can't use auto here because of the need to supply the definition below
+    // can't use auto here because of the need to supply the definitions below
     static constexpr decltype(D::value()) value = D::value();
-    static constexpr auto name = D::name();
+    static constexpr decltype(D::name()) name = D::name();
 };
 
-// GCC requires this definition
+// GCC requires these definitions
 template<class D> constexpr decltype(D::value()) enum_descriptor<D>::value;
+template<class D> constexpr decltype(D::name()) enum_descriptor<D>::name;
 
 template<class... T> auto enum_descriptor_fn_impl( int, T... )
 {
