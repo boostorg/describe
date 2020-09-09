@@ -15,3 +15,4 @@ run quick.cpp ;
 run pp_for_each_test.cpp ;
 
 run enumerators_test.cpp ;
+run base_classes_test.cpp ;
