@@ -1,5 +1,5 @@
-#ifndef BOOST_DESCRIBE_ENUMERATORS_HPP_INCLUDED
-#define BOOST_DESCRIBE_ENUMERATORS_HPP_INCLUDED
+#ifndef BOOST_DESCRIBE_ENUM_HPP_INCLUDED
+#define BOOST_DESCRIBE_ENUM_HPP_INCLUDED
 
 // Copyright 2020 Peter Dimov
 // Distributed under the Boost Software License, Version 1.0.
@@ -46,12 +46,10 @@ template<class... T> auto enum_descriptor_fn_impl( int, T... )
 #define BOOST_DESCRIBE_ENUM_CLASS(E, ...) inline auto _enum_descriptor_fn( E* ) \
 { return boost::describe::detail::enum_descriptor_fn_impl( 0 BOOST_DESCRIBE_PP_FOR_EACH(BOOST_DESCRIBE_ENUM_CLASS_IMPL, E, __VA_ARGS__) ); }
 
-template<class E> using describe_enumerators = decltype( _enum_descriptor_fn( static_cast<E*>(0) ) );
-
 #define BOOST_DEFINE_ENUM(E, Base, ...) enum E Base { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM(E, __VA_ARGS__)
 #define BOOST_DEFINE_ENUM_CLASS(E, Base, ...) enum class E Base { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM_CLASS(E, __VA_ARGS__)
 
 } // namespace describe
 } // namespace boost
 
-#endif // #ifndef BOOST_DESCRIBE_ENUMERATORS_HPP_INCLUDED
+#endif // #ifndef BOOST_DESCRIBE_ENUM_HPP_INCLUDED

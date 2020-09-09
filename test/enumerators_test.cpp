@@ -3,6 +3,7 @@
 // https://www.boost.org/LICENSE_1_0.txt
 
 #include <boost/describe/enumerators.hpp>
+#include <boost/describe/enum.hpp>
 #include <boost/core/lightweight_test.hpp>
 #include <boost/mp11.hpp>
 
