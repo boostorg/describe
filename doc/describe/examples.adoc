@@ -1,0 +1,43 @@
+////
+Copyright 2020 Peter Dimov
+Distributed under the Boost Software License, Version 1.0.
+https://www.boost.org/LICENSE_1_0.txt
+////
+
+[#examples]
+# Usage Examples
+:idprefix: example_
+
+## enum_to_string
+
+This example shows a function that, given an enumerator
+value, returns its name.
+
+Providing `enum_to_string` in a library is made difficult
+by the fact that the desired behavior when the passed value
+does not correspond to a named enumerator varies depending
+on the specific use case. But, since defining the function
+is trivial when `describe_enumerators` is available, every
+user can easily have his own.
+
+This specific example elects to return `"(unknown)"` when
+the enum value doesn't have a name.
+
+[source]
+----
+include::../../example/enum_to_string.cpp[]
+----
+
+## string_to_enum
+
+The opposite of the previous example; returns an enumerator
+value when given the enumerator name. The same problem exists
+here with respect to the error handling strategy when the string
+passed does not correspond to any enumerator name. This example
+throws an exception.
+
+[source]
+----
+include::../../example/string_to_enum.cpp[]
+----
+

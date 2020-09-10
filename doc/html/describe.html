@@ -449,18 +449,55 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#overview">Overview</a>
 <ul class="sectlevel2">
 <li><a href="#overview_description">Description</a></li>
-<li><a href="#overview_usage_examples">Usage Examples</a></li>
 <li><a href="#overview_dependencies">Dependencies</a></li>
 <li><a href="#overview_supported_compilers">Supported Compilers</a></li>
 </ul>
 </li>
-<li><a href="#reference">Reference</a>
+<li><a href="#examples">Usage Examples</a>
 <ul class="sectlevel2">
-<li><a href="#ref_boostdescribe_hpp">&lt;boost/describe.hpp&gt;</a>
-<ul class="sectlevel3">
-<li><a href="#ref_synopsis">Synopsis</a></li>
+<li><a href="#example_enum_to_string">enum_to_string</a></li>
+<li><a href="#example_string_to_enum">string_to_enum</a></li>
 </ul>
 </li>
+<li><a href="#reference">Reference</a>
+<ul class="sectlevel2">
+<li><a href="#ref_boostdescribeenum_hpp">&lt;boost/describe/enum.hpp&gt;</a>
+<ul class="sectlevel3">
+<li><a href="#ref_boost_describe_enum">BOOST_DESCRIBE_ENUM</a></li>
+<li><a href="#ref_boost_describe_enum_class">BOOST_DESCRIBE_ENUM_CLASS</a></li>
+<li><a href="#ref_boost_define_enum">BOOST_DEFINE_ENUM</a></li>
+<li><a href="#ref_boost_define_enum_class">BOOST_DEFINE_ENUM_CLASS</a></li>
+<li><a href="#ref_boost_define_fixed_enum">BOOST_DEFINE_FIXED_ENUM</a></li>
+<li><a href="#ref_boost_define_fixed_enum_class">BOOST_DEFINE_FIXED_ENUM_CLASS</a></li>
+</ul>
+</li>
+<li><a href="#ref_boostdescribeenumerators_hpp">&lt;boost/describe/enumerators.hpp&gt;</a>
+<ul class="sectlevel3">
+<li><a href="#ref_describe_enumeratorse">describe_enumerators&lt;E&gt;</a></li>
+</ul>
+</li>
+<li><a href="#ref_boostdescribeclass_hpp">&lt;boost/describe/class.hpp&gt;</a>
+<ul class="sectlevel3">
+<li><a href="#ref_boost_describe_class">BOOST_DESCRIBE_CLASS</a></li>
+<li><a href="#ref_boost_describe_struct">BOOST_DESCRIBE_STRUCT</a></li>
+</ul>
+</li>
+<li><a href="#ref_boostdescribebase_classes_hpp">&lt;boost/describe/base_classes.hpp&gt;</a>
+<ul class="sectlevel3">
+<li><a href="#ref_describe_base_classest_m">describe_base_classes&lt;T, M&gt;</a></li>
+</ul>
+</li>
+<li><a href="#ref_boostdescribedata_members_hpp">&lt;boost/describe/data_members.hpp&gt;</a>
+<ul class="sectlevel3">
+<li><a href="#ref_describe_data_memberst_m">describe_data_members&lt;T, M&gt;</a></li>
+</ul>
+</li>
+<li><a href="#ref_boostdescribemember_functions_hpp">&lt;boost/describe/member_functions.hpp&gt;</a>
+<ul class="sectlevel3">
+<li><a href="#ref_describe_member_functionst_m">describe_member_functions&lt;T, M&gt;</a></li>
+</ul>
+</li>
+<li><a href="#ref_boostdescribe_hpp">&lt;boost/describe.hpp&gt;</a></li>
 </ul>
 </li>
 <li><a href="#copyright">Copyright and License</a></li>
@@ -473,15 +510,34 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sectionbody">
 <div class="sect2">
 <h3 id="overview_description">Description</h3>
-
+<div class="paragraph">
+<p>This library enables authors of user-defined types (enums, structs
+and classes) to describe their enumerators, base classes, data members
+and member functions. This information can later be queried by other
+code portions, possibly written by a different author, using the
+supplied primitives <code>describe_enumerators</code>, <code>describe_base_classes</code>,
+<code>describe_data_members</code> and <code>describe_member_functions</code>.</p>
 </div>
-<div class="sect2">
-<h3 id="overview_usage_examples">Usage Examples</h3>
-
+<div class="paragraph">
+<p>For examples how this functionality is useful, see <a href="#examples">Usage Examples</a>.</p>
+</div>
+<div class="paragraph">
+<p>The purpose of the library is to establish a standard way of providing
+these reflection abilities. Many existing libraries provide their own
+way of describing enums or classes, but without a standard, code written by
+different people cannot interoperate.</p>
+</div>
+<div class="paragraph">
+<p>Eventually, one might hope for the primitives to end up in the C&#43;&#43; standard,
+with the compiler automatically supplying the metadata necessary to describe
+the types.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="overview_dependencies">Dependencies</h3>
-
+<div class="paragraph">
+<p>Boost.Mp11.</p>
+</div>
 </div>
 <div class="sect2">
 <h3 id="overview_supported_compilers">Supported Compilers</h3>
@@ -506,23 +562,271 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 </div>
 </div>
 <div class="sect1">
+<h2 id="examples">Usage Examples</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="example_enum_to_string">enum_to_string</h3>
+<div class="paragraph">
+<p>This example shows a function that, given an enumerator
+value, returns its name.</p>
+</div>
+<div class="paragraph">
+<p>Providing <code>enum_to_string</code> in a library is made difficult
+by the fact that the desired behavior when the passed value
+does not correspond to a named enumerator varies depending
+on the specific use case. But, since defining the function
+is trivial when <code>describe_enumerators</code> is available, every
+user can easily have his own.</p>
+</div>
+<div class="paragraph">
+<p>This specific example elects to return <code>"(unknown)"</code> when
+the enum value doesn&#8217;t have a name.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>#include &lt;boost/describe.hpp&gt;
+#include &lt;boost/mp11.hpp&gt;
+
+template&lt;class E&gt; char const * enum_to_string( E e )
+{
+    char const * r = "(unknown)";
+
+    boost::mp11::mp_for_each&lt; boost::describe::describe_enumerators&lt;E&gt; &gt;([&amp;](auto D){
+
+        if( e == D.value ) r = D.name;
+
+    });
+
+    return r;
+}
+
+#include &lt;iostream&gt;
+
+enum E
+{
+    v1 = 3,
+    v2,
+    v3 = 11
+};
+
+BOOST_DESCRIBE_ENUM(E, v1, v2, v3)
+
+int main()
+{
+    std::cout &lt;&lt; "E(" &lt;&lt; v1 &lt;&lt; "): " &lt;&lt; enum_to_string( v1 ) &lt;&lt; std::endl;
+    std::cout &lt;&lt; "E(" &lt;&lt; 0 &lt;&lt; "): " &lt;&lt; enum_to_string( E(0) ) &lt;&lt; std::endl;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="example_string_to_enum">string_to_enum</h3>
+<div class="paragraph">
+<p>The opposite of the previous example; returns an enumerator
+value when given the enumerator name. The same problem exists
+here with respect to the error handling strategy when the string
+passed does not correspond to any enumerator name. This example
+throws an exception.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>#include &lt;boost/describe.hpp&gt;
+#include &lt;boost/mp11.hpp&gt;
+#include &lt;stdexcept&gt;
+#include &lt;typeinfo&gt;
+#include &lt;cstring&gt;
+
+[[noreturn]] void throw_invalid_name( char const * name, char const * type )
+{
+    throw std::runtime_error(
+        std::string( "Invalid enumerator name '" ) + name + "' for enum type '" + type + "'" );
+}
+
+template&lt;class E&gt; E string_to_enum( char const * name )
+{
+    bool found = false;
+    E r = {};
+
+    boost::mp11::mp_for_each&lt; boost::describe::describe_enumerators&lt;E&gt; &gt;([&amp;](auto D){
+
+        if( !found &amp;&amp; std::strcmp( D.name, name ) == 0 )
+        {
+            found = true;
+            r = D.value;
+        }
+
+    });
+
+    if( found )
+    {
+        return r;
+    }
+    else
+    {
+        throw_invalid_name( name, typeid( E ).name() );
+    }
+}
+
+#include &lt;iostream&gt;
+
+BOOST_DEFINE_ENUM(E, v1, v2, v3)
+
+int main()
+{
+    try
+    {
+        std::cout &lt;&lt; "v1: " &lt;&lt; string_to_enum&lt;E&gt;( "v1" ) &lt;&lt; std::endl;
+        std::cout &lt;&lt; "v2: " &lt;&lt; string_to_enum&lt;E&gt;( "v2" ) &lt;&lt; std::endl;
+        std::cout &lt;&lt; "v3: " &lt;&lt; string_to_enum&lt;E&gt;( "v3" ) &lt;&lt; std::endl;
+        std::cout &lt;&lt; "v4: " &lt;&lt; string_to_enum&lt;E&gt;( "v4" ) &lt;&lt; std::endl;
+    }
+    catch( std::exception const &amp; x )
+    {
+        std::cout &lt;&lt; x.what() &lt;&lt; std::endl;
+    }
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="reference">Reference</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="ref_boostdescribe_hpp">&lt;boost/describe.hpp&gt;</h3>
+<h3 id="ref_boostdescribeenum_hpp">&lt;boost/describe/enum.hpp&gt;</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>#define BOOST_DESCRIBE_ENUM(E, ...) /*...*/
+#define BOOST_DESCRIBE_ENUM_CLASS(E, ...) /*...*/
+
+#define BOOST_DEFINE_ENUM(E, ...) \
+    enum E { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM(E, __VA_ARGS__)
+
+#define BOOST_DEFINE_ENUM_CLASS(E, ...) \
+    enum class E { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM_CLASS(E, __VA_ARGS__)
+
+#define BOOST_DEFINE_FIXED_ENUM(E, Base, ...) \
+    enum E: Base { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM(E, __VA_ARGS__)
+
+#define BOOST_DEFINE_FIXED_ENUM_CLASS(E, Base, ...) \
+    enum class E: Base { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM_CLASS(E, __VA_ARGS__)</code></pre>
+</div>
+</div>
 <div class="sect3">
-<h4 id="ref_synopsis">Synopsis</h4>
+<h4 id="ref_boost_describe_enum">BOOST_DESCRIBE_ENUM</h4>
+
+</div>
+<div class="sect3">
+<h4 id="ref_boost_describe_enum_class">BOOST_DESCRIBE_ENUM_CLASS</h4>
+
+</div>
+<div class="sect3">
+<h4 id="ref_boost_define_enum">BOOST_DEFINE_ENUM</h4>
+
+</div>
+<div class="sect3">
+<h4 id="ref_boost_define_enum_class">BOOST_DEFINE_ENUM_CLASS</h4>
+
+</div>
+<div class="sect3">
+<h4 id="ref_boost_define_fixed_enum">BOOST_DEFINE_FIXED_ENUM</h4>
+
+</div>
+<div class="sect3">
+<h4 id="ref_boost_define_fixed_enum_class">BOOST_DEFINE_FIXED_ENUM_CLASS</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref_boostdescribeenumerators_hpp">&lt;boost/describe/enumerators.hpp&gt;</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code>namespace boost {
 namespace describe {
 
-// ...
+template&lt;class E&gt; using describe_enumerators = /*...*/;
 
-} // namespace describe
-} // namespace boost</code></pre>
+} }</code></pre>
 </div>
 </div>
+<div class="sect3">
+<h4 id="ref_describe_enumeratorse">describe_enumerators&lt;E&gt;</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref_boostdescribeclass_hpp">&lt;boost/describe/class.hpp&gt;</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code></code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ref_boost_describe_class">BOOST_DESCRIBE_CLASS</h4>
+
+</div>
+<div class="sect3">
+<h4 id="ref_boost_describe_struct">BOOST_DESCRIBE_STRUCT</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref_boostdescribebase_classes_hpp">&lt;boost/describe/base_classes.hpp&gt;</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>namespace boost {
+namespace describe {
+
+template&lt;class T, unsigned M&gt; using describe_base_classes = /*...*/;
+
+} }</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ref_describe_base_classest_m">describe_base_classes&lt;T, M&gt;</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref_boostdescribedata_members_hpp">&lt;boost/describe/data_members.hpp&gt;</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>namespace boost {
+namespace describe {
+
+template&lt;class T, unsigned M&gt; using describe_data_members = /*...*/;
+
+} }</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ref_describe_data_memberst_m">describe_data_members&lt;T, M&gt;</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref_boostdescribemember_functions_hpp">&lt;boost/describe/member_functions.hpp&gt;</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>namespace boost {
+namespace describe {
+
+template&lt;class T, unsigned M&gt; using describe_member_functions = /*...*/;
+
+} }</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ref_describe_member_functionst_m">describe_member_functions&lt;T, M&gt;</h4>
+
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref_boostdescribe_hpp">&lt;boost/describe.hpp&gt;</h3>
+<div class="paragraph">
+<p>This convenience header includes all the headers previously
+described.</p>
 </div>
 </div>
 </div>
@@ -539,7 +843,7 @@ the <a href="http://www.boost.org/LICENSE_1_0.txt">Boost Software License, Versi
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-09-08 19:43:38 +0300
+Last updated 2020-09-10 15:27:13 +0300
 </div>
 </div>
 <style>

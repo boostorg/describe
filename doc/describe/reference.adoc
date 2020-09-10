@@ -8,17 +8,99 @@ https://www.boost.org/LICENSE_1_0.txt
 # Reference
 :idprefix: ref_
 
-## <boost/describe.hpp>
+## <boost/describe/enum.hpp>
 
-### Synopsis
+```
+#define BOOST_DESCRIBE_ENUM(E, ...) /*...*/
+#define BOOST_DESCRIBE_ENUM_CLASS(E, ...) /*...*/
+
+#define BOOST_DEFINE_ENUM(E, ...) \
+    enum E { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM(E, __VA_ARGS__)
+
+#define BOOST_DEFINE_ENUM_CLASS(E, ...) \
+    enum class E { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM_CLASS(E, __VA_ARGS__)
+
+#define BOOST_DEFINE_FIXED_ENUM(E, Base, ...) \
+    enum E: Base { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM(E, __VA_ARGS__)
+
+#define BOOST_DEFINE_FIXED_ENUM_CLASS(E, Base, ...) \
+    enum class E: Base { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM_CLASS(E, __VA_ARGS__)
+```
+
+### BOOST_DESCRIBE_ENUM
+
+### BOOST_DESCRIBE_ENUM_CLASS
+
+### BOOST_DEFINE_ENUM
+
+### BOOST_DEFINE_ENUM_CLASS
+
+### BOOST_DEFINE_FIXED_ENUM
+
+### BOOST_DEFINE_FIXED_ENUM_CLASS
+
+## <boost/describe/enumerators.hpp>
 
 ```
 namespace boost {
 namespace describe {
 
-// ...
+template<class E> using describe_enumerators = /*...*/;
 
-} // namespace describe
-} // namespace boost
+} }
 ```
 
+### describe_enumerators<E>
+
+## <boost/describe/class.hpp>
+
+```
+```
+
+### BOOST_DESCRIBE_CLASS
+
+### BOOST_DESCRIBE_STRUCT
+
+## <boost/describe/base_classes.hpp>
+
+```
+namespace boost {
+namespace describe {
+
+template<class T, unsigned M> using describe_base_classes = /*...*/;
+
+} }
+```
+
+### describe_base_classes<T, M>
+
+## <boost/describe/data_members.hpp>
+
+```
+namespace boost {
+namespace describe {
+
+template<class T, unsigned M> using describe_data_members = /*...*/;
+
+} }
+```
+
+### describe_data_members<T, M>
+
+## <boost/describe/member_functions.hpp>
+
+```
+namespace boost {
+namespace describe {
+
+template<class T, unsigned M> using describe_member_functions = /*...*/;
+
+} }
+```
+
+### describe_member_functions<T, M>
+
+## <boost/describe.hpp>
+
+This convenience header includes all the headers previously
+described.
