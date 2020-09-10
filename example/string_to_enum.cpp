@@ -2,6 +2,7 @@
 #include <boost/mp11.hpp>
 #include <stdexcept>
 #include <typeinfo>
+#include <string>
 #include <cstring>
 
 [[noreturn]] void throw_invalid_name( char const * name, char const * type )
