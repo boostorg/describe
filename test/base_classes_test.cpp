@@ -38,21 +38,51 @@ int main()
     using namespace boost::mp11;
 
     {
-        using L1 = describe_base_classes<Y, mod_any_access>;
+        using L = describe_base_classes<Y, mod_any_access>;
 
-        BOOST_TEST_EQ( mp_size<L1>::value, 4 );
+        BOOST_TEST_EQ( mp_size<L>::value, 4 );
 
-        BOOST_TEST_TRAIT_SAME( typename mp_at_c<L1, 0>::type, X1 );
-        BOOST_TEST_EQ( (mp_at_c<L1, 0>::modifiers), mod_public );
+        BOOST_TEST_TRAIT_SAME( typename mp_at_c<L, 0>::type, X1 );
+        BOOST_TEST_EQ( (mp_at_c<L, 0>::modifiers), mod_public );
 
-        BOOST_TEST_TRAIT_SAME( typename mp_at_c<L1, 1>::type, X2 );
-        BOOST_TEST_EQ( (mp_at_c<L1, 1>::modifiers), mod_private );
+        BOOST_TEST_TRAIT_SAME( typename mp_at_c<L, 1>::type, X2 );
+        BOOST_TEST_EQ( (mp_at_c<L, 1>::modifiers), mod_private );
 
-        BOOST_TEST_TRAIT_SAME( typename mp_at_c<L1, 2>::type, X3 );
-        BOOST_TEST_EQ( (mp_at_c<L1, 2>::modifiers), mod_public | mod_virtual );
+        BOOST_TEST_TRAIT_SAME( typename mp_at_c<L, 2>::type, X3 );
+        BOOST_TEST_EQ( (mp_at_c<L, 2>::modifiers), mod_public | mod_virtual );
 
-        BOOST_TEST_TRAIT_SAME( typename mp_at_c<L1, 3>::type, X4 );
-        BOOST_TEST_EQ( (mp_at_c<L1, 3>::modifiers), mod_private | mod_virtual );
+        BOOST_TEST_TRAIT_SAME( typename mp_at_c<L, 3>::type, X4 );
+        BOOST_TEST_EQ( (mp_at_c<L, 3>::modifiers), mod_private | mod_virtual );
+    }
+
+    {
+        using L = describe_base_classes<Y, mod_public>;
+
+        BOOST_TEST_EQ( mp_size<L>::value, 2 );
+
+        BOOST_TEST_TRAIT_SAME( typename mp_at_c<L, 0>::type, X1 );
+        BOOST_TEST_EQ( (mp_at_c<L, 0>::modifiers), mod_public );
+
+        BOOST_TEST_TRAIT_SAME( typename mp_at_c<L, 1>::type, X3 );
+        BOOST_TEST_EQ( (mp_at_c<L, 1>::modifiers), mod_public | mod_virtual );
+    }
+
+    {
+        using L = describe_base_classes<Y, mod_private>;
+
+        BOOST_TEST_EQ( mp_size<L>::value, 2 );
+
+        BOOST_TEST_TRAIT_SAME( typename mp_at_c<L, 0>::type, X2 );
+        BOOST_TEST_EQ( (mp_at_c<L, 0>::modifiers), mod_private );
+
+        BOOST_TEST_TRAIT_SAME( typename mp_at_c<L, 1>::type, X4 );
+        BOOST_TEST_EQ( (mp_at_c<L, 1>::modifiers), mod_private | mod_virtual );
+    }
+
+    {
+        using L = describe_base_classes<Y, mod_protected>;
+
+        BOOST_TEST_EQ( mp_size<L>::value, 0 );
     }
 
     return boost::report_errors();
