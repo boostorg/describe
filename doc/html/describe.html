@@ -546,7 +546,10 @@ the types.</p>
 <div class="ulist">
 <ul>
 <li>
-<p>GCC 5 or later with <code>-std=c++14</code> or above</p>
+<p>GCC 5 or later with <code>-std=gnu++14</code> or above</p>
+</li>
+<li>
+<p>GCC 8 or later with <code>-std=c++14</code> or above</p>
 </li>
 <li>
 <p>Clang 3.5 or later with <code>-std=c++14</code> or above</p>
@@ -713,6 +716,7 @@ throws an exception.</p>
 #include &lt;boost/mp11.hpp&gt;
 #include &lt;stdexcept&gt;
 #include &lt;typeinfo&gt;
+#include &lt;string&gt;
 #include &lt;cstring&gt;
 
 [[noreturn]] void throw_invalid_name( char const * name, char const * type )
