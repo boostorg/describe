@@ -36,14 +36,16 @@ public:
     {
     }
 
-    int get_m3() const noexcept
+    using Pm = int Y::*;
+
+    static Pm m3_pointer() noexcept
     {
-        return m3;
+        return &Y::m3;
     }
 
-    int get_m4() const noexcept
+    static Pm m4_pointer() noexcept
     {
-        return m4;
+        return &Y::m4;
     }
 };
 
@@ -59,6 +61,28 @@ int main()
     }
 
     {
+        using L = describe_data_members<Y, mod_any_access>;
+
+        BOOST_TEST_EQ( mp_size<L>::value, 4 );
+
+        BOOST_TEST( (mp_at_c<L, 0>::pointer) == &Y::m1 );
+        BOOST_TEST_CSTR_EQ( (mp_at_c<L, 0>::name), "m1" );
+        BOOST_TEST_EQ( (mp_at_c<L, 0>::modifiers), mod_public );
+
+        BOOST_TEST( (mp_at_c<L, 1>::pointer) == &Y::m2 );
+        BOOST_TEST_CSTR_EQ( (mp_at_c<L, 1>::name), "m2" );
+        BOOST_TEST_EQ( (mp_at_c<L, 1>::modifiers), mod_public );
+
+        BOOST_TEST( (mp_at_c<L, 2>::pointer) == Y::m3_pointer() );
+        BOOST_TEST_CSTR_EQ( (mp_at_c<L, 2>::name), "m3" );
+        BOOST_TEST_EQ( (mp_at_c<L, 2>::modifiers), mod_private );
+
+        BOOST_TEST( (mp_at_c<L, 3>::pointer) == Y::m4_pointer() );
+        BOOST_TEST_CSTR_EQ( (mp_at_c<L, 3>::name), "m4" );
+        BOOST_TEST_EQ( (mp_at_c<L, 3>::modifiers), mod_private );
+    }
+
+    {
         using L = describe_data_members<Y, mod_public>;
 
         BOOST_TEST_EQ( mp_size<L>::value, 2 );
@@ -70,6 +94,26 @@ int main()
         BOOST_TEST( (mp_at_c<L, 1>::pointer) == &Y::m2 );
         BOOST_TEST_CSTR_EQ( (mp_at_c<L, 1>::name), "m2" );
         BOOST_TEST_EQ( (mp_at_c<L, 1>::modifiers), mod_public );
+    }
+
+    {
+        using L = describe_data_members<Y, mod_private>;
+
+        BOOST_TEST_EQ( mp_size<L>::value, 2 );
+
+        BOOST_TEST( (mp_at_c<L, 0>::pointer) == Y::m3_pointer() );
+        BOOST_TEST_CSTR_EQ( (mp_at_c<L, 0>::name), "m3" );
+        BOOST_TEST_EQ( (mp_at_c<L, 0>::modifiers), mod_private );
+
+        BOOST_TEST( (mp_at_c<L, 1>::pointer) == Y::m4_pointer() );
+        BOOST_TEST_CSTR_EQ( (mp_at_c<L, 1>::name), "m4" );
+        BOOST_TEST_EQ( (mp_at_c<L, 1>::modifiers), mod_private );
+    }
+
+    {
+        using L = describe_data_members<Y, mod_protected>;
+
+        BOOST_TEST_EQ( mp_size<L>::value, 0 );
     }
 
     return boost::report_errors();

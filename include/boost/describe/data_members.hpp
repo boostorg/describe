@@ -15,7 +15,9 @@ namespace describe
 namespace detail
 {
 
-template<class T> using _describe_data_members = decltype( _data_member_descriptor_fn( static_cast<T*>(0) ) );
+template<class T> using _describe_public_data_members = decltype( _public_data_member_descriptor_fn( static_cast<T*>(0) ) );
+template<class T> using _describe_private_data_members = decltype( _private_data_member_descriptor_fn( static_cast<T*>(0) ) );
+template<class T> using _describe_data_members = mp11::mp_append<_describe_public_data_members<T>, _describe_private_data_members<T>>;
 
 template<unsigned M> struct data_member_filter
 {
