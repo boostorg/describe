@@ -6,7 +6,7 @@
 // https://www.boost.org/LICENSE_1_0.txt
 
 #include <boost/describe/detail/pp_for_each.hpp>
-#include <boost/describe/detail/descriptor_list.hpp>
+#include <boost/describe/detail/list.hpp>
 
 namespace boost
 {
@@ -28,7 +28,7 @@ template<class D> constexpr decltype(D::name()) enum_descriptor<D>::name;
 
 template<class... T> auto enum_descriptor_fn_impl( int, T... )
 {
-    return descriptor_list<enum_descriptor<T>...>();
+    return list<enum_descriptor<T>...>();
 }
 
 #define BOOST_DESCRIBE_ENUM_IMPL(E, e) , []{ struct D { \

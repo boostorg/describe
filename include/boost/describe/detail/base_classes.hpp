@@ -7,7 +7,7 @@
 
 #include <boost/describe/modifiers.hpp>
 #include <boost/describe/detail/pp_for_each.hpp>
-#include <boost/describe/detail/descriptor_list.hpp>
+#include <boost/describe/detail/list.hpp>
 #include <type_traits>
 
 namespace boost
@@ -46,7 +46,7 @@ template<class C, class B> constexpr unsigned base_class_descriptor<C, B>::modif
 
 template<class... T> auto base_class_descriptor_fn_impl( int, T... )
 {
-    return descriptor_list<T...>();
+    return list<T...>();
 }
 
 #define BOOST_DESCRIBE_BASE_CLASS_IMPL(C, B) , boost::describe::detail::base_class_descriptor<C, B>()

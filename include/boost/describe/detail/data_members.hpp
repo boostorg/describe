@@ -7,7 +7,7 @@
 
 #include <boost/describe/modifiers.hpp>
 #include <boost/describe/detail/pp_for_each.hpp>
-#include <boost/describe/detail/descriptor_list.hpp>
+#include <boost/describe/detail/list.hpp>
 #include <type_traits>
 
 namespace boost
@@ -30,7 +30,7 @@ template<class D, unsigned M> constexpr unsigned data_member_descriptor<D, M>::m
 
 template<unsigned M, class... T> auto data_member_descriptor_fn_impl( int, T... )
 {
-    return descriptor_list<data_member_descriptor<T, M>...>();
+    return list<data_member_descriptor<T, M>...>();
 }
 
 #define BOOST_DESCRIBE_DATA_MEMBER_IMPL(C, m) , []{ struct D { \
