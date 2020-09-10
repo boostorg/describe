@@ -16,3 +16,8 @@ run pp_for_each_test.cpp ;
 
 run enumerators_test.cpp ;
 run base_classes_test.cpp ;
+
+run ../example/printing_enums_ct.cpp : : : <toolset>msvc:<cxxflags>"-wd4100" ;
+run ../example/printing_enums_rt.cpp ;
+run ../example/enum_to_string.cpp : : : <toolset>msvc:<cxxflags>"-wd4100" ;
+run ../example/string_to_enum.cpp : : : <toolset>msvc:<cxxflags>"-wd4100" ;

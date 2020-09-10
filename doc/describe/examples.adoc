@@ -8,6 +8,27 @@ https://www.boost.org/LICENSE_1_0.txt
 # Usage Examples
 :idprefix: example_
 
+## Printing Enumerators with a Compile Time Loop
+
+A simple example that just iterates over the enumerator
+descriptors using `mp11::mp_for_each` and prints them.
+
+[source]
+----
+include::../../example/printing_enums_ct.cpp[]
+----
+
+## Printing Enumerators with a Run Time Loop
+
+This is similar to the previous example, but it first builds a
+`std::array` with the values, and then iterates over it using
+an ordinary `for` loop, instead of `mp_for_each`.
+
+[source]
+----
+include::../../example/printing_enums_rt.cpp[]
+----
+
 ## enum_to_string
 
 This example shows a function that, given an enumerator
