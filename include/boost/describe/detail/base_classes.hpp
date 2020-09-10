@@ -51,8 +51,17 @@ template<class... T> auto base_class_descriptor_fn_impl( int, T... )
 
 #define BOOST_DESCRIBE_BASE_CLASS_IMPL(C, B) , boost::describe::detail::base_class_descriptor<C, B>()
 
-#define BOOST_DESCRIBE_BASE_CLASSES(C, ...) inline auto _base_class_descriptor_fn( C* ) \
+#if defined(_MSC_VER) && !defined(__clang__)
+
+#define BOOST_DESCRIBE_BASE_CLASSES(C, ...) inline auto _base_class_descriptor_fn( C * ) \
 { return boost::describe::detail::base_class_descriptor_fn_impl( 0 BOOST_DESCRIBE_PP_FOR_EACH(BOOST_DESCRIBE_BASE_CLASS_IMPL, C, __VA_ARGS__) ); }
+
+#else
+
+#define BOOST_DESCRIBE_BASE_CLASSES(C, ...) inline auto _base_class_descriptor_fn( C * ) \
+{ return boost::describe::detail::base_class_descriptor_fn_impl( 0 BOOST_DESCRIBE_PP_FOR_EACH(BOOST_DESCRIBE_BASE_CLASS_IMPL, C, ##__VA_ARGS__) ); }
+
+#endif
 
 } // namespace detail
 } // namespace describe

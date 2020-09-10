@@ -10,6 +10,12 @@
 
 using namespace boost::mp11;
 
+struct X
+{
+};
+
+BOOST_DESCRIBE_STRUCT(X, (), (), ())
+
 struct X1
 {
 };
@@ -36,6 +42,12 @@ int main()
 {
     using namespace boost::describe;
     using namespace boost::mp11;
+
+    {
+        using L = describe_base_classes<X, mod_any_access>;
+
+        BOOST_TEST_EQ( mp_size<L>::value, 0 );
+    }
 
     {
         using L = describe_base_classes<Y, mod_any_access>;

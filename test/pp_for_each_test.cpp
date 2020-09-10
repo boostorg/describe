@@ -7,6 +7,7 @@
 
 #define F1(x, y) #y
 
+char const * s0 = "" BOOST_DESCRIBE_PP_FOR_EACH(F1, ~);
 char const * s1 = BOOST_DESCRIBE_PP_FOR_EACH(F1, ~, a);
 char const * s2 = BOOST_DESCRIBE_PP_FOR_EACH(F1, ~, a, b);
 char const * s3 = BOOST_DESCRIBE_PP_FOR_EACH(F1, ~, a, b, c);
@@ -34,6 +35,7 @@ char const * s24 = BOOST_DESCRIBE_PP_FOR_EACH(F1, ~, a, b, c, d, e, f, g, h, i, 
 
 int main()
 {
+    BOOST_TEST_CSTR_EQ( s0, "" );
     BOOST_TEST_CSTR_EQ( s1, "a" );
     BOOST_TEST_CSTR_EQ( s2, "ab" );
     BOOST_TEST_CSTR_EQ( s3, "abc" );
