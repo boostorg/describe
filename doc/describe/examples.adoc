@@ -8,6 +8,7 @@ https://www.boost.org/LICENSE_1_0.txt
 # Usage Examples
 :idprefix: example_
 
+[#printing_enums_ct]
 ## Printing Enumerators with a Compile Time Loop
 
 A simple example that just iterates over the enumerator

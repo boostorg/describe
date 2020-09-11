@@ -449,13 +449,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#overview">Overview</a>
 <ul class="sectlevel2">
 <li><a href="#overview_description">Description</a></li>
+<li><a href="#overview_describing_enumeration_types">Describing Enumeration Types</a></li>
+<li><a href="#overview_describing_class_types">Describing Class Types</a></li>
 <li><a href="#overview_dependencies">Dependencies</a></li>
 <li><a href="#overview_supported_compilers">Supported Compilers</a></li>
 </ul>
 </li>
 <li><a href="#examples">Usage Examples</a>
 <ul class="sectlevel2">
-<li><a href="#example_printing_enumerators_with_a_compile_time_loop">Printing Enumerators with a Compile Time Loop</a></li>
+<li><a href="#printing_enums_ct">Printing Enumerators with a Compile Time Loop</a></li>
 <li><a href="#example_printing_enumerators_with_a_run_time_loop">Printing Enumerators with a Run Time Loop</a></li>
 <li><a href="#example_enum_to_string">enum_to_string</a></li>
 <li><a href="#example_string_to_enum">string_to_enum</a></li>
@@ -536,6 +538,165 @@ the types.</p>
 </div>
 </div>
 <div class="sect2">
+<h3 id="overview_describing_enumeration_types">Describing Enumeration Types</h3>
+<div class="paragraph">
+<p>If you have an enumeration type</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>enum E
+{
+    v1 = 1,
+    v2 = 2,
+    v3 = 4,
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>you can add reflection metadata to it via the <code>BOOST_DESCRIBE_ENUM</code> macro:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>BOOST_DESCRIBE_ENUM(E, v1, v2, v3)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The macro is defined in <code>&lt;boost/describe/enum.hpp&gt;</code> and should be placed in
+the same namespace as the enum.</p>
+</div>
+<div class="paragraph">
+<p>For scoped enums, use <code>BOOST_DESCRIBE_ENUM_CLASS</code> instead.</p>
+</div>
+<div class="paragraph">
+<p>If your enumerators don&#8217;t have initializers, instead of repeating them</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>enum E2 { a, b, c, d };
+BOOST_DESCRIBE_ENUM(E2, a, b, c, d)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>you can use the convenience macro</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>BOOST_DEFINE_ENUM(E2, a, b, c, d)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>which expands to the two previous lines.</p>
+</div>
+<div class="paragraph">
+<p>For defining <code>enum class E2</code> instead, use <code>BOOST_DEFINE_ENUM_CLASS</code>. To add
+an underlying type, i.e. <code>enum E3: int</code> or <code>enum class E4: unsigned char</code>,
+use <code>BOOST_DEFINE_FIXED_ENUM</code> and <code>BOOST_DEFINE_FIXED_ENUM_CLASS</code>, respectively.</p>
+</div>
+<div class="paragraph">
+<p>Once an enumeration type <code>E</code> is annotated, one can use <code>describe_enumerators&lt;E&gt;</code>
+to obtain a <em>descriptor list</em>. (<code>describe_enumerators</code> is defined in the
+<code>boost::describe</code> namespace, in <code>&lt;boost/describe/enumerators.hpp&gt;</code>.)</p>
+</div>
+<div class="paragraph">
+<p>A descriptor list is a type of the form <code>L&lt;D1, D2, &#8230;&#8203;, Dn&gt;</code>, where <code>L</code> is of
+the form <code>template&lt;class&#8230;&#8203; T&gt; struct L {};</code> and <code>Di</code> is of the form</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>struct Di
+{
+    static constexpr E value;
+    static constexpr char const* name;
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To <a href="#printing_enums_ct">iterate over the descriptor list</a>, you can use <code>mp_for_each</code> from Mp11:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>boost::mp11::mp_for_each&lt; boost::describe::describe_enumerators&lt;E&gt; &gt;([](auto D){
+
+    std::printf( "%s: %d\n", D.name, D.value );
+
+});</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="overview_describing_class_types">Describing Class Types</h3>
+<div class="paragraph">
+<p>If you have a <code>struct</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>struct X
+{
+    int m1;
+    int m2;
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>use the <code>BOOST_DESCRIBE_STRUCT</code> macro to describe it:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>BOOST_DESCRIBE_STRUCT(X, (), (m1, m2), ())</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>BOOST_DESCRIBE_STRUCT</code> is defined in <code>&lt;boost/describe/class.hpp&gt;</code> and should
+be placed in the same namespace as the <code>struct</code>.</p>
+</div>
+<div class="paragraph">
+<p>It takes four arguments: the <code>struct</code> name, a list of base classes
+(empty in our example), a list of (public) data members by name, and a list of
+(public) member functions, also by name (empty for <code>X</code>.)</p>
+</div>
+<div class="paragraph">
+<p>Once <code>X</code> is annotated, its properties can be retrieved via
+<code>describe_base_classes&lt;X&gt;</code>, <code>describe_data_members&lt;X, M&gt;</code> and
+<code>describe_member_functions&lt;X, M&gt;</code> (<code>M</code> is a bitmask of modifiers such as
+<code>mod_public | mod_static</code>).</p>
+</div>
+<div class="paragraph">
+<p>These primitives are defined in namespace <code>boost::describe</code>, in the headers
+<code>&lt;boost/describe/base_classes.hpp&gt;</code>, <code>&lt;boost/describe/data_members.hpp&gt;</code>, and
+<code>&lt;boost/describe/member_functions.hpp&gt;</code>, respectively.</p>
+</div>
+<div class="paragraph">
+<p>To describe a class type with private data members, use the
+<code>BOOST_DESCRIBE_CLASS</code> macro instead, placing it <em>inside the class</em>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>class Y: private X
+{
+public:
+
+    int m3;
+
+private:
+
+    int m4;
+
+public:
+
+    int f() const;
+
+private:
+
+    BOOST_DESCRIBE_CLASS(Y, (X), (m3), (m4), (f))
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It takes two data member lists, one for the public members and one for the
+private ones. Private member functions are not described.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="overview_dependencies">Dependencies</h3>
 <div class="paragraph">
 <p>Boost.Mp11.</p>
@@ -570,7 +731,7 @@ the types.</p>
 <h2 id="examples">Usage Examples</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="example_printing_enumerators_with_a_compile_time_loop">Printing Enumerators with a Compile Time Loop</h3>
+<h3 id="printing_enums_ct">Printing Enumerators with a Compile Time Loop</h3>
 <div class="paragraph">
 <p>A simple example that just iterates over the enumerator
 descriptors using <code>mp11::mp_for_each</code> and prints them.</p>
@@ -926,7 +1087,7 @@ the <a href="http://www.boost.org/LICENSE_1_0.txt">Boost Software License, Versi
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-09-10 15:27:13 +0300
+Last updated 2020-09-11 16:07:18 +0300
 </div>
 </div>
 <style>

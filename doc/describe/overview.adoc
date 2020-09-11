@@ -28,6 +28,135 @@ Eventually, one might hope for the primitives to end up in the {cpp} standard,
 with the compiler automatically supplying the metadata necessary to describe
 the types.
 
+## Describing Enumeration Types
+
+If you have an enumeration type
+
+```
+enum E
+{
+    v1 = 1,
+    v2 = 2,
+    v3 = 4,
+};
+```
+
+you can add reflection metadata to it via the `BOOST_DESCRIBE_ENUM` macro:
+
+```
+BOOST_DESCRIBE_ENUM(E, v1, v2, v3)
+```
+
+The macro is defined in `<boost/describe/enum.hpp>` and should be placed in
+the same namespace as the enum.
+
+For scoped enums, use `BOOST_DESCRIBE_ENUM_CLASS` instead.
+
+If your enumerators don't have initializers, instead of repeating them
+
+```
+enum E2 { a, b, c, d };
+BOOST_DESCRIBE_ENUM(E2, a, b, c, d)
+```
+
+you can use the convenience macro
+
+```
+BOOST_DEFINE_ENUM(E2, a, b, c, d)
+```
+
+which expands to the two previous lines.
+
+For defining `enum class E2` instead, use `BOOST_DEFINE_ENUM_CLASS`. To add
+an underlying type, i.e. `enum E3: int` or `enum class E4: unsigned char`,
+use `BOOST_DEFINE_FIXED_ENUM` and `BOOST_DEFINE_FIXED_ENUM_CLASS`, respectively.
+
+Once an enumeration type `E` is annotated, one can use `describe_enumerators<E>`
+to obtain a _descriptor list_. (`describe_enumerators` is defined in the
+`boost::describe` namespace, in `<boost/describe/enumerators.hpp>`.)
+
+A descriptor list is a type of the form `L<D1, D2, ..., Dn>`, where `L` is of
+the form `template<class... T> struct L {};` and `Di` is of the form
+
+```
+struct Di
+{
+    static constexpr E value;
+    static constexpr char const* name;
+};
+```
+
+To <<printing_enums_ct,iterate over the descriptor list>>, you can use `mp_for_each` from Mp11:
+
+```
+boost::mp11::mp_for_each< boost::describe::describe_enumerators<E> >([](auto D){
+
+    std::printf( "%s: %d\n", D.name, D.value );
+
+});
+```
+
+## Describing Class Types
+
+If you have a `struct`
+
+```
+struct X
+{
+    int m1;
+    int m2;
+};
+```
+
+use the `BOOST_DESCRIBE_STRUCT` macro to describe it:
+
+```
+BOOST_DESCRIBE_STRUCT(X, (), (m1, m2), ())
+```
+
+`BOOST_DESCRIBE_STRUCT` is defined in `<boost/describe/class.hpp>` and should
+be placed in the same namespace as the `struct`.
+
+It takes four arguments: the `struct` name, a list of base classes
+(empty in our example), a list of (public) data members by name, and a list of
+(public) member functions, also by name (empty for `X`.)
+
+Once `X` is annotated, its properties can be retrieved via
+`describe_base_classes<X>`, `describe_data_members<X, M>` and
+`describe_member_functions<X, M>` (`M` is a bitmask of modifiers such as
+`mod_public | mod_static`).
+
+These primitives are defined in namespace `boost::describe`, in the headers
+`<boost/describe/base_classes.hpp>`, `<boost/describe/data_members.hpp>`, and
+`<boost/describe/member_functions.hpp>`, respectively.
+
+To describe a class type with private data members, use the
+`BOOST_DESCRIBE_CLASS` macro instead, placing it _inside the class_.
+
+```
+class Y: private X
+{
+public:
+
+    int m3;
+
+private:
+
+    int m4;
+
+public:
+
+    int f() const;
+
+private:
+
+    BOOST_DESCRIBE_CLASS(Y, (X), (m3), (m4), (f))
+};
+```
+
+It takes two data member lists, one for the public members and one for the
+private ones. Private member functions are not described.
+
 ## Dependencies
 
 Boost.Mp11.
