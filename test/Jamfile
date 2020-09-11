@@ -8,7 +8,9 @@ project : requirements
   <warnings>extra
   <toolset>msvc:<warnings-as-errors>on
   <toolset>clang:<warnings-as-errors>on
-  <toolset>gcc:<warnings-as-errors>on ;
+  <toolset>gcc:<warnings-as-errors>on
+  <toolset>msvc-14.0:<cxxflags>"-wd4100"
+  <toolset>clang:<cxxflags>"-Wno-unused-private-field" ;
 
 run quick.cpp ;
 
@@ -20,12 +22,10 @@ run data_members_test.cpp ;
 run data_members_test2.cpp ;
 run member_functions_test.cpp ;
 
-local NW = <toolset>msvc-14.0:<cxxflags>"-wd4100" ;
-
-run ../example/printing_enums_ct.cpp : : : $(NW) ;
+run ../example/printing_enums_ct.cpp ;
 run ../example/printing_enums_rt.cpp ;
-run ../example/enum_to_string.cpp : : : $(NW) ;
-run ../example/string_to_enum.cpp : : : $(NW) ;
-run ../example/print_function.cpp : : : $(NW) ;
-# run ../example/to_json.cpp /boost//json /boost//container : : : $(NW) ;
+run ../example/enum_to_string.cpp ;
+run ../example/string_to_enum.cpp ;
+run ../example/print_function.cpp ;
+# run ../example/to_json.cpp /boost//json /boost//container ;
 # run ../example/from_json.cpp /boost//json : : : <toolset>msvc-14.0:<build>no ;

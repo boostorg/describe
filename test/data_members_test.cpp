@@ -46,16 +46,6 @@ public:
     {
         return &Y::m4;
     }
-
-    int get_m3() const noexcept
-    {
-        return m3;
-    }
-
-    int get_m4() const noexcept
-    {
-        return m4;
-    }
 };
 
 int main()
