@@ -27,5 +27,5 @@ run ../example/printing_enums_rt.cpp ;
 run ../example/enum_to_string.cpp : : : $(NW) ;
 run ../example/string_to_enum.cpp : : : $(NW) ;
 run ../example/print_function.cpp : : : $(NW) ;
-run ../example/to_json.cpp /boost//json /boost//container : : : $(NW) ;
-run ../example/from_json.cpp /boost//json : : : <toolset>msvc-14.0:<build>no ;
+# run ../example/to_json.cpp /boost//json /boost//container : : : $(NW) ;
+# run ../example/from_json.cpp /boost//json : : : <toolset>msvc-14.0:<build>no ;
