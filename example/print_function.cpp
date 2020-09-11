@@ -17,7 +17,7 @@ template<class T,
 
     bool first = true;
 
-    boost::mp11::mp_for_each< Bd >([&](auto D){
+    boost::mp11::mp_for_each<Bd>([&](auto D){
 
         if( !first ) { os << ", "; } first = false;
 
@@ -26,7 +26,7 @@ template<class T,
 
     });
 
-    boost::mp11::mp_for_each< Md >([&](auto D){
+    boost::mp11::mp_for_each<Md>([&](auto D){
 
         if( !first ) { os << ", "; } first = false;
 
