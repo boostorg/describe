@@ -5,7 +5,6 @@
 #include <boost/describe/data_members.hpp>
 #include <boost/describe/class.hpp>
 #include <boost/core/lightweight_test.hpp>
-#include <boost/core/lightweight_test_trait.hpp>
 #include <boost/mp11.hpp>
 
 using namespace boost::mp11;
