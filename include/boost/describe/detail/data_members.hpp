@@ -17,11 +17,16 @@ namespace describe
 namespace detail
 {
 
+template<class Pm> constexpr unsigned dm_static_modifier( Pm )
+{
+    return std::is_member_pointer<Pm>::value? 0: mod_static;
+}
+
 template<class D, unsigned M> struct data_member_descriptor
 {
     static constexpr decltype(D::pointer()) pointer = D::pointer();
     static constexpr decltype(D::name()) name = D::name();
-    static constexpr unsigned modifiers = M;
+    static constexpr unsigned modifiers = M | dm_static_modifier( D::pointer() );
 };
 
 template<class D, unsigned M> constexpr decltype(D::pointer()) data_member_descriptor<D, M>::pointer;

@@ -21,7 +21,7 @@ template<class T> using _describe_data_members = mp11::mp_append<_describe_publi
 
 template<unsigned M> struct data_member_filter
 {
-    template<class T> using fn = mp11::mp_bool< ( M & mod_any_access & T::modifiers ) != 0 >;
+    template<class T> using fn = mp11::mp_bool< ( M & mod_any_access & T::modifiers ) != 0 && ( M & mod_static ) == ( T::modifiers & mod_static ) >;
 };
 
 } // namespace detail

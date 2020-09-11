@@ -14,6 +14,7 @@ constexpr unsigned mod_public = 1;
 constexpr unsigned mod_protected = 2;
 constexpr unsigned mod_private = 4;
 constexpr unsigned mod_virtual = 8;
+constexpr unsigned mod_static = 16;
 
 //
 
