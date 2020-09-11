@@ -461,6 +461,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#example_printing_enumerators_with_a_run_time_loop">Printing Enumerators with a Run Time Loop</a></li>
 <li><a href="#example_enum_to_string">enum_to_string</a></li>
 <li><a href="#example_string_to_enum">string_to_enum</a></li>
+<li><a href="#example_defining_a_universal_print_function">Defining a Universal Print Function</a></li>
+<li><a href="#example_defining_a_universal_conversion_to_json">Defining a Universal Conversion to JSON</a></li>
+<li><a href="#example_defining_a_universal_conversion_from_json">Defining a Universal Conversion from JSON</a></li>
 </ul>
 </li>
 <li><a href="#reference">Reference</a>
@@ -928,6 +931,231 @@ int main()
     {
         std::cout &lt;&lt; x.what() &lt;&lt; std::endl;
     }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="example_defining_a_universal_print_function">Defining a Universal Print Function</h3>
+<div class="paragraph">
+<p>This example defines a universal <code>operator&lt;&lt;</code> that works on
+any class or struct type that has been described with
+<code>BOOST_DESCRIBE_STRUCT</code> or <code>BOOST_DESCRIBE_CLASS</code>.</p>
+</div>
+<div class="paragraph">
+<p>It first prints the base classes, recursively, then prints
+all the members.</p>
+</div>
+<div class="paragraph">
+<p>(A C cast is used to access private base classes. This is
+not as bad as it first appears, because we&#8217;re only inspecting
+the base class by printing its members, and doing so should not
+change its state and hence cannot violate its invariant.)</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>#include &lt;boost/describe.hpp&gt;
+#include &lt;boost/mp11.hpp&gt;
+#include &lt;ostream&gt;
+
+using namespace boost::describe;
+
+template&lt;class T,
+    class Bd = describe_base_classes&lt;T, mod_any_access&gt;,
+    class Md = describe_data_members&lt;T, mod_any_access&gt;&gt;
+    std::ostream&amp; operator&lt;&lt;( std::ostream &amp; os, T const &amp; t )
+{
+    os &lt;&lt; "{";
+
+    bool first = true;
+
+    boost::mp11::mp_for_each&lt; Bd &gt;([&amp;](auto D){
+
+        if( !first ) { os &lt;&lt; ", "; } first = false;
+
+        using B = typename decltype(D)::type;
+        os &lt;&lt; (B const&amp;)t;
+
+    });
+
+    boost::mp11::mp_for_each&lt; Md &gt;([&amp;](auto D){
+
+        if( !first ) { os &lt;&lt; ", "; } first = false;
+
+        os &lt;&lt; "." &lt;&lt; D.name &lt;&lt; " = " &lt;&lt; t.*D.pointer;
+
+    });
+
+    os &lt;&lt; "}";
+    return os;
+}
+
+struct X
+{
+    int m1 = 1;
+};
+
+BOOST_DESCRIBE_STRUCT(X, (), (m1), ())
+
+struct Y
+{
+    int m2 = 2;
+};
+
+BOOST_DESCRIBE_STRUCT(Y, (), (m2), ())
+
+class Z: public X, private Y
+{
+    int m1 = 3;
+    int m2 = 4;
+
+    BOOST_DESCRIBE_CLASS(Z, (X, Y), (), (m1, m2), ())
+};
+
+#include &lt;iostream&gt;
+
+int main()
+{
+    std::cout &lt;&lt; Z() &lt;&lt; std::endl;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="example_defining_a_universal_conversion_to_json">Defining a Universal Conversion to JSON</h3>
+<div class="paragraph">
+<p>This example defines a universal <code>tag_invoke</code> overload that
+automatically converts an annotated struct to JSON by iterating
+over the described public members and adding them to the return
+<code>json::object</code>.</p>
+</div>
+<div class="paragraph">
+<p>The overload is defined in namespace <code>app</code> in order to apply
+to all annotated classes also defined in <code>app</code>.</p>
+</div>
+<div class="paragraph">
+<p>The presence of private members is taken as an indication that
+a universal conversion is not suitable, so the overload is
+disabled in this case using <code>std::enable_if_t</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>#include &lt;boost/describe.hpp&gt;
+#include &lt;boost/mp11.hpp&gt;
+#include &lt;boost/json.hpp&gt;
+#include &lt;type_traits&gt;
+#include &lt;vector&gt;
+#include &lt;map&gt;
+
+namespace app
+{
+
+template&lt;class T,
+    class D1 = boost::describe::describe_data_members&lt;T, boost::describe::mod_public&gt;,
+    class D2 = boost::describe::describe_data_members&lt;T, boost::describe::mod_private&gt;,
+    class En = std::enable_if_t&lt;boost::mp11::mp_empty&lt;D2&gt;::value&gt; &gt;
+
+    void tag_invoke( boost::json::value_from_tag const&amp;, boost::json::value&amp; v, T const &amp; t )
+{
+    auto&amp; obj = v.emplace_object();
+
+    boost::mp11::mp_for_each&lt;D1&gt;([&amp;](auto D){
+
+        obj[ D.name ] = boost::json::value_from( t.*D.pointer );
+
+    });
+}
+
+struct A
+{
+    int x;
+    int y;
+};
+
+BOOST_DESCRIBE_STRUCT(A, (), (x, y), ())
+
+struct B
+{
+    std::vector&lt;A&gt; v;
+    std::map&lt;std::string, A&gt; m;
+};
+
+BOOST_DESCRIBE_STRUCT(B, (), (v, m), ())
+
+} // namespace app
+
+#include &lt;iostream&gt;
+
+int main()
+{
+    app::B b{ { { 1, 2 }, { 3, 4 } }, { { "k1", { 5, 6 } }, { "k2", { 7, 8 } } } };
+
+    std::cout &lt;&lt; boost::json::value_from( b ) &lt;&lt; std::endl;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="example_defining_a_universal_conversion_from_json">Defining a Universal Conversion from JSON</h3>
+<div class="paragraph">
+<p>Like the previous example, but in the other direction.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>#include &lt;boost/describe.hpp&gt;
+#include &lt;boost/mp11.hpp&gt;
+#include &lt;boost/json.hpp&gt;
+#include &lt;type_traits&gt;
+
+namespace app
+{
+
+template&lt;class T&gt; void extract( boost::json::object const &amp; obj, char const * name, T &amp; value )
+{
+    value = boost::json::value_to&lt;T&gt;( obj.at( name ) );
+}
+
+template&lt;class T,
+    class D1 = boost::describe::describe_data_members&lt;T, boost::describe::mod_public&gt;,
+    class D2 = boost::describe::describe_data_members&lt;T, boost::describe::mod_private&gt;,
+    class En = std::enable_if_t&lt;boost::mp11::mp_empty&lt;D2&gt;::value&gt; &gt;
+
+    T tag_invoke( boost::json::value_to_tag&lt;T&gt; const&amp;, boost::json::value const&amp; v )
+{
+    auto const&amp; obj = v.as_object();
+
+    T t = {};
+
+    boost::mp11::mp_for_each&lt;D1&gt;([&amp;](auto D){
+
+        extract( obj, D.name, t.*D.pointer );
+
+    });
+
+    return t;
+}
+
+struct A
+{
+    int x;
+    int y;
+};
+
+BOOST_DESCRIBE_STRUCT(A, (), (x, y), ())
+
+} // namespace app
+
+#include &lt;iostream&gt;
+
+int main()
+{
+    boost::json::value jv{ { "x", 1 }, { "y", 2 } };
+
+    std::cout &lt;&lt; "jv: " &lt;&lt; jv &lt;&lt; std::endl;
+
+    auto a = boost::json::value_to&lt;app::A&gt;( jv );
+
+    std::cout &lt;&lt; "a: { " &lt;&lt; a.x &lt;&lt; ", " &lt;&lt; a.y &lt;&lt; " }" &lt;&lt; std::endl;
 }</code></pre>
 </div>
 </div>

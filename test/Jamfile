@@ -20,7 +20,12 @@ run data_members_test.cpp ;
 run data_members_test2.cpp ;
 run member_functions_test.cpp ;
 
-run ../example/printing_enums_ct.cpp : : : <toolset>msvc:<cxxflags>"-wd4100" ;
+local NW = <toolset>msvc-14.0:<cxxflags>"-wd4100" ;
+
+run ../example/printing_enums_ct.cpp : : : $(NW) ;
 run ../example/printing_enums_rt.cpp ;
-run ../example/enum_to_string.cpp : : : <toolset>msvc:<cxxflags>"-wd4100" ;
-run ../example/string_to_enum.cpp : : : <toolset>msvc:<cxxflags>"-wd4100" ;
+run ../example/enum_to_string.cpp : : : $(NW) ;
+run ../example/string_to_enum.cpp : : : $(NW) ;
+run ../example/print_function.cpp : : : $(NW) ;
+run ../example/to_json.cpp /boost//json /boost//container : : : $(NW) ;
+run ../example/from_json.cpp /boost//json : : : <toolset>msvc-14.0:<build>no ;
