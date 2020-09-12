@@ -2,7 +2,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // https://www.boost.org/LICENSE_1_0.txt
 
-#include <boost/describe/base_classes.hpp>
+#include <boost/describe/bases.hpp>
 #include <boost/describe/class.hpp>
 #include <boost/core/lightweight_test.hpp>
 #include <boost/core/lightweight_test_trait.hpp>
@@ -14,7 +14,7 @@ struct X
 {
 };
 
-BOOST_DESCRIBE_STRUCT(X, (), (), ())
+BOOST_DESCRIBE_STRUCT(X, (), ())
 
 struct X1
 {
@@ -36,7 +36,7 @@ struct Y: public X1, private X2, public virtual X3, private virtual X4
 {
 };
 
-BOOST_DESCRIBE_STRUCT(Y, (X1, X2, X3, X4), (), ())
+BOOST_DESCRIBE_STRUCT(Y, (X1, X2, X3, X4), ())
 
 int main()
 {
@@ -44,13 +44,13 @@ int main()
     using namespace boost::mp11;
 
     {
-        using L = describe_base_classes<X, mod_any_access>;
+        using L = describe_bases<X, mod_any_access>;
 
         BOOST_TEST_EQ( mp_size<L>::value, 0 );
     }
 
     {
-        using L = describe_base_classes<Y, mod_any_access>;
+        using L = describe_bases<Y, mod_any_access>;
 
         BOOST_TEST_EQ( mp_size<L>::value, 4 );
 
@@ -68,7 +68,7 @@ int main()
     }
 
     {
-        using L = describe_base_classes<Y, mod_public>;
+        using L = describe_bases<Y, mod_public>;
 
         BOOST_TEST_EQ( mp_size<L>::value, 2 );
 
@@ -80,7 +80,7 @@ int main()
     }
 
     {
-        using L = describe_base_classes<Y, mod_private>;
+        using L = describe_bases<Y, mod_private>;
 
         BOOST_TEST_EQ( mp_size<L>::value, 2 );
 
@@ -92,7 +92,7 @@ int main()
     }
 
     {
-        using L = describe_base_classes<Y, mod_protected>;
+        using L = describe_bases<Y, mod_protected>;
 
         BOOST_TEST_EQ( mp_size<L>::value, 0 );
     }

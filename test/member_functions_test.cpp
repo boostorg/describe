@@ -2,7 +2,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // https://www.boost.org/LICENSE_1_0.txt
 
-#include <boost/describe/member_functions.hpp>
+#include <boost/describe/members.hpp>
 #include <boost/describe/class.hpp>
 #include <boost/core/lightweight_test.hpp>
 #include <boost/mp11.hpp>
@@ -16,7 +16,7 @@ struct X
     static void h() {}
 };
 
-BOOST_DESCRIBE_STRUCT(X, (), (), (f, g, h))
+BOOST_DESCRIBE_STRUCT(X, (), (f, g, h))
 
 int main()
 {
@@ -24,17 +24,17 @@ int main()
     using namespace boost::mp11;
 
     {
-        using L = describe_member_functions<X, mod_protected>;
+        using L = describe_members<X, mod_protected | mod_function>;
         BOOST_TEST_EQ( mp_size<L>::value, 0 );
     }
 
     {
-        using L = describe_member_functions<X, mod_private>;
+        using L = describe_members<X, mod_private | mod_function>;
         BOOST_TEST_EQ( mp_size<L>::value, 0 );
     }
 
     {
-        using L = describe_member_functions<X, mod_public>;
+        using L = describe_members<X, mod_public | mod_function>;
 
         BOOST_TEST_EQ( mp_size<L>::value, 2 );
 
@@ -43,15 +43,15 @@ int main()
 
         BOOST_TEST( D1::pointer == &X::f );
         BOOST_TEST_CSTR_EQ( D1::name, "f" );
-        BOOST_TEST_EQ( D1::modifiers, mod_public );
+        BOOST_TEST_EQ( D1::modifiers, mod_public | mod_function );
 
         BOOST_TEST( D2::pointer == &X::g );
         BOOST_TEST_CSTR_EQ( D2::name, "g" );
-        BOOST_TEST_EQ( D2::modifiers, mod_public );
+        BOOST_TEST_EQ( D2::modifiers, mod_public | mod_function );
     }
 
     {
-        using L = describe_member_functions<X, mod_public | mod_static>;
+        using L = describe_members<X, mod_public | mod_static | mod_function>;
 
         BOOST_TEST_EQ( mp_size<L>::value, 1 );
 
@@ -59,7 +59,7 @@ int main()
 
         BOOST_TEST( D1::pointer == &X::h );
         BOOST_TEST_CSTR_EQ( D1::name, "h" );
-        BOOST_TEST_EQ( D1::modifiers, mod_public | mod_static );
+        BOOST_TEST_EQ( D1::modifiers, mod_public | mod_static | mod_function );
     }
 
     return boost::report_errors();

@@ -13,8 +13,8 @@ namespace app
 {
 
 template<class T,
-    class D1 = boost::describe::describe_data_members<T, boost::describe::mod_public>,
-    class D2 = boost::describe::describe_data_members<T, boost::describe::mod_private>,
+    class D1 = boost::describe::describe_members<T, boost::describe::mod_public | boost::describe::mod_protected>,
+    class D2 = boost::describe::describe_members<T, boost::describe::mod_private>,
     class En = std::enable_if_t<boost::mp11::mp_empty<D2>::value> >
 
     void tag_invoke( boost::json::value_from_tag const&, boost::json::value& v, T const & t )
@@ -34,7 +34,7 @@ struct A
     int y;
 };
 
-BOOST_DESCRIBE_STRUCT(A, (), (x, y), ())
+BOOST_DESCRIBE_STRUCT(A, (), (x, y))
 
 struct B
 {
@@ -42,7 +42,7 @@ struct B
     std::map<std::string, A> m;
 };
 
-BOOST_DESCRIBE_STRUCT(B, (), (v, m), ())
+BOOST_DESCRIBE_STRUCT(B, (), (v, m))
 
 } // namespace app
 

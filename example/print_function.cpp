@@ -9,8 +9,8 @@
 using namespace boost::describe;
 
 template<class T,
-    class Bd = describe_base_classes<T, mod_any_access>,
-    class Md = describe_data_members<T, mod_any_access>>
+    class Bd = describe_bases<T, mod_any_access>,
+    class Md = describe_members<T, mod_any_access>>
     std::ostream& operator<<( std::ostream & os, T const & t )
 {
     os << "{";
@@ -43,21 +43,21 @@ struct X
     int m1 = 1;
 };
 
-BOOST_DESCRIBE_STRUCT(X, (), (m1), ())
+BOOST_DESCRIBE_STRUCT(X, (), (m1))
 
 struct Y
 {
     int m2 = 2;
 };
 
-BOOST_DESCRIBE_STRUCT(Y, (), (m2), ())
+BOOST_DESCRIBE_STRUCT(Y, (), (m2))
 
 class Z: public X, private Y
 {
     int m1 = 3;
     int m2 = 4;
 
-    BOOST_DESCRIBE_CLASS(Z, (X, Y), (), (m1, m2), ())
+    BOOST_DESCRIBE_CLASS(Z, (X, Y), (), (), (m1, m2))
 };
 
 #include <iostream>

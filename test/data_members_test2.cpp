@@ -2,7 +2,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // https://www.boost.org/LICENSE_1_0.txt
 
-#include <boost/describe/data_members.hpp>
+#include <boost/describe/members.hpp>
 #include <boost/describe/class.hpp>
 #include <boost/core/lightweight_test.hpp>
 #include <boost/mp11.hpp>
@@ -16,7 +16,7 @@ struct X
 
 int X::m1 = 1;
 
-BOOST_DESCRIBE_STRUCT(X, (), (m1), ())
+BOOST_DESCRIBE_STRUCT(X, (), (m1))
 
 class Y
 {
@@ -30,7 +30,7 @@ private:
     int m3 = 3;
     static int m4;
 
-    BOOST_DESCRIBE_CLASS(Y, (), (m1, m2), (m3, m4), ())
+    BOOST_DESCRIBE_CLASS(Y, (), (m1, m2), (), (m3, m4))
 
 public:
 
@@ -56,13 +56,13 @@ int main()
     using namespace boost::mp11;
 
     {
-        using L = describe_data_members<X, mod_any_access>;
+        using L = describe_members<X, mod_any_access>;
 
         BOOST_TEST_EQ( mp_size<L>::value, 0 );
     }
 
     {
-        using L = describe_data_members<X, mod_any_access | mod_static>;
+        using L = describe_members<X, mod_any_access | mod_static>;
 
         BOOST_TEST_EQ( mp_size<L>::value, 1 );
 
@@ -74,7 +74,7 @@ int main()
     }
 
     {
-        using L = describe_data_members<Y, mod_any_access>;
+        using L = describe_members<Y, mod_any_access>;
 
         BOOST_TEST_EQ( mp_size<L>::value, 2 );
 
@@ -91,7 +91,7 @@ int main()
     }
 
     {
-        using L = describe_data_members<Y, mod_any_access | mod_static>;
+        using L = describe_members<Y, mod_any_access | mod_static>;
 
         BOOST_TEST_EQ( mp_size<L>::value, 2 );
 
@@ -108,7 +108,7 @@ int main()
     }
 
     {
-        using L = describe_data_members<Y, mod_public>;
+        using L = describe_members<Y, mod_public>;
 
         BOOST_TEST_EQ( mp_size<L>::value, 1 );
 
@@ -120,7 +120,7 @@ int main()
     }
 
     {
-        using L = describe_data_members<Y, mod_public | mod_static>;
+        using L = describe_members<Y, mod_public | mod_static>;
 
         BOOST_TEST_EQ( mp_size<L>::value, 1 );
 
@@ -132,7 +132,7 @@ int main()
     }
 
     {
-        using L = describe_data_members<Y, mod_private>;
+        using L = describe_members<Y, mod_private>;
 
         BOOST_TEST_EQ( mp_size<L>::value, 1 );
 
@@ -144,7 +144,7 @@ int main()
     }
 
     {
-        using L = describe_data_members<Y, mod_private | mod_static>;
+        using L = describe_members<Y, mod_private | mod_static>;
 
         BOOST_TEST_EQ( mp_size<L>::value, 1 );
 
@@ -156,13 +156,13 @@ int main()
     }
 
     {
-        using L = describe_data_members<Y, mod_protected>;
+        using L = describe_members<Y, mod_protected>;
 
         BOOST_TEST_EQ( mp_size<L>::value, 0 );
     }
 
     {
-        using L = describe_data_members<Y, mod_protected | mod_static>;
+        using L = describe_members<Y, mod_protected | mod_static>;
 
         BOOST_TEST_EQ( mp_size<L>::value, 0 );
     }

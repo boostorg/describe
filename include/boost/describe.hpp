@@ -6,8 +6,8 @@
 // https://www.boost.org/LICENSE_1_0.txt
 
 #include <boost/describe/enumerators.hpp>
-#include <boost/describe/base_classes.hpp>
-#include <boost/describe/data_members.hpp>
+#include <boost/describe/bases.hpp>
+#include <boost/describe/members.hpp>
 #include <boost/describe/enum.hpp>
 #include <boost/describe/class.hpp>
 #include <boost/describe/modifiers.hpp>

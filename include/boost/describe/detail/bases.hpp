@@ -1,5 +1,5 @@
-#ifndef BOOST_DESCRIBE_DETAIL_BASE_CLASSES_HPP_INCLUDED
-#define BOOST_DESCRIBE_DETAIL_BASE_CLASSES_HPP_INCLUDED
+#ifndef BOOST_DESCRIBE_DETAIL_BASES_HPP_INCLUDED
+#define BOOST_DESCRIBE_DETAIL_BASES_HPP_INCLUDED
 
 // Copyright 2020 Peter Dimov
 // Distributed under the Boost Software License, Version 1.0.
@@ -27,39 +27,39 @@ template<class T, class U> struct can_cast<T, U, decltype((void)(U*)(T*)0)>: std
 template<class T, class U> using is_virtual_base_of =
     std::integral_constant<bool, can_cast<U, T>::value && !can_cast<T, U>::value>;
 
-// base_class_modifiers
-template<class C, class B> constexpr unsigned base_class_modifiers() noexcept
+// base_modifiers
+template<class C, class B> constexpr unsigned base_modifiers() noexcept
 {
     return (is_public_base_of<B, C>::value? mod_public: mod_private) | (is_virtual_base_of<B, C>::value? mod_virtual: 0);
 }
 
-// base_class_descriptor
-template<class C, class B> struct base_class_descriptor
+// base_descriptor
+template<class C, class B> struct base_descriptor
 {
     static_assert( std::is_base_of<B, C>::value, "A type listed as a base is not one" );
 
     using type = B;
-    static constexpr unsigned modifiers = base_class_modifiers<C, B>();
+    static constexpr unsigned modifiers = base_modifiers<C, B>();
 };
 
-template<class C, class B> constexpr unsigned base_class_descriptor<C, B>::modifiers;
+template<class C, class B> constexpr unsigned base_descriptor<C, B>::modifiers;
 
-template<class... T> auto base_class_descriptor_fn_impl( int, T... )
+template<class... T> auto base_descriptor_fn_impl( int, T... )
 {
     return list<T...>();
 }
 
-#define BOOST_DESCRIBE_BASE_CLASS_IMPL(C, B) , boost::describe::detail::base_class_descriptor<C, B>()
+#define BOOST_DESCRIBE_BASE_IMPL(C, B) , boost::describe::detail::base_descriptor<C, B>()
 
 #if defined(_MSC_VER) && !defined(__clang__)
 
-#define BOOST_DESCRIBE_BASE_CLASSES(C, ...) inline auto _base_class_descriptor_fn( C * ) \
-{ return boost::describe::detail::base_class_descriptor_fn_impl( 0 BOOST_DESCRIBE_PP_FOR_EACH(BOOST_DESCRIBE_BASE_CLASS_IMPL, C, __VA_ARGS__) ); }
+#define BOOST_DESCRIBE_BASES(C, ...) inline auto _base_descriptor_fn( C * ) \
+{ return boost::describe::detail::base_descriptor_fn_impl( 0 BOOST_DESCRIBE_PP_FOR_EACH(BOOST_DESCRIBE_BASE_IMPL, C, __VA_ARGS__) ); }
 
 #else
 
-#define BOOST_DESCRIBE_BASE_CLASSES(C, ...) inline auto _base_class_descriptor_fn( C * ) \
-{ return boost::describe::detail::base_class_descriptor_fn_impl( 0 BOOST_DESCRIBE_PP_FOR_EACH(BOOST_DESCRIBE_BASE_CLASS_IMPL, C, ##__VA_ARGS__) ); }
+#define BOOST_DESCRIBE_BASES(C, ...) inline auto _base_descriptor_fn( C * ) \
+{ return boost::describe::detail::base_descriptor_fn_impl( 0 BOOST_DESCRIBE_PP_FOR_EACH(BOOST_DESCRIBE_BASE_IMPL, C, ##__VA_ARGS__) ); }
 
 #endif
 
@@ -67,4 +67,4 @@ template<class... T> auto base_class_descriptor_fn_impl( int, T... )
 } // namespace describe
 } // namespace boost
 
-#endif // #ifndef BOOST_DESCRIBE_DETAIL_BASE_CLASSES_HPP_INCLUDED
+#endif // #ifndef BOOST_DESCRIBE_DETAIL_BASES_HPP_INCLUDED
