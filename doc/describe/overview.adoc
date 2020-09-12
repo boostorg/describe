@@ -111,26 +111,24 @@ struct X
 use the `BOOST_DESCRIBE_STRUCT` macro to describe it:
 
 ```
-BOOST_DESCRIBE_STRUCT(X, (), (m1, m2), ())
+BOOST_DESCRIBE_STRUCT(X, (), (m1, m2))
 ```
 
 `BOOST_DESCRIBE_STRUCT` is defined in `<boost/describe/class.hpp>` and should
 be placed in the same namespace as the `struct`.
 
-It takes four arguments: the `struct` name, a list of base classes
-(empty in our example), a list of (public) data members by name, and a list of
-(public) member functions, also by name (empty for `X`.)
+It takes three arguments: the `struct` name, a list of base classes
+(empty in our example), and a list of (public) members by name (this includes
+both data members and member functions.)
 
 Once `X` is annotated, its properties can be retrieved via
-`describe_base_classes<X>`, `describe_data_members<X, M>` and
-`describe_member_functions<X, M>` (`M` is a bitmask of modifiers such as
-`mod_public | mod_static`).
+`describe_bases<X, M>` and `describe_members<X, M>` (`M` is a bitmask of
+modifiers such as `mod_public | mod_static | mod_function`).
 
 These primitives are defined in namespace `boost::describe`, in the headers
-`<boost/describe/base_classes.hpp>`, `<boost/describe/data_members.hpp>`, and
-`<boost/describe/member_functions.hpp>`, respectively.
+`<boost/describe/bases.hpp>` and `<boost/describe/members.hpp>`, respectively.
 
-To describe a class type with private data members, use the
+To describe a class type with protected or private members, use the
 `BOOST_DESCRIBE_CLASS` macro instead, placing it _inside the class_.
 
 ```
@@ -140,9 +138,13 @@ public:
 
     int m3;
 
-private:
+protected:
 
     int m4;
+
+private:
+
+    int m5;
 
 public:
 
@@ -150,12 +152,11 @@ public:
 
 private:
 
-    BOOST_DESCRIBE_CLASS(Y, (X), (m3), (m4), (f))
+    BOOST_DESCRIBE_CLASS(Y, (X), (m3, f), (m4), (m5))
 };
 ```
 
-It takes two data member lists, one for the public members and one for the
-private ones. Private member functions are not described.
+It takes three member lists, for the public, protected, and private members.
 
 ## Dependencies
 

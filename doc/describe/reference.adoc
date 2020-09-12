@@ -29,15 +29,62 @@ https://www.boost.org/LICENSE_1_0.txt
 
 ### BOOST_DESCRIBE_ENUM
 
+`BOOST_DESCRIBE_ENUM(E, v1, v2, ..., vN)` should be placed in the namespace
+where the enumeration type `E` is defined, and creates the necessary metadata
+for `describe_enumerators<E>` to work.
+
+After this macro is used, `describe_enumerators<E>` returns `L<D1, D2, ..., Dn>`,
+where `L` is a class template of the form
+```
+template<class...> struct L {};
+```
+and `Di` is an _enumerator descriptor_ of the form
+```
+struct Di
+{
+    static constexpr E value = vi;
+    static constexpr char const * name = "vi";
+};
+```
+where `vi` is corresponding identifier passed to the macro.
+
 ### BOOST_DESCRIBE_ENUM_CLASS
+
+`BOOST_DESCRIBE_ENUM_CLASS(E, v1, ..., vN)` should be used instead of
+`BOOST_DESCRIBE_ENUM` when `E` is a scoped enumeration type, and has
+the same effect.
 
 ### BOOST_DEFINE_ENUM
 
+`BOOST_DEFINE_ENUM(E, v1, v2, ..., vN)` is a convenience macro expanding to
+```
+enum E { v1, v2, ..., vN };
+BOOST_DESCRIBE_ENUM(E, v1, v2, ..., vN)
+```
+
 ### BOOST_DEFINE_ENUM_CLASS
+
+`BOOST_DEFINE_ENUM_CLASS(E, v1, v2, ..., vN)` is a convenience macro expanding to
+```
+enum class E { v1, v2, ..., vN };
+BOOST_DESCRIBE_ENUM_CLASS(E, v1, v2, ..., vN)
+```
 
 ### BOOST_DEFINE_FIXED_ENUM
 
+`BOOST_DEFINE_FIXED_ENUM(E, Base, v1, v2, ..., vN)` is a convenience macro expanding to
+```
+enum E: Base { v1, v2, ..., vN };
+BOOST_DESCRIBE_ENUM(E, v1, v2, ..., vN)
+```
+
 ### BOOST_DEFINE_FIXED_ENUM_CLASS
+
+`BOOST_DEFINE_FIXED_ENUM_CLASS(E, Base, v1, v2, ..., vN)` is a convenience macro expanding to
+```
+enum class E: Base { v1, v2, ..., vN };
+BOOST_DESCRIBE_ENUM_CLASS(E, v1, v2, ..., vN)
+```
 
 ## <boost/describe/enumerators.hpp>
 
@@ -52,53 +99,55 @@ template<class E> using describe_enumerators = /*...*/;
 
 ### describe_enumerators<E>
 
+See the description of `BOOST_DESCRIBE_ENUM`.
+
+## <boost/describe/modifiers.hpp>
+
+```
+namespace boost {
+namespace describe {
+
+// ...
+
+} }
+```
+
 ## <boost/describe/class.hpp>
 
 ```
+#define BOOST_DESCRIBE_CLASS(Name, Bases, Public, Protected, Private) /*...*/
+#define BOOST_DESCRIBE_STRUCT(Name, Bases, Members) /*...*/
 ```
 
 ### BOOST_DESCRIBE_CLASS
 
 ### BOOST_DESCRIBE_STRUCT
 
-## <boost/describe/base_classes.hpp>
+## <boost/describe/bases.hpp>
 
 ```
 namespace boost {
 namespace describe {
 
-template<class T, unsigned M> using describe_base_classes = /*...*/;
+template<class T, unsigned M> using describe_bases = /*...*/;
 
 } }
 ```
 
-### describe_base_classes<T, M>
+### describe_bases<T, M>
 
-## <boost/describe/data_members.hpp>
+## <boost/describe/members.hpp>
 
 ```
 namespace boost {
 namespace describe {
 
-template<class T, unsigned M> using describe_data_members = /*...*/;
+template<class T, unsigned M> using describe_members = /*...*/;
 
 } }
 ```
 
-### describe_data_members<T, M>
-
-## <boost/describe/member_functions.hpp>
-
-```
-namespace boost {
-namespace describe {
-
-template<class T, unsigned M> using describe_member_functions = /*...*/;
-
-} }
-```
-
-### describe_member_functions<T, M>
+### describe_members<T, M>
 
 ## <boost/describe.hpp>
 

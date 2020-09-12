@@ -483,25 +483,21 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#ref_describe_enumeratorse">describe_enumerators&lt;E&gt;</a></li>
 </ul>
 </li>
+<li><a href="#ref_boostdescribemodifiers_hpp">&lt;boost/describe/modifiers.hpp&gt;</a></li>
 <li><a href="#ref_boostdescribeclass_hpp">&lt;boost/describe/class.hpp&gt;</a>
 <ul class="sectlevel3">
 <li><a href="#ref_boost_describe_class">BOOST_DESCRIBE_CLASS</a></li>
 <li><a href="#ref_boost_describe_struct">BOOST_DESCRIBE_STRUCT</a></li>
 </ul>
 </li>
-<li><a href="#ref_boostdescribebase_classes_hpp">&lt;boost/describe/base_classes.hpp&gt;</a>
+<li><a href="#ref_boostdescribebases_hpp">&lt;boost/describe/bases.hpp&gt;</a>
 <ul class="sectlevel3">
-<li><a href="#ref_describe_base_classest_m">describe_base_classes&lt;T, M&gt;</a></li>
+<li><a href="#ref_describe_basest_m">describe_bases&lt;T, M&gt;</a></li>
 </ul>
 </li>
-<li><a href="#ref_boostdescribedata_members_hpp">&lt;boost/describe/data_members.hpp&gt;</a>
+<li><a href="#ref_boostdescribemembers_hpp">&lt;boost/describe/members.hpp&gt;</a>
 <ul class="sectlevel3">
-<li><a href="#ref_describe_data_memberst_m">describe_data_members&lt;T, M&gt;</a></li>
-</ul>
-</li>
-<li><a href="#ref_boostdescribemember_functions_hpp">&lt;boost/describe/member_functions.hpp&gt;</a>
-<ul class="sectlevel3">
-<li><a href="#ref_describe_member_functionst_m">describe_member_functions&lt;T, M&gt;</a></li>
+<li><a href="#ref_describe_memberst_m">describe_members&lt;T, M&gt;</a></li>
 </ul>
 </li>
 <li><a href="#ref_boostdescribe_hpp">&lt;boost/describe.hpp&gt;</a></li>
@@ -645,7 +641,7 @@ the form <code>template&lt;class&#8230;&#8203; T&gt; struct L {};</code> and <co
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>BOOST_DESCRIBE_STRUCT(X, (), (m1, m2), ())</code></pre>
+<pre class="highlight"><code>BOOST_DESCRIBE_STRUCT(X, (), (m1, m2))</code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -653,23 +649,21 @@ the form <code>template&lt;class&#8230;&#8203; T&gt; struct L {};</code> and <co
 be placed in the same namespace as the <code>struct</code>.</p>
 </div>
 <div class="paragraph">
-<p>It takes four arguments: the <code>struct</code> name, a list of base classes
-(empty in our example), a list of (public) data members by name, and a list of
-(public) member functions, also by name (empty for <code>X</code>.)</p>
+<p>It takes three arguments: the <code>struct</code> name, a list of base classes
+(empty in our example), and a list of (public) members by name (this includes
+both data members and member functions.)</p>
 </div>
 <div class="paragraph">
 <p>Once <code>X</code> is annotated, its properties can be retrieved via
-<code>describe_base_classes&lt;X&gt;</code>, <code>describe_data_members&lt;X, M&gt;</code> and
-<code>describe_member_functions&lt;X, M&gt;</code> (<code>M</code> is a bitmask of modifiers such as
-<code>mod_public | mod_static</code>).</p>
+<code>describe_bases&lt;X, M&gt;</code> and <code>describe_members&lt;X, M&gt;</code> (<code>M</code> is a bitmask of
+modifiers such as <code>mod_public | mod_static | mod_function</code>).</p>
 </div>
 <div class="paragraph">
 <p>These primitives are defined in namespace <code>boost::describe</code>, in the headers
-<code>&lt;boost/describe/base_classes.hpp&gt;</code>, <code>&lt;boost/describe/data_members.hpp&gt;</code>, and
-<code>&lt;boost/describe/member_functions.hpp&gt;</code>, respectively.</p>
+<code>&lt;boost/describe/bases.hpp&gt;</code> and <code>&lt;boost/describe/members.hpp&gt;</code>, respectively.</p>
 </div>
 <div class="paragraph">
-<p>To describe a class type with private data members, use the
+<p>To describe a class type with protected or private members, use the
 <code>BOOST_DESCRIBE_CLASS</code> macro instead, placing it <em>inside the class</em>.</p>
 </div>
 <div class="listingblock">
@@ -680,9 +674,13 @@ public:
 
     int m3;
 
-private:
+protected:
 
     int m4;
+
+private:
+
+    int m5;
 
 public:
 
@@ -690,13 +688,12 @@ public:
 
 private:
 
-    BOOST_DESCRIBE_CLASS(Y, (X), (m3), (m4), (f))
+    BOOST_DESCRIBE_CLASS(Y, (X), (m3, f), (m4), (m5))
 };</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>It takes two data member lists, one for the public members and one for the
-private ones. Private member functions are not described.</p>
+<p>It takes three member lists, for the public, protected, and private members.</p>
 </div>
 </div>
 <div class="sect2">
@@ -961,15 +958,15 @@ change its state and hence cannot violate its invariant.)</p>
 using namespace boost::describe;
 
 template&lt;class T,
-    class Bd = describe_base_classes&lt;T, mod_any_access&gt;,
-    class Md = describe_data_members&lt;T, mod_any_access&gt;&gt;
+    class Bd = describe_bases&lt;T, mod_any_access&gt;,
+    class Md = describe_members&lt;T, mod_any_access&gt;&gt;
     std::ostream&amp; operator&lt;&lt;( std::ostream &amp; os, T const &amp; t )
 {
     os &lt;&lt; "{";
 
     bool first = true;
 
-    boost::mp11::mp_for_each&lt; Bd &gt;([&amp;](auto D){
+    boost::mp11::mp_for_each&lt;Bd&gt;([&amp;](auto D){
 
         if( !first ) { os &lt;&lt; ", "; } first = false;
 
@@ -978,7 +975,7 @@ template&lt;class T,
 
     });
 
-    boost::mp11::mp_for_each&lt; Md &gt;([&amp;](auto D){
+    boost::mp11::mp_for_each&lt;Md&gt;([&amp;](auto D){
 
         if( !first ) { os &lt;&lt; ", "; } first = false;
 
@@ -995,21 +992,21 @@ struct X
     int m1 = 1;
 };
 
-BOOST_DESCRIBE_STRUCT(X, (), (m1), ())
+BOOST_DESCRIBE_STRUCT(X, (), (m1))
 
 struct Y
 {
     int m2 = 2;
 };
 
-BOOST_DESCRIBE_STRUCT(Y, (), (m2), ())
+BOOST_DESCRIBE_STRUCT(Y, (), (m2))
 
 class Z: public X, private Y
 {
     int m1 = 3;
     int m2 = 4;
 
-    BOOST_DESCRIBE_CLASS(Z, (X, Y), (), (m1, m2), ())
+    BOOST_DESCRIBE_CLASS(Z, (X, Y), (), (), (m1, m2))
 };
 
 #include &lt;iostream&gt;
@@ -1051,8 +1048,8 @@ namespace app
 {
 
 template&lt;class T,
-    class D1 = boost::describe::describe_data_members&lt;T, boost::describe::mod_public&gt;,
-    class D2 = boost::describe::describe_data_members&lt;T, boost::describe::mod_private&gt;,
+    class D1 = boost::describe::describe_members&lt;T, boost::describe::mod_public | boost::describe::mod_protected&gt;,
+    class D2 = boost::describe::describe_members&lt;T, boost::describe::mod_private&gt;,
     class En = std::enable_if_t&lt;boost::mp11::mp_empty&lt;D2&gt;::value&gt; &gt;
 
     void tag_invoke( boost::json::value_from_tag const&amp;, boost::json::value&amp; v, T const &amp; t )
@@ -1072,7 +1069,7 @@ struct A
     int y;
 };
 
-BOOST_DESCRIBE_STRUCT(A, (), (x, y), ())
+BOOST_DESCRIBE_STRUCT(A, (), (x, y))
 
 struct B
 {
@@ -1080,7 +1077,7 @@ struct B
     std::map&lt;std::string, A&gt; m;
 };
 
-BOOST_DESCRIBE_STRUCT(B, (), (v, m), ())
+BOOST_DESCRIBE_STRUCT(B, (), (v, m))
 
 } // namespace app
 
@@ -1116,8 +1113,8 @@ template&lt;class T&gt; void extract( boost::json::object const &amp; obj, char 
 }
 
 template&lt;class T,
-    class D1 = boost::describe::describe_data_members&lt;T, boost::describe::mod_public&gt;,
-    class D2 = boost::describe::describe_data_members&lt;T, boost::describe::mod_private&gt;,
+    class D1 = boost::describe::describe_members&lt;T, boost::describe::mod_public | boost::describe::mod_protected&gt;,
+    class D2 = boost::describe::describe_members&lt;T, boost::describe::mod_private&gt;,
     class En = std::enable_if_t&lt;boost::mp11::mp_empty&lt;D2&gt;::value&gt; &gt;
 
     T tag_invoke( boost::json::value_to_tag&lt;T&gt; const&amp;, boost::json::value const&amp; v )
@@ -1141,7 +1138,7 @@ struct A
     int y;
 };
 
-BOOST_DESCRIBE_STRUCT(A, (), (x, y), ())
+BOOST_DESCRIBE_STRUCT(A, (), (x, y))
 
 } // namespace app
 
@@ -1187,27 +1184,91 @@ int main()
 </div>
 <div class="sect3">
 <h4 id="ref_boost_describe_enum">BOOST_DESCRIBE_ENUM</h4>
-
+<div class="paragraph">
+<p><code>BOOST_DESCRIBE_ENUM(E, v1, v2, &#8230;&#8203;, vN)</code> should be placed in the namespace
+where the enumeration type <code>E</code> is defined, and creates the necessary metadata
+for <code>describe_enumerators&lt;E&gt;</code> to work.</p>
+</div>
+<div class="paragraph">
+<p>After this macro is used, <code>describe_enumerators&lt;E&gt;</code> returns <code>L&lt;D1, D2, &#8230;&#8203;, Dn&gt;</code>,
+where <code>L</code> is a class template of the form</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>template&lt;class...&gt; struct L {};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and <code>Di</code> is an <em>enumerator descriptor</em> of the form</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>struct Di
+{
+    static constexpr E value = vi;
+    static constexpr char const * name = "vi";
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where <code>vi</code> is corresponding identifier passed to the macro.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="ref_boost_describe_enum_class">BOOST_DESCRIBE_ENUM_CLASS</h4>
-
+<div class="paragraph">
+<p><code>BOOST_DESCRIBE_ENUM_CLASS(E, v1, &#8230;&#8203;, vN)</code> should be used instead of
+<code>BOOST_DESCRIBE_ENUM</code> when <code>E</code> is a scoped enumeration type, and has
+the same effect.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="ref_boost_define_enum">BOOST_DEFINE_ENUM</h4>
-
+<div class="paragraph">
+<p><code>BOOST_DEFINE_ENUM(E, v1, v2, &#8230;&#8203;, vN)</code> is a convenience macro expanding to</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>enum E { v1, v2, ..., vN };
+BOOST_DESCRIBE_ENUM(E, v1, v2, ..., vN)</code></pre>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="ref_boost_define_enum_class">BOOST_DEFINE_ENUM_CLASS</h4>
-
+<div class="paragraph">
+<p><code>BOOST_DEFINE_ENUM_CLASS(E, v1, v2, &#8230;&#8203;, vN)</code> is a convenience macro expanding to</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>enum class E { v1, v2, ..., vN };
+BOOST_DESCRIBE_ENUM_CLASS(E, v1, v2, ..., vN)</code></pre>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="ref_boost_define_fixed_enum">BOOST_DEFINE_FIXED_ENUM</h4>
-
+<div class="paragraph">
+<p><code>BOOST_DEFINE_FIXED_ENUM(E, Base, v1, v2, &#8230;&#8203;, vN)</code> is a convenience macro expanding to</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>enum E: Base { v1, v2, ..., vN };
+BOOST_DESCRIBE_ENUM(E, v1, v2, ..., vN)</code></pre>
+</div>
+</div>
 </div>
 <div class="sect3">
 <h4 id="ref_boost_define_fixed_enum_class">BOOST_DEFINE_FIXED_ENUM_CLASS</h4>
-
+<div class="paragraph">
+<p><code>BOOST_DEFINE_FIXED_ENUM_CLASS(E, Base, v1, v2, &#8230;&#8203;, vN)</code> is a convenience macro expanding to</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>enum class E: Base { v1, v2, ..., vN };
+BOOST_DESCRIBE_ENUM_CLASS(E, v1, v2, ..., vN)</code></pre>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1224,14 +1285,30 @@ template&lt;class E&gt; using describe_enumerators = /*...*/;
 </div>
 <div class="sect3">
 <h4 id="ref_describe_enumeratorse">describe_enumerators&lt;E&gt;</h4>
+<div class="paragraph">
+<p>See the description of <code>BOOST_DESCRIBE_ENUM</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref_boostdescribemodifiers_hpp">&lt;boost/describe/modifiers.hpp&gt;</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>namespace boost {
+namespace describe {
 
+// ...
+
+} }</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
 <h3 id="ref_boostdescribeclass_hpp">&lt;boost/describe/class.hpp&gt;</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code></code></pre>
+<pre class="highlight"><code>#define BOOST_DESCRIBE_CLASS(Name, Bases, Public, Protected, Private) /*...*/
+#define BOOST_DESCRIBE_STRUCT(Name, Bases, Members) /*...*/</code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -1244,53 +1321,36 @@ template&lt;class E&gt; using describe_enumerators = /*...*/;
 </div>
 </div>
 <div class="sect2">
-<h3 id="ref_boostdescribebase_classes_hpp">&lt;boost/describe/base_classes.hpp&gt;</h3>
+<h3 id="ref_boostdescribebases_hpp">&lt;boost/describe/bases.hpp&gt;</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code>namespace boost {
 namespace describe {
 
-template&lt;class T, unsigned M&gt; using describe_base_classes = /*...*/;
+template&lt;class T, unsigned M&gt; using describe_bases = /*...*/;
 
 } }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ref_describe_base_classest_m">describe_base_classes&lt;T, M&gt;</h4>
+<h4 id="ref_describe_basest_m">describe_bases&lt;T, M&gt;</h4>
 
 </div>
 </div>
 <div class="sect2">
-<h3 id="ref_boostdescribedata_members_hpp">&lt;boost/describe/data_members.hpp&gt;</h3>
+<h3 id="ref_boostdescribemembers_hpp">&lt;boost/describe/members.hpp&gt;</h3>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code>namespace boost {
 namespace describe {
 
-template&lt;class T, unsigned M&gt; using describe_data_members = /*...*/;
+template&lt;class T, unsigned M&gt; using describe_members = /*...*/;
 
 } }</code></pre>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ref_describe_data_memberst_m">describe_data_members&lt;T, M&gt;</h4>
-
-</div>
-</div>
-<div class="sect2">
-<h3 id="ref_boostdescribemember_functions_hpp">&lt;boost/describe/member_functions.hpp&gt;</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>namespace boost {
-namespace describe {
-
-template&lt;class T, unsigned M&gt; using describe_member_functions = /*...*/;
-
-} }</code></pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="ref_describe_member_functionst_m">describe_member_functions&lt;T, M&gt;</h4>
+<h4 id="ref_describe_memberst_m">describe_members&lt;T, M&gt;</h4>
 
 </div>
 </div>
