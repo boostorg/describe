@@ -1328,7 +1328,7 @@ template&lt;class C1, class C2, class R, class... A&gt;
 
 template&lt;class C&gt;
   boost::json::value
-    call( C &amp; c, boost::string_view method, boost::json::value args )
+    call( C &amp; c, boost::string_view method, boost::json::value const &amp; args )
 {
     using Fd = boost::describe::describe_members&lt;C,
         boost::describe::mod_public | boost::describe::mod_function&gt;;
