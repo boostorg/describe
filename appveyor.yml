@@ -40,7 +40,7 @@ install:
   - cd boost-root
   - git submodule update --init tools/boostdep
   - xcopy /s /e /q %APPVEYOR_BUILD_FOLDER% libs\describe\
-  - python tools/boostdep/depinst/depinst.py describe
+  - python tools/boostdep/depinst/depinst.py -I example describe
   - cmd /c bootstrap
   - b2 -d0 headers
 

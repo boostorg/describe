@@ -242,7 +242,7 @@ install:
   - git submodule update --init tools/boostdep
   - mkdir -p libs/describe
   - cp -r $TRAVIS_BUILD_DIR/* libs/describe
-  - python tools/boostdep/depinst/depinst.py describe
+  - python tools/boostdep/depinst/depinst.py -I example describe
   - ./bootstrap.sh
   - ./b2 headers
 

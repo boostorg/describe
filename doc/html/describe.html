@@ -464,6 +464,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#example_defining_a_universal_print_function">Defining a Universal Print Function</a></li>
 <li><a href="#example_defining_a_universal_conversion_to_json">Defining a Universal Conversion to JSON</a></li>
 <li><a href="#example_defining_a_universal_conversion_from_json">Defining a Universal Conversion from JSON</a></li>
+<li><a href="#example_automatic_serialization">Automatic Serialization</a></li>
 </ul>
 </li>
 <li><a href="#reference">Reference</a>
@@ -1153,6 +1154,133 @@ int main()
     auto a = boost::json::value_to&lt;app::A&gt;( jv );
 
     std::cout &lt;&lt; "a: { " &lt;&lt; a.x &lt;&lt; ", " &lt;&lt; a.y &lt;&lt; " }" &lt;&lt; std::endl;
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="example_automatic_serialization">Automatic Serialization</h3>
+<div class="paragraph">
+<p>This example defines a universal <code>serialize</code> function that
+automatically adds Boost.Serialization support to annotated
+classes.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>#define _CRT_SECURE_NO_WARNINGS
+
+#include &lt;boost/describe.hpp&gt;
+#include &lt;boost/mp11.hpp&gt;
+#include &lt;boost/serialization/serialization.hpp&gt;
+#include &lt;boost/serialization/base_object.hpp&gt;
+#include &lt;boost/serialization/vector.hpp&gt;
+#include &lt;boost/core/nvp.hpp&gt;
+#include &lt;type_traits&gt;
+#include &lt;cstdio&gt;
+#include &lt;vector&gt;
+
+namespace app
+{
+
+template&lt;class Archive, class T,
+    class D1 = boost::describe::describe_bases&lt;T, boost::describe::mod_public&gt;,
+    class D2 = boost::describe::describe_bases&lt;T, boost::describe::mod_protected | boost::describe::mod_private&gt;,
+    class D3 = boost::describe::describe_members&lt;T, boost::describe::mod_public | boost::describe::mod_protected&gt;,
+    class D4 = boost::describe::describe_members&lt;T, boost::describe::mod_private&gt;,
+    class En = std::enable_if_t&lt;boost::mp11::mp_empty&lt;D2&gt;::value &amp;&amp; boost::mp11::mp_empty&lt;D4&gt;::value&gt; &gt;
+
+    void serialize( Archive &amp; ar, T &amp; t, boost::serialization::version_type )
+{
+    int k = 0;
+
+    // public bases: use base_object
+
+    boost::mp11::mp_for_each&lt;D1&gt;([&amp;](auto D){
+
+        using B = typename decltype(D)::type;
+
+        char name[ 32 ];
+        std::sprintf( name, "base.%d", ++k );
+
+        ar &amp; boost::make_nvp( name, boost::serialization::base_object&lt;B&gt;( t ) );
+
+    });
+
+    // public (and protected) members
+
+    boost::mp11::mp_for_each&lt;D3&gt;([&amp;](auto D){
+
+        ar &amp; boost::make_nvp( D.name, t.*D.pointer );
+
+    });
+}
+
+struct A1
+{
+    int x;
+};
+
+BOOST_DESCRIBE_STRUCT(A1, (), (x))
+
+struct A2
+{
+    int y;
+};
+
+BOOST_DESCRIBE_STRUCT(A2, (), (y))
+
+struct B: public A1, public A2
+{
+    // these constructors aren't needed in C++17
+    B(): A1(), A2() {}
+    B( int x, int y ): A1{ x }, A2{ y } {}
+};
+
+BOOST_DESCRIBE_STRUCT(B, (A1, A2), ())
+
+struct C
+{
+    std::vector&lt;B&gt; v;
+};
+
+BOOST_DESCRIBE_STRUCT(C, (), (v))
+
+} // namespace app
+
+#include &lt;boost/archive/xml_oarchive.hpp&gt;
+#include &lt;boost/archive/xml_iarchive.hpp&gt;
+#include &lt;boost/archive/text_oarchive.hpp&gt;
+#include &lt;string&gt;
+#include &lt;sstream&gt;
+#include &lt;iostream&gt;
+
+int main()
+{
+    app::C c1{ { { 1, 2 }, { 3, 4 }, { 5, 6 } } };
+
+    std::ostringstream os;
+
+    {
+        boost::archive::xml_oarchive ar( os );
+        ar &lt;&lt; boost::make_nvp( "c1", c1 );
+    }
+
+    std::string s = os.str();
+
+    std::cout &lt;&lt; s &lt;&lt; std::endl;
+
+    app::C c2;
+
+    {
+        std::istringstream is( s );
+        boost::archive::xml_iarchive ar( is );
+        ar &gt;&gt; boost::make_nvp( "c2", c2 );
+    }
+
+    {
+        boost::archive::text_oarchive ar( std::cout );
+        ar &lt;&lt; c2;
+    }
 }</code></pre>
 </div>
 </div>

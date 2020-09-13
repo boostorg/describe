@@ -110,3 +110,14 @@ Like the previous example, but in the other direction.
 include::../../example/from_json.cpp[lines=5..-1]
 ----
 
+## Automatic Serialization
+
+This example defines a universal `serialize` function that
+automatically adds Boost.Serialization support to annotated
+classes.
+
+[source]
+----
+include::../../example/serialization.cpp[lines=5..-1]
+----
+
