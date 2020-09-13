@@ -30,3 +30,4 @@ run ../example/print_function.cpp ;
 # run ../example/to_json.cpp /boost//json /boost//container ;
 # run ../example/from_json.cpp /boost//json : : : <toolset>msvc-14.0:<build>no ;
 run ../example/serialization.cpp /boost//serialization/<warnings>off : : : <toolset>clang:<cxxflags>"-Wno-unknown-pragmas" ;
+# run ../example/json_rpc.cpp /boost//json : : : <toolset>msvc-14.0:<build>no ;

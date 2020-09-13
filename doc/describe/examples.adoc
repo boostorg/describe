@@ -121,3 +121,15 @@ support to annotated classes.
 include::../../example/serialization.cpp[lines=5..-1]
 ----
 
+## Automatic JSON RPC
+
+This example defines a generic `call` function that can be used to
+invoke a member function by name, with the arguments passed in a
+http://master.json.cpp.al[Boost.JSON] array. The result is returned
+in a `boost::json::value`.
+
+[source]
+----
+include::../../example/json_rpc.cpp[lines=5..-1]
+----
+

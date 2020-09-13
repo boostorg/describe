@@ -465,6 +465,7 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#example_defining_a_universal_conversion_to_json">Defining a Universal Conversion to JSON</a></li>
 <li><a href="#example_defining_a_universal_conversion_from_json">Defining a Universal Conversion from JSON</a></li>
 <li><a href="#example_automatic_serialization">Automatic Serialization</a></li>
+<li><a href="#example_automatic_json_rpc">Automatic JSON RPC</a></li>
 </ul>
 </li>
 <li><a href="#reference">Reference</a>
@@ -1281,6 +1282,100 @@ int main()
         boost::archive::text_oarchive ar( std::cout );
         ar &lt;&lt; c2;
     }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="example_automatic_json_rpc">Automatic JSON RPC</h3>
+<div class="paragraph">
+<p>This example defines a generic <code>call</code> function that can be used to
+invoke a member function by name, with the arguments passed in a
+<a href="http://master.json.cpp.al">Boost.JSON</a> array. The result is returned
+in a <code>boost::json::value</code>.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>#include &lt;boost/describe.hpp&gt;
+#include &lt;boost/mp11.hpp&gt;
+#include &lt;boost/json.hpp&gt;
+#include &lt;boost/type_traits.hpp&gt;
+#include &lt;boost/utility/string_view.hpp&gt;
+#include &lt;stdexcept&gt;
+#include &lt;string&gt;
+
+template&lt;class C1, class C2, class R, class... A, std::size_t... I&gt;
+  boost::json::value
+    call_impl_( C1 &amp; c1, R (C2::*pmf)(A...), boost::json::array const &amp; args,
+      std::index_sequence&lt;I...&gt; )
+{
+    return boost::json::value_from(
+      (c1.*pmf)(
+        boost::json::value_to&lt; boost::remove_cv_ref_t&lt;A&gt; &gt;( args[ I ] )... ) );
+}
+
+template&lt;class C1, class C2, class R, class... A&gt;
+  boost::json::value
+    call_impl( C1 &amp; c1, R (C2::*pmf)(A...), boost::json::array const &amp; args )
+{
+    if( args.size() != sizeof...(A) )
+    {
+        throw std::invalid_argument( "Invalid number of arguments" );
+    }
+
+    return call_impl_( c1, pmf, args, std::index_sequence_for&lt;A...&gt;() );
+}
+
+template&lt;class C&gt;
+  boost::json::value
+    call( C &amp; c, boost::string_view method, boost::json::value args )
+{
+    using Fd = boost::describe::describe_members&lt;C,
+        boost::describe::mod_public | boost::describe::mod_function&gt;;
+
+    bool found = false;
+    boost::json::value result;
+
+    boost::mp11::mp_for_each&lt;Fd&gt;([&amp;](auto D){
+
+        if( !found &amp;&amp; method == D.name)
+        {
+            result = call_impl( c, D.pointer, args.as_array() );
+            found = true;
+        }
+
+    });
+
+    if( !found )
+    {
+        throw std::invalid_argument( "Invalid method name" );
+    }
+
+    return result;
+}
+
+struct Object
+{
+    std::string greet( std::string const &amp; who )
+    {
+        return "Hello, " + who + "!";
+    }
+
+    int add( int x, int y )
+    {
+        return x + y;
+    }
+};
+
+BOOST_DESCRIBE_STRUCT(Object, (), (greet, add))
+
+#include &lt;iostream&gt;
+
+int main()
+{
+    Object obj;
+    std::cout &lt;&lt; call( obj, "greet", { "world" } ) &lt;&lt; std::endl;
+    std::cout &lt;&lt; call( obj, "add", { 1, 2 } ) &lt;&lt; std::endl;
 }</code></pre>
 </div>
 </div>
