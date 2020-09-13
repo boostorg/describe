@@ -14,7 +14,10 @@ Peter Dimov
 :leveloffset: +1
 
 include::describe/overview.adoc[]
+include::describe/enums.adoc[]
+include::describe/classes.adoc[]
 include::describe/examples.adoc[]
+include::describe/implementation.adoc[]
 include::describe/reference.adoc[]
 include::describe/copyright.adoc[]
 

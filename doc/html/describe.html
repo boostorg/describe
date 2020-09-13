@@ -446,15 +446,9 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div id="toc" class="toc2">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#overview">Overview</a>
-<ul class="sectlevel2">
-<li><a href="#overview_description">Description</a></li>
-<li><a href="#overview_describing_enumeration_types">Describing Enumeration Types</a></li>
-<li><a href="#overview_describing_class_types">Describing Class Types</a></li>
-<li><a href="#overview_dependencies">Dependencies</a></li>
-<li><a href="#overview_supported_compilers">Supported Compilers</a></li>
-</ul>
-</li>
+<li><a href="#overview">Overview</a></li>
+<li><a href="#enums">Describing Enumeration Types</a></li>
+<li><a href="#classes">Describing Class Types</a></li>
 <li><a href="#examples">Usage Examples</a>
 <ul class="sectlevel2">
 <li><a href="#printing_enums_ct">Printing Enumerators with a Compile Time Loop</a></li>
@@ -466,6 +460,13 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#example_defining_a_universal_conversion_from_json">Defining a Universal Conversion from JSON</a></li>
 <li><a href="#example_automatic_serialization">Automatic Serialization</a></li>
 <li><a href="#example_automatic_json_rpc">Automatic JSON RPC</a></li>
+</ul>
+</li>
+<li><a href="#implementation">Implementation Features</a>
+<ul class="sectlevel2">
+<li><a href="#implementation_dependencies">Dependencies</a></li>
+<li><a href="#implementation_supported_compilers">Supported Compilers</a></li>
+<li><a href="#implementation_limitations">Limitations</a></li>
 </ul>
 </li>
 <li><a href="#reference">Reference</a>
@@ -513,15 +514,19 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <div class="sect1">
 <h2 id="overview">Overview</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="overview_description">Description</h3>
 <div class="paragraph">
 <p>This library enables authors of user-defined types (enums, structs
 and classes) to describe their enumerators, base classes, data members
 and member functions. This information can later be queried by other
 code portions, possibly written by a different author, using the
-supplied primitives <code>describe_enumerators</code>, <code>describe_base_classes</code>,
-<code>describe_data_members</code> and <code>describe_member_functions</code>.</p>
+supplied primitives <code>describe_enumerators</code>, <code>describe_bases</code>, and
+<code>describe_members</code>.</p>
+</div>
+<div class="paragraph">
+<p>To learn how to describe enumeration types, see <a href="#enums">Describing Enumeration Types</a>.</p>
+</div>
+<div class="paragraph">
+<p>To learn how to describe class types, including structs, see <a href="#classes">Describing Class Types</a>.</p>
 </div>
 <div class="paragraph">
 <p>For examples how this functionality is useful, see <a href="#examples">Usage Examples</a>.</p>
@@ -535,11 +540,13 @@ different people cannot interoperate.</p>
 <div class="paragraph">
 <p>Eventually, one might hope for the primitives to end up in the C&#43;&#43; standard,
 with the compiler automatically supplying the metadata necessary to describe
-the types.</p>
+the types, making manual macro annotation unnecessary.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="overview_describing_enumeration_types">Describing Enumeration Types</h3>
+</div>
+<div class="sect1">
+<h2 id="enums">Describing Enumeration Types</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>If you have an enumeration type</p>
 </div>
@@ -624,8 +631,10 @@ the form <code>template&lt;class&#8230;&#8203; T&gt; struct L {};</code> and <co
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="overview_describing_class_types">Describing Class Types</h3>
+</div>
+<div class="sect1">
+<h2 id="classes">Describing Class Types</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>If you have a <code>struct</code></p>
 </div>
@@ -654,15 +663,6 @@ be placed in the same namespace as the <code>struct</code>.</p>
 <p>It takes three arguments: the <code>struct</code> name, a list of base classes
 (empty in our example), and a list of (public) members by name (this includes
 both data members and member functions.)</p>
-</div>
-<div class="paragraph">
-<p>Once <code>X</code> is annotated, its properties can be retrieved via
-<code>describe_bases&lt;X, M&gt;</code> and <code>describe_members&lt;X, M&gt;</code> (<code>M</code> is a bitmask of
-modifiers such as <code>mod_public | mod_static | mod_function</code>).</p>
-</div>
-<div class="paragraph">
-<p>These primitives are defined in namespace <code>boost::describe</code>, in the headers
-<code>&lt;boost/describe/bases.hpp&gt;</code> and <code>&lt;boost/describe/members.hpp&gt;</code>, respectively.</p>
 </div>
 <div class="paragraph">
 <p>To describe a class type with protected or private members, use the
@@ -697,35 +697,82 @@ private:
 <div class="paragraph">
 <p>It takes three member lists, for the public, protected, and private members.</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="overview_dependencies">Dependencies</h3>
 <div class="paragraph">
-<p>Boost.Mp11.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="overview_supported_compilers">Supported Compilers</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>GCC 5 or later with <code>-std=gnu++14</code> or above</p>
-</li>
-<li>
-<p>GCC 8 or later with <code>-std=c++14</code> or above</p>
-</li>
-<li>
-<p>Clang 3.6 or later with <code>-std=c++14</code> or above</p>
-</li>
-<li>
-<p>Visual Studio 2015, 2017, 2019</p>
-</li>
-</ul>
+<p>Once a type <code>T</code> is annotated, its properties can be retrieved via
+<code>describe_bases&lt;T, M&gt;</code> and <code>describe_members&lt;T, M&gt;</code> (<code>M</code> is a bitmask of
+modifiers such as <code>mod_public | mod_static | mod_function</code>).</p>
 </div>
 <div class="paragraph">
-<p>Tested on <a href="https://travis-ci.org/github/pdimov/describe">Travis</a> and
-<a href="https://ci.appveyor.com/project/pdimov/describe">Appveyor</a>.</p>
+<p>These primitives are defined in namespace <code>boost::describe</code>, in the headers
+<code>&lt;boost/describe/bases.hpp&gt;</code> and <code>&lt;boost/describe/members.hpp&gt;</code>, respectively.</p>
 </div>
+<div class="paragraph">
+<p><code>describe_bases</code> takes the following possible modifiers: <code>mod_public</code>,
+<code>mod_protected</code>, <code>mod_private</code>, or a bitwise-or combination of them. The
+presence of <code>mod_public</code> includes the public bases in the result, its absence
+excludes them. The other two modifiers work similarly.</p>
+</div>
+<div class="paragraph">
+<p>(At least in principle. The current implementation cannot distinguish between
+protected and private base classes, so protected bases are returned as private.
+Consequently, using <code>mod_protected</code> gives no result. Lifting this limitation
+would require compiler support.)</p>
+</div>
+<div class="paragraph">
+<p><code>describe_members</code> takes a bitwise-or combination of the following possible
+modifiers: <code>mod_public</code>, <code>mod_protected</code>, <code>mod_private</code>, <code>mod_static</code>,
+<code>mod_function</code>.</p>
+</div>
+<div class="paragraph">
+<p>The access modifiers work the same as with <code>describe_bases</code> (except here
+<code>mod_protected</code> actually works when <code>BOOST_DESCRIBE_CLASS</code> is used.)</p>
+</div>
+<div class="paragraph">
+<p>(For types annotated with <code>BOOST_DESCRIBE_STRUCT</code>, the protected and private
+member lists will be empty.)</p>
+</div>
+<div class="paragraph">
+<p>When <code>mod_static</code> is present, the static members are returned, otherwise
+the nonstatic members are returned.</p>
+</div>
+<div class="paragraph">
+<p>When <code>mod_function</code> is present, the member functions are returned, otherwise
+the data members are returned.</p>
+</div>
+<div class="paragraph">
+<p>For the above class <code>Y</code>, <code>describe_bases&lt;Y, mod_any_access&gt;</code> will return a
+type list <code>L&lt;D1&gt;</code> containing a single base descriptor <code>D1</code> describing <code>X</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>struct D1
+{
+    using type = X;
+    static constexpr unsigned modifiers = mod_private;
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>describe_members&lt;Y, mod_private&gt;</code> will return a type list <code>L&lt;D2&gt;</code> containing
+the descriptor of the data member <code>Y::m5</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>struct D2
+{
+    static constexpr int Y::* pointer = &amp;Y::m5;
+    static constexpr char const * name = "m5";
+    static constexpr unsigned modifiers = mod_private;
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For an example of how to use the base and data member descriptors, see
+<a href="#example_defining_a_universal_print_function">Defining a Universal Print Function</a>.</p>
+</div>
+<div class="paragraph">
+<p>For an example of how to use member function descriptors, see
+<a href="#example_automatic_json_rpc">Automatic JSON RPC</a>.</p>
 </div>
 </div>
 </div>
@@ -1024,9 +1071,10 @@ int main()
 <h3 id="example_defining_a_universal_conversion_to_json">Defining a Universal Conversion to JSON</h3>
 <div class="paragraph">
 <p>This example defines a universal <code>tag_invoke</code> overload that
-automatically converts an annotated struct to JSON by iterating
+automatically converts an annotated struct to a
+<a href="http://master.json.cpp.al">Boost.JSON</a> value by iterating
 over the described public members and adding them to the return
-<code>json::object</code>.</p>
+<code>boost::json::object</code>.</p>
 </div>
 <div class="paragraph">
 <p>The overload is defined in namespace <code>app</code> in order to apply
@@ -1050,7 +1098,8 @@ namespace app
 {
 
 template&lt;class T,
-    class D1 = boost::describe::describe_members&lt;T, boost::describe::mod_public | boost::describe::mod_protected&gt;,
+    class D1 = boost::describe::describe_members&lt;T,
+        boost::describe::mod_public | boost::describe::mod_protected&gt;,
     class D2 = boost::describe::describe_members&lt;T, boost::describe::mod_private&gt;,
     class En = std::enable_if_t&lt;boost::mp11::mp_empty&lt;D2&gt;::value&gt; &gt;
 
@@ -1097,7 +1146,9 @@ int main()
 <div class="sect2">
 <h3 id="example_defining_a_universal_conversion_from_json">Defining a Universal Conversion from JSON</h3>
 <div class="paragraph">
-<p>Like the previous example, but in the other direction.</p>
+<p>Like the previous example, but in the other direction. Defines
+a <code>tag_invoke</code> overload that converts a <code>boost::json::value</code> to
+an annotated struct.</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -1115,7 +1166,8 @@ template&lt;class T&gt; void extract( boost::json::object const &amp; obj, char 
 }
 
 template&lt;class T,
-    class D1 = boost::describe::describe_members&lt;T, boost::describe::mod_public | boost::describe::mod_protected&gt;,
+    class D1 = boost::describe::describe_members&lt;T,
+        boost::describe::mod_public | boost::describe::mod_protected&gt;,
     class D2 = boost::describe::describe_members&lt;T, boost::describe::mod_private&gt;,
     class En = std::enable_if_t&lt;boost::mp11::mp_empty&lt;D2&gt;::value&gt; &gt;
 
@@ -1123,7 +1175,7 @@ template&lt;class T,
 {
     auto const&amp; obj = v.as_object();
 
-    T t = {};
+    T t{};
 
     boost::mp11::mp_for_each&lt;D1&gt;([&amp;](auto D){
 
@@ -1185,10 +1237,13 @@ namespace app
 
 template&lt;class Archive, class T,
     class D1 = boost::describe::describe_bases&lt;T, boost::describe::mod_public&gt;,
-    class D2 = boost::describe::describe_bases&lt;T, boost::describe::mod_protected | boost::describe::mod_private&gt;,
-    class D3 = boost::describe::describe_members&lt;T, boost::describe::mod_public | boost::describe::mod_protected&gt;,
+    class D2 = boost::describe::describe_bases&lt;T,
+        boost::describe::mod_protected | boost::describe::mod_private&gt;,
+    class D3 = boost::describe::describe_members&lt;T,
+        boost::describe::mod_public | boost::describe::mod_protected&gt;,
     class D4 = boost::describe::describe_members&lt;T, boost::describe::mod_private&gt;,
-    class En = std::enable_if_t&lt;boost::mp11::mp_empty&lt;D2&gt;::value &amp;&amp; boost::mp11::mp_empty&lt;D4&gt;::value&gt; &gt;
+    class En = std::enable_if_t&lt;
+        boost::mp11::mp_empty&lt;D2&gt;::value &amp;&amp; boost::mp11::mp_empty&lt;D4&gt;::value&gt; &gt;
 
     void serialize( Archive &amp; ar, T &amp; t, boost::serialization::version_type )
 {
@@ -1383,6 +1438,64 @@ int main()
 </div>
 </div>
 <div class="sect1">
+<h2 id="implementation">Implementation Features</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="implementation_dependencies">Dependencies</h3>
+<div class="paragraph">
+<p><a href="https://boost.org/libs/mp11">Boost.Mp11</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="implementation_supported_compilers">Supported Compilers</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>GCC 5 or later with <code>-std=gnu++14</code> or above</p>
+</li>
+<li>
+<p>GCC 8 or later with <code>-std=c++14</code> or above</p>
+</li>
+<li>
+<p>Clang 3.6 or later with <code>-std=c++14</code> or above</p>
+</li>
+<li>
+<p>Visual Studio 2015, 2017, 2019</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Tested on <a href="https://travis-ci.org/github/pdimov/describe">Travis</a> and
+<a href="https://ci.appveyor.com/project/pdimov/describe">Appveyor</a>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="implementation_limitations">Limitations</h3>
+<div class="paragraph">
+<p>This implementation has the following limitations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Protected base classes cannot be distinguished from private
+base classes and are considered private.</p>
+</li>
+<li>
+<p>Overloaded member functions are not supported. Member names
+must be unique within the class.</p>
+</li>
+<li>
+<p>Bitfields are not supported.</p>
+</li>
+<li>
+<p>Anonymous unions are not supported.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="reference">Reference</h2>
 <div class="sectionbody">
 <div class="sect2">
@@ -1434,7 +1547,7 @@ where <code>L</code> is a class template of the form</p>
 </div>
 </div>
 <div class="paragraph">
-<p>where <code>vi</code> is corresponding identifier passed to the macro.</p>
+<p>where <code>vi</code> is the corresponding identifier passed to the macro.</p>
 </div>
 </div>
 <div class="sect3">
@@ -1509,7 +1622,28 @@ template&lt;class E&gt; using describe_enumerators = /*...*/;
 <div class="sect3">
 <h4 id="ref_describe_enumeratorse">describe_enumerators&lt;E&gt;</h4>
 <div class="paragraph">
-<p>See the description of <code>BOOST_DESCRIBE_ENUM</code>.</p>
+<p><code>describe_enumerators&lt;E&gt;</code> returns <code>L&lt;D1, D2, &#8230;&#8203;, Dn&gt;</code>, where <code>L</code> is a class
+template of the form</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>template&lt;class...&gt; struct L {};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and <code>Di</code> is an <em>enumerator descriptor</em> of the form</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>struct Di
+{
+    static constexpr E value = vi;
+    static constexpr char const * name = "vi";
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where <code>vi</code> is the i-th enumerator.</p>
 </div>
 </div>
 </div>
@@ -1598,7 +1732,7 @@ the <a href="http://www.boost.org/LICENSE_1_0.txt">Boost Software License, Versi
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-09-11 16:07:18 +0300
+Last updated 2020-09-14 00:17:45 +0300
 </div>
 </div>
 <style>

@@ -1,0 +1,124 @@
+////
+Copyright 2020 Peter Dimov
+Distributed under the Boost Software License, Version 1.0.
+https://www.boost.org/LICENSE_1_0.txt
+////
+
+[#classes]
+# Describing Class Types
+:idprefix: classes_
+
+If you have a `struct`
+
+```
+struct X
+{
+    int m1;
+    int m2;
+};
+```
+
+use the `BOOST_DESCRIBE_STRUCT` macro to describe it:
+
+```
+BOOST_DESCRIBE_STRUCT(X, (), (m1, m2))
+```
+
+`BOOST_DESCRIBE_STRUCT` is defined in `<boost/describe/class.hpp>` and should
+be placed in the same namespace as the `struct`.
+
+It takes three arguments: the `struct` name, a list of base classes
+(empty in our example), and a list of (public) members by name (this includes
+both data members and member functions.)
+
+To describe a class type with protected or private members, use the
+`BOOST_DESCRIBE_CLASS` macro instead, placing it _inside the class_.
+
+```
+class Y: private X
+{
+public:
+
+    int m3;
+
+protected:
+
+    int m4;
+
+private:
+
+    int m5;
+
+public:
+
+    int f() const;
+
+private:
+
+    BOOST_DESCRIBE_CLASS(Y, (X), (m3, f), (m4), (m5))
+};
+```
+
+It takes three member lists, for the public, protected, and private members.
+
+Once a type `T` is annotated, its properties can be retrieved via
+`describe_bases<T, M>` and `describe_members<T, M>` (`M` is a bitmask of
+modifiers such as `mod_public | mod_static | mod_function`).
+
+These primitives are defined in namespace `boost::describe`, in the headers
+`<boost/describe/bases.hpp>` and `<boost/describe/members.hpp>`, respectively.
+
+`describe_bases` takes the following possible modifiers: `mod_public`,
+`mod_protected`, `mod_private`, or a bitwise-or combination of them. The
+presence of `mod_public` includes the public bases in the result, its absence
+excludes them. The other two modifiers work similarly.
+
+(At least in principle. The current implementation cannot distinguish between
+protected and private base classes, so protected bases are returned as private.
+Consequently, using `mod_protected` gives no result. Lifting this limitation
+would require compiler support.)
+
+`describe_members` takes a bitwise-or combination of the following possible
+modifiers: `mod_public`, `mod_protected`, `mod_private`, `mod_static`,
+`mod_function`.
+
+The access modifiers work the same as with `describe_bases` (except here
+`mod_protected` actually works when `BOOST_DESCRIBE_CLASS` is used.)
+
+(For types annotated with `BOOST_DESCRIBE_STRUCT`, the protected and private
+member lists will be empty.)
+
+When `mod_static` is present, the static members are returned, otherwise
+the nonstatic members are returned.
+
+When `mod_function` is present, the member functions are returned, otherwise
+the data members are returned.
+
+For the above class `Y`, `describe_bases<Y, mod_any_access>` will return a
+type list `L<D1>` containing a single base descriptor `D1` describing `X`:
+
+```
+struct D1
+{
+    using type = X;
+    static constexpr unsigned modifiers = mod_private;
+};
+```
+
+`describe_members<Y, mod_private>` will return a type list `L<D2>` containing
+the descriptor of the data member `Y::m5`:
+
+```
+struct D2
+{
+    static constexpr int Y::* pointer = &Y::m5;
+    static constexpr char const * name = "m5";
+    static constexpr unsigned modifiers = mod_private;
+};
+```
+
+For an example of how to use the base and data member descriptors, see
+<<example_defining_a_universal_print_function>>.
+
+For an example of how to use member function descriptors, see
+<<example_automatic_json_rpc>>.

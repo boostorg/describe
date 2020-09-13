@@ -85,9 +85,10 @@ include::../../example/print_function.cpp[lines=5..-1]
 ## Defining a Universal Conversion to JSON
 
 This example defines a universal `tag_invoke` overload that
-automatically converts an annotated struct to JSON by iterating
+automatically converts an annotated struct to a
+http://master.json.cpp.al[Boost.JSON] value by iterating
 over the described public members and adding them to the return
-`json::object`.
+`boost::json::object`.
 
 The overload is defined in namespace `app` in order to apply
 to all annotated classes also defined in `app`.
@@ -103,7 +104,9 @@ include::../../example/to_json.cpp[lines=5..-1]
 
 ## Defining a Universal Conversion from JSON
 
-Like the previous example, but in the other direction.
+Like the previous example, but in the other direction. Defines
+a `tag_invoke` overload that converts a `boost::json::value` to
+an annotated struct.
 
 [source]
 ----

@@ -13,7 +13,8 @@ namespace app
 {
 
 template<class T,
-    class D1 = boost::describe::describe_members<T, boost::describe::mod_public | boost::describe::mod_protected>,
+    class D1 = boost::describe::describe_members<T,
+        boost::describe::mod_public | boost::describe::mod_protected>,
     class D2 = boost::describe::describe_members<T, boost::describe::mod_private>,
     class En = std::enable_if_t<boost::mp11::mp_empty<D2>::value> >
 

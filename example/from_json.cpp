@@ -16,7 +16,8 @@ template<class T> void extract( boost::json::object const & obj, char const * na
 }
 
 template<class T,
-    class D1 = boost::describe::describe_members<T, boost::describe::mod_public | boost::describe::mod_protected>,
+    class D1 = boost::describe::describe_members<T,
+        boost::describe::mod_public | boost::describe::mod_protected>,
     class D2 = boost::describe::describe_members<T, boost::describe::mod_private>,
     class En = std::enable_if_t<boost::mp11::mp_empty<D2>::value> >
 
@@ -24,7 +25,7 @@ template<class T,
 {
     auto const& obj = v.as_object();
 
-    T t = {};
+    T t{};
 
     boost::mp11::mp_for_each<D1>([&](auto D){
 

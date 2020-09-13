@@ -19,10 +19,13 @@ namespace app
 
 template<class Archive, class T,
     class D1 = boost::describe::describe_bases<T, boost::describe::mod_public>,
-    class D2 = boost::describe::describe_bases<T, boost::describe::mod_protected | boost::describe::mod_private>,
-    class D3 = boost::describe::describe_members<T, boost::describe::mod_public | boost::describe::mod_protected>,
+    class D2 = boost::describe::describe_bases<T,
+        boost::describe::mod_protected | boost::describe::mod_private>,
+    class D3 = boost::describe::describe_members<T,
+        boost::describe::mod_public | boost::describe::mod_protected>,
     class D4 = boost::describe::describe_members<T, boost::describe::mod_private>,
-    class En = std::enable_if_t<boost::mp11::mp_empty<D2>::value && boost::mp11::mp_empty<D4>::value> >
+    class En = std::enable_if_t<
+        boost::mp11::mp_empty<D2>::value && boost::mp11::mp_empty<D4>::value> >
 
     void serialize( Archive & ar, T & t, boost::serialization::version_type )
 {

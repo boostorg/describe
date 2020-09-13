@@ -46,7 +46,7 @@ struct Di
     static constexpr char const * name = "vi";
 };
 ```
-where `vi` is corresponding identifier passed to the macro.
+where `vi` is the corresponding identifier passed to the macro.
 
 ### BOOST_DESCRIBE_ENUM_CLASS
 
@@ -99,7 +99,20 @@ template<class E> using describe_enumerators = /*...*/;
 
 ### describe_enumerators<E>
 
-See the description of `BOOST_DESCRIBE_ENUM`.
+`describe_enumerators<E>` returns `L<D1, D2, ..., Dn>`, where `L` is a class
+template of the form
+```
+template<class...> struct L {};
+```
+and `Di` is an _enumerator descriptor_ of the form
+```
+struct Di
+{
+    static constexpr E value = vi;
+    static constexpr char const * name = "vi";
+};
+```
+where `vi` is the i-th enumerator.
 
 ## <boost/describe/modifiers.hpp>
 
