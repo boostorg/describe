@@ -872,7 +872,7 @@ is trivial when <code>describe_enumerators</code> is available, every
 user can easily have his own.</p>
 </div>
 <div class="paragraph">
-<p>This specific example elects to return <code>"(unknown)"</code> when
+<p>This specific example elects to return <code>"(unnamed)"</code> when
 the enum value doesn&#8217;t have a name.</p>
 </div>
 <div class="listingblock">
@@ -882,7 +882,7 @@ the enum value doesn&#8217;t have a name.</p>
 
 template&lt;class E&gt; char const * enum_to_string( E e )
 {
-    char const * r = "(unknown)";
+    char const * r = "(unnamed)";
 
     boost::mp11::mp_for_each&lt; boost::describe::describe_enumerators&lt;E&gt; &gt;([&amp;](auto D){
 

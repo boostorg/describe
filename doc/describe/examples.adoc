@@ -44,7 +44,7 @@ on the specific use case. But, since defining the function
 is trivial when `describe_enumerators` is available, every
 user can easily have his own.
 
-This specific example elects to return `"(unknown)"` when
+This specific example elects to return `"(unnamed)"` when
 the enum value doesn't have a name.
 
 [source]

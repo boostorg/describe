@@ -7,7 +7,7 @@
 
 template<class E> char const * enum_to_string( E e )
 {
-    char const * r = "(unknown)";
+    char const * r = "(unnamed)";
 
     boost::mp11::mp_for_each< boost::describe::describe_enumerators<E> >([&](auto D){
 
