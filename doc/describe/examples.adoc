@@ -82,7 +82,7 @@ change its state and hence cannot violate its invariant.)
 include::../../example/print_function.cpp[lines=5..-1]
 ----
 
-## Defining a Universal Conversion to JSON
+## Automatic Conversion to JSON
 
 This example defines a universal `tag_invoke` overload that
 automatically converts an annotated struct to a
@@ -102,7 +102,7 @@ disabled in this case using `std::enable_if_t`.
 include::../../example/to_json.cpp[lines=5..-1]
 ----
 
-## Defining a Universal Conversion from JSON
+## Automatic Conversion from JSON
 
 Like the previous example, but in the other direction. Defines
 a `tag_invoke` overload that converts a `boost::json::value` to
