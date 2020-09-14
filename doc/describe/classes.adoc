@@ -118,7 +118,7 @@ struct D2
 ```
 
 For an example of how to use the base and data member descriptors, see
-<<example_defining_a_universal_print_function>>.
+<<example_print_function>>.
 
 For an example of how to use member function descriptors, see
-<<example_automatic_json_rpc>>.
+<<example_json_rpc>>.
