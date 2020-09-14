@@ -64,7 +64,8 @@ struct Di
 };
 ```
 
-To <<printing_enums_ct,iterate over the descriptor list>>, you can use `mp_for_each` from Mp11:
+To <<example_printing_enums_ct,iterate over the descriptor list>>, you can
+use `mp_for_each` from Mp11:
 
 ```
 boost::mp11::mp_for_each< boost::describe::describe_enumerators<E> >([](auto D){

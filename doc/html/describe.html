@@ -451,15 +451,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#classes">Describing Class Types</a></li>
 <li><a href="#examples">Usage Examples</a>
 <ul class="sectlevel2">
-<li><a href="#printing_enums_ct">Printing Enumerators with a Compile Time Loop</a></li>
-<li><a href="#example_printing_enumerators_with_a_run_time_loop">Printing Enumerators with a Run Time Loop</a></li>
+<li><a href="#example_printing_enums_ct">Printing Enumerators with a Compile Time Loop</a></li>
+<li><a href="#example_printing_enums_rt">Printing Enumerators with a Run Time Loop</a></li>
 <li><a href="#example_enum_to_string">enum_to_string</a></li>
 <li><a href="#example_string_to_enum">string_to_enum</a></li>
-<li><a href="#example_defining_a_universal_print_function">Defining a Universal Print Function</a></li>
-<li><a href="#example_automatic_conversion_to_json">Automatic Conversion to JSON</a></li>
-<li><a href="#example_automatic_conversion_from_json">Automatic Conversion from JSON</a></li>
-<li><a href="#example_automatic_serialization">Automatic Serialization</a></li>
-<li><a href="#example_automatic_json_rpc">Automatic JSON RPC</a></li>
+<li><a href="#example_print_function">Defining a Universal Print Function</a></li>
+<li><a href="#example_to_json">Automatic Conversion to JSON</a></li>
+<li><a href="#example_from_json">Automatic Conversion from JSON</a></li>
+<li><a href="#example_serialization">Automatic Serialization</a></li>
+<li><a href="#example_json_rpc">Automatic JSON RPC</a></li>
 </ul>
 </li>
 <li><a href="#implementation">Implementation Features</a>
@@ -619,7 +619,8 @@ the form <code>template&lt;class&#8230;&#8203; T&gt; struct L {};</code> and <co
 </div>
 </div>
 <div class="paragraph">
-<p>To <a href="#printing_enums_ct">iterate over the descriptor list</a>, you can use <code>mp_for_each</code> from Mp11:</p>
+<p>To <a href="#example_printing_enums_ct">iterate over the descriptor list</a>, you can
+use <code>mp_for_each</code> from Mp11:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -768,11 +769,11 @@ the descriptor of the data member <code>Y::m5</code>:</p>
 </div>
 <div class="paragraph">
 <p>For an example of how to use the base and data member descriptors, see
-<a href="#example_defining_a_universal_print_function">Defining a Universal Print Function</a>.</p>
+<a href="#example_defining_a_universal_print_function">[example_defining_a_universal_print_function]</a>.</p>
 </div>
 <div class="paragraph">
 <p>For an example of how to use member function descriptors, see
-<a href="#example_automatic_json_rpc">Automatic JSON RPC</a>.</p>
+<a href="#example_automatic_json_rpc">[example_automatic_json_rpc]</a>.</p>
 </div>
 </div>
 </div>
@@ -780,7 +781,7 @@ the descriptor of the data member <code>Y::m5</code>:</p>
 <h2 id="examples">Usage Examples</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="printing_enums_ct">Printing Enumerators with a Compile Time Loop</h3>
+<h3 id="example_printing_enums_ct">Printing Enumerators with a Compile Time Loop</h3>
 <div class="paragraph">
 <p>A simple example that just iterates over the enumerator
 descriptors using <code>mp11::mp_for_each</code> and prints them.</p>
@@ -812,7 +813,7 @@ int main()
 </div>
 </div>
 <div class="sect2">
-<h3 id="example_printing_enumerators_with_a_run_time_loop">Printing Enumerators with a Run Time Loop</h3>
+<h3 id="example_printing_enums_rt">Printing Enumerators with a Run Time Loop</h3>
 <div class="paragraph">
 <p>This is similar to the previous example, but it first builds a
 <code>std::array</code> with the values, and then iterates over it using
@@ -982,7 +983,7 @@ int main()
 </div>
 </div>
 <div class="sect2">
-<h3 id="example_defining_a_universal_print_function">Defining a Universal Print Function</h3>
+<h3 id="example_print_function">Defining a Universal Print Function</h3>
 <div class="paragraph">
 <p>This example defines a universal <code>operator&lt;&lt;</code> that works on
 any class or struct type that has been described with
@@ -1068,7 +1069,7 @@ int main()
 </div>
 </div>
 <div class="sect2">
-<h3 id="example_automatic_conversion_to_json">Automatic Conversion to JSON</h3>
+<h3 id="example_to_json">Automatic Conversion to JSON</h3>
 <div class="paragraph">
 <p>This example defines a universal <code>tag_invoke</code> overload that
 automatically converts an annotated struct to a
@@ -1144,7 +1145,7 @@ int main()
 </div>
 </div>
 <div class="sect2">
-<h3 id="example_automatic_conversion_from_json">Automatic Conversion from JSON</h3>
+<h3 id="example_from_json">Automatic Conversion from JSON</h3>
 <div class="paragraph">
 <p>Like the previous example, but in the other direction. Defines
 a <code>tag_invoke</code> overload that converts a <code>boost::json::value</code> to
@@ -1212,7 +1213,7 @@ int main()
 </div>
 </div>
 <div class="sect2">
-<h3 id="example_automatic_serialization">Automatic Serialization</h3>
+<h3 id="example_serialization">Automatic Serialization</h3>
 <div class="paragraph">
 <p>This example defines a universal <code>serialize</code> function that
 automatically adds <a href="https://boost.org/libs/serialization">Boost.Serialization</a>
@@ -1342,7 +1343,7 @@ int main()
 </div>
 </div>
 <div class="sect2">
-<h3 id="example_automatic_json_rpc">Automatic JSON RPC</h3>
+<h3 id="example_json_rpc">Automatic JSON RPC</h3>
 <div class="paragraph">
 <p>This example defines a generic <code>call</code> function that can be used to
 invoke a member function by name, with the arguments passed in a
