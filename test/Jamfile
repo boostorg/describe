@@ -22,6 +22,8 @@ run members_test.cpp ;
 run members_test2.cpp ;
 run members_test3.cpp ;
 run members_test4.cpp ;
+run members_test5.cpp ;
+run members_test6.cpp ;
 
 run ../example/printing_enums_ct.cpp ;
 run ../example/printing_enums_rt.cpp ;
