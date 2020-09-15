@@ -24,6 +24,7 @@ run members_test3.cpp ;
 run members_test4.cpp ;
 run members_test5.cpp ;
 run members_test6.cpp ;
+run members_test7.cpp : : : <toolset>msvc-14.0:<build>no ;
 
 run ../example/printing_enums_ct.cpp ;
 run ../example/printing_enums_rt.cpp ;
