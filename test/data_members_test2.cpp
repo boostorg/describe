@@ -7,8 +7,6 @@
 #include <boost/core/lightweight_test.hpp>
 #include <boost/mp11.hpp>
 
-using namespace boost::mp11;
-
 struct X
 {
     static int m1;

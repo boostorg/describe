@@ -16,6 +16,8 @@ constexpr unsigned mod_private = 4;
 constexpr unsigned mod_virtual = 8;
 constexpr unsigned mod_static = 16;
 constexpr unsigned mod_function = 32;
+constexpr unsigned mod_inherited = 64;
+constexpr unsigned mod_hidden = 128;
 
 //
 

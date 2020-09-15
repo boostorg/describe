@@ -8,8 +8,6 @@
 #include <boost/core/lightweight_test_trait.hpp>
 #include <boost/mp11.hpp>
 
-using namespace boost::mp11;
-
 struct X
 {
 };
