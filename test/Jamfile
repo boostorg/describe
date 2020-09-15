@@ -17,11 +17,11 @@ run quick.cpp ;
 run pp_for_each_test.cpp ;
 
 run enumerators_test.cpp ;
-run base_classes_test.cpp ;
-run data_members_test.cpp ;
-run data_members_test2.cpp ;
-run data_members_test3.cpp ;
-run member_functions_test.cpp ;
+run bases_test.cpp ;
+run members_test.cpp ;
+run members_test2.cpp ;
+run members_test3.cpp ;
+run members_test4.cpp ;
 
 run ../example/printing_enums_ct.cpp ;
 run ../example/printing_enums_rt.cpp ;
