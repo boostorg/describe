@@ -5,23 +5,36 @@
 // Distributed under the Boost Software License, Version 1.0.
 // https://www.boost.org/LICENSE_1_0.txt
 
+#include <boost/describe/enum.hpp>
+
 namespace boost
 {
 namespace describe
 {
 
-constexpr unsigned mod_public = 1;
-constexpr unsigned mod_protected = 2;
-constexpr unsigned mod_private = 4;
-constexpr unsigned mod_virtual = 8;
-constexpr unsigned mod_static = 16;
-constexpr unsigned mod_function = 32;
-constexpr unsigned mod_inherited = 64;
-constexpr unsigned mod_hidden = 128;
+enum modifiers
+{
+    mod_public = 1,
+    mod_protected = 2,
+    mod_private = 4,
+    mod_virtual = 8,
+    mod_static = 16,
+    mod_function = 32,
+    mod_inherited = 64,
+    mod_hidden = 128,
+};
 
-//
+BOOST_DESCRIBE_ENUM(modifiers,
+    mod_public,
+    mod_protected,
+    mod_private,
+    mod_virtual,
+    mod_static,
+    mod_function,
+    mod_inherited,
+    mod_hidden);
 
-constexpr unsigned mod_any_access = mod_public | mod_protected | mod_private;
+constexpr modifiers mod_any_access = static_cast<modifiers>( mod_public | mod_protected | mod_private );
 
 } // namespace describe
 } // namespace boost
