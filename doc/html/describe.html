@@ -486,11 +486,15 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#ref_describe_enumeratorse">describe_enumerators&lt;E&gt;</a></li>
 </ul>
 </li>
-<li><a href="#ref_boostdescribemodifiers_hpp">&lt;boost/describe/modifiers.hpp&gt;</a></li>
 <li><a href="#ref_boostdescribeclass_hpp">&lt;boost/describe/class.hpp&gt;</a>
 <ul class="sectlevel3">
-<li><a href="#ref_boost_describe_class">BOOST_DESCRIBE_CLASS</a></li>
 <li><a href="#ref_boost_describe_struct">BOOST_DESCRIBE_STRUCT</a></li>
+<li><a href="#ref_boost_describe_class">BOOST_DESCRIBE_CLASS</a></li>
+</ul>
+</li>
+<li><a href="#ref_boostdescribemodifiers_hpp">&lt;boost/describe/modifiers.hpp&gt;</a>
+<ul class="sectlevel3">
+<li><a href="#ref_modifiers">modifiers</a></li>
 </ul>
 </li>
 <li><a href="#ref_boostdescribebases_hpp">&lt;boost/describe/bases.hpp&gt;</a>
@@ -722,7 +726,7 @@ would require compiler support.)</p>
 <div class="paragraph">
 <p><code>describe_members</code> takes a bitwise-or combination of the following possible
 modifiers: <code>mod_public</code>, <code>mod_protected</code>, <code>mod_private</code>, <code>mod_static</code>,
-<code>mod_function</code>.</p>
+<code>mod_function</code>, <code>mod_inherited</code>, <code>mod_hidden</code>.</p>
 </div>
 <div class="paragraph">
 <p>The access modifiers work the same as with <code>describe_bases</code> (except here
@@ -739,6 +743,13 @@ the nonstatic members are returned.</p>
 <div class="paragraph">
 <p>When <code>mod_function</code> is present, the member functions are returned, otherwise
 the data members are returned.</p>
+</div>
+<div class="paragraph">
+<p>When <code>mod_inherited</code> is present, members of base classes are also returned.</p>
+</div>
+<div class="paragraph">
+<p>When <code>mod_hidden</code> is present, hidden inherited members are included. A member
+of a base class is hidden when a derived class has a member of the same name.</p>
 </div>
 <div class="paragraph">
 <p>For the above class <code>Y</code>, <code>describe_bases&lt;Y, mod_any_access&gt;</code> will return a
@@ -1649,33 +1660,144 @@ template of the form</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="ref_boostdescribemodifiers_hpp">&lt;boost/describe/modifiers.hpp&gt;</h3>
-<div class="listingblock">
-<div class="content">
-<pre class="highlight"><code>namespace boost {
-namespace describe {
-
-// ...
-
-} }</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
 <h3 id="ref_boostdescribeclass_hpp">&lt;boost/describe/class.hpp&gt;</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>#define BOOST_DESCRIBE_CLASS(Name, Bases, Public, Protected, Private) /*...*/
-#define BOOST_DESCRIBE_STRUCT(Name, Bases, Members) /*...*/</code></pre>
+<pre class="highlight"><code>#define BOOST_DESCRIBE_STRUCT(Name, Bases, Members) /*...*/
+#define BOOST_DESCRIBE_CLASS(Name, Bases, Public, Protected, Private) /*...*/</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="ref_boost_describe_struct">BOOST_DESCRIBE_STRUCT</h4>
+<div class="paragraph">
+<p><code>BOOST_DESCRIBE_STRUCT</code> should be placed in the same namespace as the struct
+type being described, and takes three arguments: name of the struct type,
+a parentheses-enclosed list of base classes, and a parentheses-enclosed list
+of public members.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>struct X
+{
+};
+
+BOOST_DESCRIBE_STRUCT(X, (), ())
+
+struct Y: public X
+{
+    int m;
+    static void f();
+};
+
+BOOST_DESCRIBE_STRUCT(Y, (X), (m, f))</code></pre>
+</div>
 </div>
 </div>
 <div class="sect3">
 <h4 id="ref_boost_describe_class">BOOST_DESCRIBE_CLASS</h4>
+<div class="paragraph">
+<p><code>BOOST_DESCRIBE_CLASS</code> should be placed inside the class definition of the
+described type, and takes five arguments: the name of the class, a list of
+base classes, a list of public members, a list of protected members, and a
+list of private members.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>class X
+{
+    int m1;
 
+    BOOST_DESCRIBE_CLASS(X, (), (), (), (m1))
+};
+
+class Y: private X
+{
+public:
+
+    int m1;
+    void f() const {}
+
+protected:
+
+    int m2;
+
+private:
+
+    int m3;
+
+    BOOST_DESCRIBE_CLASS(Y, (X), (m1, f), (m2), (m3))
+};</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="ref_boostdescribemodifiers_hpp">&lt;boost/describe/modifiers.hpp&gt;</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>namespace boost
+{
+namespace describe
+{
+
+enum modifiers
+{
+    mod_public = 1,
+    mod_protected = 2,
+    mod_private = 4,
+    mod_virtual = 8,
+    mod_static = 16,
+    mod_function = 32,
+    mod_inherited = 64,
+    mod_hidden = 128,
+};
+
+constexpr modifiers mod_any_access = static_cast&lt;modifiers&gt;( mod_public | mod_protected | mod_private );
+
+} // namespace describe
+} // namespace boost</code></pre>
+</div>
 </div>
 <div class="sect3">
-<h4 id="ref_boost_describe_struct">BOOST_DESCRIBE_STRUCT</h4>
-
+<h4 id="ref_modifiers">modifiers</h4>
+<div class="paragraph">
+<p>The enumeration type <code>modifiers</code> is a bitmask type that contains the
+following flags:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>mod_public</code> - includes public bases or members in the descriptor list</p>
+</li>
+<li>
+<p><code>mod_protected</code> - includes protected bases or members</p>
+</li>
+<li>
+<p><code>mod_private</code> - includes private bases or members</p>
+</li>
+<li>
+<p><code>mod_virtual</code> - returned when a base class is a virtual base</p>
+</li>
+<li>
+<p><code>mod_static</code> - returns static members (when not given, returns nonstatic members)</p>
+</li>
+<li>
+<p><code>mod_function</code> - returns member functions (when not given, returns data members)</p>
+</li>
+<li>
+<p><code>mod_inherited</code> - includes members of base classes</p>
+</li>
+<li>
+<p><code>mod_hidden</code> - includes hidden inherited members</p>
+</li>
+</ul>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1692,7 +1814,36 @@ template&lt;class T, unsigned M&gt; using describe_bases = /*...*/;
 </div>
 <div class="sect3">
 <h4 id="ref_describe_basest_m">describe_bases&lt;T, M&gt;</h4>
-
+<div class="paragraph">
+<p><code>M</code> must be a bitwise-or combination of <code>mod_public</code>, <code>mod_protected</code>, and
+<code>mod_private</code>, and acts as a filter.</p>
+</div>
+<div class="paragraph">
+<p><code>describe_bases&lt;T, M&gt;</code> returns <code>L&lt;D1, D2, &#8230;&#8203;, Dn&gt;</code>, where <code>L</code> is a class
+template of the form</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>template&lt;class...&gt; struct L {};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and <code>Di</code> is a <em>base descriptor</em> of the form</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>struct Di
+{
+    using type = /*...*/;
+    static constexpr unsigned modifiers = /*...*/;
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where <code>type</code> is the type of the base class, and <code>modifiers</code> are a bitwise-or
+combination of <code>mod_public</code>, <code>mod_protected</code>, <code>mod_private</code>, and <code>mod_virtual</code>
+that reflects the properties of the base class.</p>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -1709,7 +1860,40 @@ template&lt;class T, unsigned M&gt; using describe_members = /*...*/;
 </div>
 <div class="sect3">
 <h4 id="ref_describe_memberst_m">describe_members&lt;T, M&gt;</h4>
-
+<div class="paragraph">
+<p><code>M</code> must be a bitwise-or combination of <code>mod_public</code>, <code>mod_protected</code>,
+<code>mod_private</code>, <code>mod_static</code>, <code>mod_function</code>, <code>mod_inherited</code>, and
+<code>mod_hidden</code>, and acts as a filter.</p>
+</div>
+<div class="paragraph">
+<p><code>describe_members&lt;T, M&gt;</code> returns <code>L&lt;D1, D2, &#8230;&#8203;, Dn&gt;</code>, where <code>L</code> is a class
+template of the form</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>template&lt;class...&gt; struct L {};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>and <code>Di</code> is a <em>member descriptor</em> of the form</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlight"><code>struct Di
+{
+    static constexpr auto pointer = &amp;T::m;
+    static constexpr char const * name = "m";
+    static constexpr unsigned modifiers = /*...*/;
+};</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>where <code>pointer</code> is a pointer to member (for nonstatic members) or a pointer
+(for static members) identifying the class member, <code>name</code> is the name of the
+member, and <code>modifiers</code> are a bitwise-or combination of <code>mod_public</code>,
+<code>mod_protected</code>, <code>mod_private</code>, <code>mod_static</code>, <code>mod_function</code>, <code>mod_inherited</code>,
+and <code>mod_hidden</code> that reflects the properties of the member.</p>
+</div>
 </div>
 </div>
 <div class="sect2">

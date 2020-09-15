@@ -114,27 +114,111 @@ struct Di
 ```
 where `vi` is the i-th enumerator.
 
-## <boost/describe/modifiers.hpp>
-
-```
-namespace boost {
-namespace describe {
-
-// ...
-
-} }
-```
-
 ## <boost/describe/class.hpp>
 
 ```
-#define BOOST_DESCRIBE_CLASS(Name, Bases, Public, Protected, Private) /*...*/
 #define BOOST_DESCRIBE_STRUCT(Name, Bases, Members) /*...*/
+#define BOOST_DESCRIBE_CLASS(Name, Bases, Public, Protected, Private) /*...*/
+```
+
+### BOOST_DESCRIBE_STRUCT
+
+`BOOST_DESCRIBE_STRUCT` should be placed in the same namespace as the struct
+type being described, and takes three arguments: name of the struct type,
+a parentheses-enclosed list of base classes, and a parentheses-enclosed list
+of public members.
+
+Example:
+```
+struct X
+{
+};
+
+BOOST_DESCRIBE_STRUCT(X, (), ())
+
+struct Y: public X
+{
+    int m;
+    static void f();
+};
+
+BOOST_DESCRIBE_STRUCT(Y, (X), (m, f))
 ```
 
 ### BOOST_DESCRIBE_CLASS
 
-### BOOST_DESCRIBE_STRUCT
+`BOOST_DESCRIBE_CLASS` should be placed inside the class definition of the
+described type, and takes five arguments: the name of the class, a list of
+base classes, a list of public members, a list of protected members, and a
+list of private members.
+
+Example:
+```
+class X
+{
+    int m1;
+
+    BOOST_DESCRIBE_CLASS(X, (), (), (), (m1))
+};
+
+class Y: private X
+{
+public:
+
+    int m1;
+    void f() const {}
+
+protected:
+
+    int m2;
+
+private:
+
+    int m3;
+
+    BOOST_DESCRIBE_CLASS(Y, (X), (m1, f), (m2), (m3))
+};
+```
+
+## <boost/describe/modifiers.hpp>
+
+```
+namespace boost
+{
+namespace describe
+{
+
+enum modifiers
+{
+    mod_public = 1,
+    mod_protected = 2,
+    mod_private = 4,
+    mod_virtual = 8,
+    mod_static = 16,
+    mod_function = 32,
+    mod_inherited = 64,
+    mod_hidden = 128,
+};
+
+constexpr modifiers mod_any_access = static_cast<modifiers>( mod_public | mod_protected | mod_private );
+
+} // namespace describe
+} // namespace boost
+```
+
+### modifiers
+
+The enumeration type `modifiers` is a bitmask type that contains the
+following flags:
+
+* `mod_public` - includes public bases or members in the descriptor list
+* `mod_protected` - includes protected bases or members
+* `mod_private` - includes private bases or members
+* `mod_virtual` - returned when a base class is a virtual base
+* `mod_static` - returns static members (when not given, returns nonstatic members)
+* `mod_function` - returns member functions (when not given, returns data members)
+* `mod_inherited` - includes members of base classes
+* `mod_hidden` - includes hidden inherited members
 
 ## <boost/describe/bases.hpp>
 
@@ -149,6 +233,26 @@ template<class T, unsigned M> using describe_bases = /*...*/;
 
 ### describe_bases<T, M>
 
+`M` must be a bitwise-or combination of `mod_public`, `mod_protected`, and
+`mod_private`, and acts as a filter.
+
+`describe_bases<T, M>` returns `L<D1, D2, ..., Dn>`, where `L` is a class
+template of the form
+```
+template<class...> struct L {};
+```
+and `Di` is a _base descriptor_ of the form
+```
+struct Di
+{
+    using type = /*...*/;
+    static constexpr unsigned modifiers = /*...*/;
+};
+```
+where `type` is the type of the base class, and `modifiers` are a bitwise-or
+combination of `mod_public`, `mod_protected`, `mod_private`, and `mod_virtual`
+that reflects the properties of the base class.
+
 ## <boost/describe/members.hpp>
 
 ```
@@ -161,6 +265,30 @@ template<class T, unsigned M> using describe_members = /*...*/;
 ```
 
 ### describe_members<T, M>
+
+`M` must be a bitwise-or combination of `mod_public`, `mod_protected`,
+`mod_private`, `mod_static`, `mod_function`, `mod_inherited`, and
+`mod_hidden`, and acts as a filter.
+
+`describe_members<T, M>` returns `L<D1, D2, ..., Dn>`, where `L` is a class
+template of the form
+```
+template<class...> struct L {};
+```
+and `Di` is a _member descriptor_ of the form
+```
+struct Di
+{
+    static constexpr auto pointer = &T::m;
+    static constexpr char const * name = "m";
+    static constexpr unsigned modifiers = /*...*/;
+};
+```
+where `pointer` is a pointer to member (for nonstatic members) or a pointer
+(for static members) identifying the class member, `name` is the name of the
+member, and `modifiers` are a bitwise-or combination of `mod_public`,
+`mod_protected`, `mod_private`, `mod_static`, `mod_function`, `mod_inherited`,
+and `mod_hidden` that reflects the properties of the member.
 
 ## <boost/describe.hpp>
 

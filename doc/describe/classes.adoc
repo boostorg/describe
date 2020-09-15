@@ -80,7 +80,7 @@ would require compiler support.)
 
 `describe_members` takes a bitwise-or combination of the following possible
 modifiers: `mod_public`, `mod_protected`, `mod_private`, `mod_static`,
-`mod_function`.
+`mod_function`, `mod_inherited`, `mod_hidden`.
 
 The access modifiers work the same as with `describe_bases` (except here
 `mod_protected` actually works when `BOOST_DESCRIBE_CLASS` is used.)
@@ -93,6 +93,11 @@ the nonstatic members are returned.
 
 When `mod_function` is present, the member functions are returned, otherwise
 the data members are returned.
+
+When `mod_inherited` is present, members of base classes are also returned.
+
+When `mod_hidden` is present, hidden inherited members are included. A member
+of a base class is hidden when a derived class has a member of the same name.
 
 For the above class `Y`, `describe_bases<Y, mod_any_access>` will return a
 type list `L<D1>` containing a single base descriptor `D1` describing `X`:
