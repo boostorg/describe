@@ -32,3 +32,4 @@ This implementation has the following limitations:
   must be unique within the class.
 * Bitfields are not supported.
 * Anonymous unions are not supported.
+* Reference members are not supported.
