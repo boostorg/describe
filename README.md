@@ -1,6 +1,9 @@
 # Describe
 
-A C++14 reflection library.
+A C++14 reflection library. Provides macros for describing enumerators and
+struct/class members, and primitives for querying this information. See
+[the documentation](https://pdimov.github.io/describe) for more information
+and usage examples.
 
 ## Supported Compilers
 
