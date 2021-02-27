@@ -3,6 +3,7 @@
 # https://www.boost.org/LICENSE_1_0.txt
 
 import testing ;
+import ../../config/checks/config : requires ;
 
 project : requirements
   <warnings>extra
@@ -26,12 +27,14 @@ run members_test5.cpp ;
 run members_test6.cpp ;
 run members_test7.cpp : : : <toolset>msvc-14.0:<build>no ;
 
-run ../example/printing_enums_ct.cpp ;
-run ../example/printing_enums_rt.cpp ;
-run ../example/enum_to_string.cpp ;
-run ../example/string_to_enum.cpp ;
-run ../example/print_function.cpp ;
-# run ../example/to_json.cpp /boost//json /boost//container ;
-# run ../example/from_json.cpp /boost//json : : : <toolset>msvc-14.0:<build>no ;
-run ../example/serialization.cpp /boost//serialization/<warnings>off : : : <toolset>clang:<cxxflags>"-Wno-unknown-pragmas" ;
-# run ../example/json_rpc.cpp /boost//json : : : <toolset>msvc-14.0:<build>no ;
+local CXX14 = [ requires cxx14_return_type_deduction cxx14_generic_lambdas ] ;
+
+run ../example/printing_enums_ct.cpp : : : $(CXX14) ;
+run ../example/printing_enums_rt.cpp : : : $(CXX14) ;
+run ../example/enum_to_string.cpp : : : $(CXX14) ;
+run ../example/string_to_enum.cpp : : : $(CXX14) ;
+run ../example/print_function.cpp : : : $(CXX14) ;
+run ../example/to_json.cpp /boost//json : : : $(CXX14) ;
+run ../example/from_json.cpp /boost//json : : : $(CXX14) <toolset>msvc-14.0:<build>no ;
+run ../example/serialization.cpp /boost//serialization/<warnings>off : : : $(CXX14) <toolset>clang:<cxxflags>"-Wno-unknown-pragmas" ;
+run ../example/json_rpc.cpp /boost//json : : : $(CXX14) <toolset>msvc-14.0:<build>no ;

@@ -5,7 +5,15 @@
 #include <boost/describe/members.hpp>
 #include <boost/describe/class.hpp>
 #include <boost/core/lightweight_test.hpp>
-#include <boost/mp11.hpp>
+
+#if !defined(BOOST_DESCRIBE_CXX14)
+
+#include <boost/config/pragma_message.hpp>
+
+BOOST_PRAGMA_MESSAGE("Skipping test because C++14 is not available")
+int main() {}
+
+#else
 
 class A1
 {
@@ -57,6 +65,8 @@ private:
 
     BOOST_DESCRIBE_CLASS(B, (A1, A2), (m1), (m2), (m3))
 };
+
+#include <boost/mp11.hpp>
 
 int main()
 {
@@ -131,3 +141,5 @@ int main()
 
     return boost::report_errors();
 }
+
+#endif // !defined(BOOST_DESCRIBE_CXX14)

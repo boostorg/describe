@@ -3,7 +3,17 @@
 // https://www.boost.org/LICENSE_1_0.txt
 
 #include <boost/describe/detail/pp_for_each.hpp>
+#include <boost/describe/detail/config.hpp>
 #include <boost/core/lightweight_test.hpp>
+
+#if !defined(BOOST_DESCRIBE_CXX11)
+
+#include <boost/config/pragma_message.hpp>
+
+BOOST_PRAGMA_MESSAGE("Skipping test because C++11 is not available")
+int main() {}
+
+#else
 
 #define F1(x, y) #y
 
@@ -63,3 +73,5 @@ int main()
 
     return boost::report_errors();
 }
+
+#endif // !defined(BOOST_DESCRIBE_CXX11)

@@ -5,6 +5,15 @@
 // Distributed under the Boost Software License, Version 1.0.
 // https://www.boost.org/LICENSE_1_0.txt
 
+#include <boost/describe/detail/config.hpp>
+
+#if !defined(BOOST_DESCRIBE_CXX14)
+
+#define BOOST_DESCRIBE_CLASS(C, Bases, Public, Protected, Private)
+#define BOOST_DESCRIBE_STRUCT(C, Bases, Members)
+
+#else
+
 #include <boost/describe/detail/bases.hpp>
 #include <boost/describe/detail/members.hpp>
 
@@ -58,5 +67,7 @@ namespace describe
 
 } // namespace describe
 } // namespace boost
+
+#endif // !defined(BOOST_DESCRIBE_CXX14)
 
 #endif // #ifndef BOOST_DESCRIBE_CLASS_HPP_INCLUDED

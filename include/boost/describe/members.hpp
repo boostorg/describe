@@ -7,6 +7,9 @@
 
 #include <boost/describe/modifiers.hpp>
 #include <boost/describe/bases.hpp>
+
+#if defined(BOOST_DESCRIBE_CXX11)
+
 #include <boost/mp11/algorithm.hpp>
 #include <boost/mp11/utility.hpp>
 #include <boost/mp11/integral.hpp>
@@ -139,5 +142,7 @@ template<class T, unsigned M> using describe_members = mp11::mp_copy_if_q<detail
 
 } // namespace describe
 } // namespace boost
+
+#endif // !defined(BOOST_DESCRIBE_CXX11)
 
 #endif // #ifndef BOOST_DESCRIBE_DATA_MEMBERS_HPP_INCLUDED

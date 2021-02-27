@@ -6,7 +6,15 @@
 #include <boost/describe/class.hpp>
 #include <boost/core/lightweight_test.hpp>
 #include <boost/core/lightweight_test_trait.hpp>
-#include <boost/mp11.hpp>
+
+#if !defined(BOOST_DESCRIBE_CXX14)
+
+#include <boost/config/pragma_message.hpp>
+
+BOOST_PRAGMA_MESSAGE("Skipping test because C++14 is not available")
+int main() {}
+
+#else
 
 struct X
 {
@@ -35,6 +43,8 @@ struct Y: public X1, private X2, public virtual X3, private virtual X4
 };
 
 BOOST_DESCRIBE_STRUCT(Y, (X1, X2, X3, X4), ())
+
+#include <boost/mp11.hpp>
 
 int main()
 {
@@ -97,3 +107,5 @@ int main()
 
     return boost::report_errors();
 }
+
+#endif // !defined(BOOST_DESCRIBE_CXX14)

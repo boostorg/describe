@@ -5,9 +5,15 @@
 #include <boost/describe/enumerators.hpp>
 #include <boost/describe/enum.hpp>
 #include <boost/core/lightweight_test.hpp>
-#include <boost/mp11.hpp>
 
-using namespace boost::mp11;
+#if !defined(BOOST_DESCRIBE_CXX14)
+
+#include <boost/config/pragma_message.hpp>
+
+BOOST_PRAGMA_MESSAGE("Skipping test because C++14 is not available")
+int main() {}
+
+#else
 
 enum E1
 {
@@ -29,6 +35,9 @@ BOOST_DEFINE_FIXED_ENUM(E4, int, v4_1, v4_2, v4_3, v4_4);
 
 BOOST_DEFINE_ENUM_CLASS(E5, v5_1, v5_2, v5_3, v5_4, v5_5);
 BOOST_DEFINE_FIXED_ENUM_CLASS(E6, int, v6_1, v6_2, v6_3, v6_4, v6_5, v6_6);
+
+#include <boost/mp11.hpp>
+using namespace boost::mp11;
 
 int main()
 {
@@ -133,3 +142,5 @@ int main()
 
     return boost::report_errors();
 }
+
+#endif // !defined(BOOST_DESCRIBE_CXX14)

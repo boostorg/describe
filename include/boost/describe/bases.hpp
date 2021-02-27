@@ -6,6 +6,10 @@
 // https://www.boost.org/LICENSE_1_0.txt
 
 #include <boost/describe/modifiers.hpp>
+#include <boost/describe/detail/config.hpp>
+
+#if defined(BOOST_DESCRIBE_CXX11)
+
 #include <boost/mp11/algorithm.hpp>
 
 namespace boost
@@ -28,5 +32,7 @@ template<class T, unsigned M> using describe_bases = mp11::mp_copy_if_q<detail::
 
 } // namespace describe
 } // namespace boost
+
+#endif // !defined(BOOST_DESCRIBE_CXX11)
 
 #endif // #ifndef BOOST_DESCRIBE_BASES_HPP_INCLUDED

@@ -5,7 +5,15 @@
 #include <boost/describe/members.hpp>
 #include <boost/describe/class.hpp>
 #include <boost/core/lightweight_test.hpp>
-#include <boost/mp11.hpp>
+
+#if !defined(BOOST_DESCRIBE_CXX14)
+
+#include <boost/config/pragma_message.hpp>
+
+BOOST_PRAGMA_MESSAGE("Skipping test because C++14 is not available")
+int main() {}
+
+#else
 
 struct X
 {
@@ -15,6 +23,8 @@ struct X
 };
 
 BOOST_DESCRIBE_STRUCT(X, (), (f, g, h))
+
+#include <boost/mp11.hpp>
 
 int main()
 {
@@ -62,3 +72,5 @@ int main()
 
     return boost::report_errors();
 }
+
+#endif // !defined(BOOST_DESCRIBE_CXX14)
