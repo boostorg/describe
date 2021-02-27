@@ -21,6 +21,11 @@
 
 #endif
 
+#if defined(BOOST_DESCRIBE_CXX14) && defined(__GNUC__) && !defined(__clang__) && __GNUC__ >= 5 && __GNUC__ <= 7 && defined(__STRICT_ANSI__)
+// g++ 5..7 with -std=c++14 doesn't support the variadic extension we need, use -std=gnu++14
+# undef BOOST_DESCRIBE_CXX14
+#endif
+
 #if defined(BOOST_DESCRIBE_CXX11)
 # define BOOST_DESCRIBE_CONSTEXPR_OR_CONST constexpr
 #else
