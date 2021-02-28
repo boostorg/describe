@@ -5,17 +5,6 @@
 #include <boost/describe.hpp>
 #include <boost/core/lightweight_test.hpp>
 
-#if !defined(BOOST_DESCRIBE_CXX14)
-
-#include <boost/config/pragma_message.hpp>
-
-BOOST_PRAGMA_MESSAGE("Skipping test because C++14 is not available")
-int main() {}
-
-#else
-
-BOOST_DEFINE_ENUM(E, v1, v2, v3)
-
 struct X
 {
     int m;
@@ -29,6 +18,17 @@ struct Y: public X
 };
 
 BOOST_DESCRIBE_STRUCT(Y, (X), (m))
+
+#if !defined(BOOST_DESCRIBE_CXX14)
+
+#include <boost/config/pragma_message.hpp>
+
+BOOST_PRAGMA_MESSAGE("Skipping test because C++14 is not available")
+int main() {}
+
+#else
+
+BOOST_DEFINE_ENUM(E, v1, v2, v3)
 
 #include <boost/mp11.hpp>
 

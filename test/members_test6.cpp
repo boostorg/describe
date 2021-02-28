@@ -6,15 +6,6 @@
 #include <boost/describe/class.hpp>
 #include <boost/core/lightweight_test.hpp>
 
-#if !defined(BOOST_DESCRIBE_CXX14)
-
-#include <boost/config/pragma_message.hpp>
-
-BOOST_PRAGMA_MESSAGE("Skipping test because C++14 is not available")
-int main() {}
-
-#else
-
 struct A
 {
     int m1;
@@ -40,6 +31,15 @@ private:
 };
 
 int B::m1;
+
+#if !defined(BOOST_DESCRIBE_CXX14)
+
+#include <boost/config/pragma_message.hpp>
+
+BOOST_PRAGMA_MESSAGE("Skipping test because C++14 is not available")
+int main() {}
+
+#else
 
 #include <boost/mp11.hpp>
 

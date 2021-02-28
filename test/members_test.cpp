@@ -5,15 +5,7 @@
 #include <boost/describe/members.hpp>
 #include <boost/describe/class.hpp>
 #include <boost/core/lightweight_test.hpp>
-
-#if !defined(BOOST_DESCRIBE_CXX14)
-
-#include <boost/config/pragma_message.hpp>
-
-BOOST_PRAGMA_MESSAGE("Skipping test because C++14 is not available")
-int main() {}
-
-#else
+#include <boost/config.hpp>
 
 struct X
 {
@@ -41,18 +33,28 @@ public:
     {
     }
 
-    using Pm = int Y::*;
+    // using Pm = int Y::*;
+    typedef int Y::* Pm;
 
-    static Pm m3_pointer() noexcept
+    static Pm m3_pointer() BOOST_NOEXCEPT
     {
         return &Y::m3;
     }
 
-    static Pm m4_pointer() noexcept
+    static Pm m4_pointer() BOOST_NOEXCEPT
     {
         return &Y::m4;
     }
 };
+
+#if !defined(BOOST_DESCRIBE_CXX14)
+
+#include <boost/config/pragma_message.hpp>
+
+BOOST_PRAGMA_MESSAGE("Skipping test because C++14 is not available")
+int main() {}
+
+#else
 
 #include <boost/mp11.hpp>
 

@@ -5,12 +5,13 @@
 #include <boost/describe/members.hpp>
 #include <boost/describe/class.hpp>
 #include <boost/core/lightweight_test.hpp>
+#include <boost/config.hpp>
 
-#if !defined(BOOST_DESCRIBE_CXX14)
+#if !defined(BOOST_DESCRIBE_CXX11)
 
 #include <boost/config/pragma_message.hpp>
 
-BOOST_PRAGMA_MESSAGE("Skipping test because C++14 is not available")
+BOOST_PRAGMA_MESSAGE("Skipping test because C++11 is not available")
 int main() {}
 
 #else
@@ -55,6 +56,15 @@ public:
 
 int Y::m2 = 2;
 int Y::m4 = 4;
+
+#if !defined(BOOST_DESCRIBE_CXX14)
+
+#include <boost/config/pragma_message.hpp>
+
+BOOST_PRAGMA_MESSAGE("Skipping test because C++14 is not available")
+int main() {}
+
+#else
 
 #include <boost/mp11.hpp>
 
@@ -179,3 +189,5 @@ int main()
 }
 
 #endif // !defined(BOOST_DESCRIBE_CXX14)
+
+#endif // !defined(BOOST_DESCRIBE_CXX11)
