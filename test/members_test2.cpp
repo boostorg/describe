@@ -5,7 +5,6 @@
 #include <boost/describe/members.hpp>
 #include <boost/describe/class.hpp>
 #include <boost/core/lightweight_test.hpp>
-#include <boost/config.hpp>
 
 #if !defined(BOOST_DESCRIBE_CXX11)
 
