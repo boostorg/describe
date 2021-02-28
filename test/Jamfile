@@ -36,7 +36,7 @@ run ../example/printing_enums_rt.cpp : : : $(CXX14) ;
 run ../example/enum_to_string.cpp : : : $(CXX14) ;
 run ../example/string_to_enum.cpp : : : $(CXX14) ;
 run ../example/print_function.cpp : : : $(CXX14) ;
-run ../example/to_json.cpp /boost//json : : : $(CXX14) ;
+run ../example/to_json.cpp /boost//json : : : $(CXX14) <toolset>msvc-14.0:<build>no ;
 run ../example/from_json.cpp /boost//json : : : $(CXX14) <toolset>msvc-14.0:<build>no ;
 run ../example/serialization.cpp /boost//serialization/<warnings>off : : : $(CXX14) "-<toolset>clang:<warnings-as-errors>on" ;
 run ../example/json_rpc.cpp /boost//json : : : $(CXX14) <toolset>msvc-14.0:<build>no ;
