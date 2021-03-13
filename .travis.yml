@@ -243,7 +243,7 @@ matrix:
     - os: linux
       dist: bionic
       compiler: clang++-libc++
-      env: TOOLSET=clang CXXSTD=14,1z
+      env: UBSAN=1 TOOLSET=clang CXXSTD=14,17,2a UBSAN_OPTIONS=print_stacktrace=1
       addons:
         apt:
           packages:
@@ -251,7 +251,7 @@ matrix:
 
     - os: osx
       compiler: clang++
-      env: TOOLSET=clang COMPILER=clang++ CXXSTD=14,1z
+      env: UBSAN=1 TOOLSET=clang COMPILER=clang++ CXXSTD=14,1z UBSAN_OPTIONS=print_stacktrace=1
 
 
 install:
