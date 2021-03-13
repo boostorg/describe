@@ -28,8 +28,6 @@ BOOST_DESCRIBE_ENUM(E, v1, v2, v3)
 The macro is defined in `<boost/describe/enum.hpp>` and should be placed in
 the same namespace as the enum.
 
-For scoped enums, use `BOOST_DESCRIBE_ENUM_CLASS` instead.
-
 If your enumerators don't have initializers, instead of repeating them
 
 ```

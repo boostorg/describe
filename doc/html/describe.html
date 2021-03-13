@@ -476,7 +476,6 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 <li><a href="#ref_boostdescribeenum_hpp">&lt;boost/describe/enum.hpp&gt;</a>
 <ul class="sectlevel3">
 <li><a href="#ref_boost_describe_enum">BOOST_DESCRIBE_ENUM</a></li>
-<li><a href="#ref_boost_describe_enum_class">BOOST_DESCRIBE_ENUM_CLASS</a></li>
 <li><a href="#ref_boost_define_enum">BOOST_DEFINE_ENUM</a></li>
 <li><a href="#ref_boost_define_enum_class">BOOST_DEFINE_ENUM_CLASS</a></li>
 <li><a href="#ref_boost_define_fixed_enum">BOOST_DEFINE_FIXED_ENUM</a></li>
@@ -577,9 +576,6 @@ the types, making manual macro annotation unnecessary.</p>
 <div class="paragraph">
 <p>The macro is defined in <code>&lt;boost/describe/enum.hpp&gt;</code> and should be placed in
 the same namespace as the enum.</p>
-</div>
-<div class="paragraph">
-<p>For scoped enums, use <code>BOOST_DESCRIBE_ENUM_CLASS</code> instead.</p>
 </div>
 <div class="paragraph">
 <p>If your enumerators don&#8217;t have initializers, instead of repeating them</p>
@@ -1568,14 +1564,6 @@ where <code>L</code> is a class template of the form</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="ref_boost_describe_enum_class">BOOST_DESCRIBE_ENUM_CLASS</h4>
-<div class="paragraph">
-<p><code>BOOST_DESCRIBE_ENUM_CLASS(E, v1, &#8230;&#8203;, vN)</code> should be used instead of
-<code>BOOST_DESCRIBE_ENUM</code> when <code>E</code> is a scoped enumeration type, and has
-the same effect.</p>
-</div>
-</div>
-<div class="sect3">
 <h4 id="ref_boost_define_enum">BOOST_DEFINE_ENUM</h4>
 <div class="paragraph">
 <p><code>BOOST_DEFINE_ENUM(E, v1, v2, &#8230;&#8203;, vN)</code> is a convenience macro expanding to</p>
@@ -1595,7 +1583,7 @@ BOOST_DESCRIBE_ENUM(E, v1, v2, ..., vN)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code>enum class E { v1, v2, ..., vN };
-BOOST_DESCRIBE_ENUM_CLASS(E, v1, v2, ..., vN)</code></pre>
+BOOST_DESCRIBE_ENUM(E, v1, v2, ..., vN)</code></pre>
 </div>
 </div>
 </div>
@@ -1619,7 +1607,7 @@ BOOST_DESCRIBE_ENUM(E, v1, v2, ..., vN)</code></pre>
 <div class="listingblock">
 <div class="content">
 <pre class="highlight"><code>enum class E: Base { v1, v2, ..., vN };
-BOOST_DESCRIBE_ENUM_CLASS(E, v1, v2, ..., vN)</code></pre>
+BOOST_DESCRIBE_ENUM(E, v1, v2, ..., vN)</code></pre>
 </div>
 </div>
 </div>
