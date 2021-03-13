@@ -50,20 +50,43 @@ template<class... T> auto enum_descriptor_fn_impl( int, T... )
 
 } // namespace detail
 
+#if defined(_MSC_VER) && !defined(__clang__)
+
 #define BOOST_DESCRIBE_ENUM(E, ...) \
     BOOST_DESCRIBE_ENUM_BEGIN(E) \
     BOOST_DESCRIBE_PP_FOR_EACH(BOOST_DESCRIBE_ENUM_ENTRY, E, __VA_ARGS__) \
     BOOST_DESCRIBE_ENUM_END(E)
+
+#else
+
+#define BOOST_DESCRIBE_ENUM(E, ...) \
+    BOOST_DESCRIBE_ENUM_BEGIN(E) \
+    BOOST_DESCRIBE_PP_FOR_EACH(BOOST_DESCRIBE_ENUM_ENTRY, E, ##__VA_ARGS__) \
+    BOOST_DESCRIBE_ENUM_END(E)
+
+#endif
 
 } // namespace describe
 } // namespace boost
 
 #endif // defined(BOOST_DESCRIBE_CXX14)
 
+#if defined(_MSC_VER) && !defined(__clang__)
+
 #define BOOST_DEFINE_ENUM(E, ...) enum E { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM(E, __VA_ARGS__)
 #define BOOST_DEFINE_ENUM_CLASS(E, ...) enum class E { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM(E, __VA_ARGS__)
 
 #define BOOST_DEFINE_FIXED_ENUM(E, Base, ...) enum E: Base { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM(E, __VA_ARGS__)
 #define BOOST_DEFINE_FIXED_ENUM_CLASS(E, Base, ...) enum class E: Base { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM(E, __VA_ARGS__)
+
+#else
+
+#define BOOST_DEFINE_ENUM(E, ...) enum E { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM(E, ##__VA_ARGS__)
+#define BOOST_DEFINE_ENUM_CLASS(E, ...) enum class E { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM(E, ##__VA_ARGS__)
+
+#define BOOST_DEFINE_FIXED_ENUM(E, Base, ...) enum E: Base { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM(E, ##__VA_ARGS__)
+#define BOOST_DEFINE_FIXED_ENUM_CLASS(E, Base, ...) enum class E: Base { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM(E, ##__VA_ARGS__)
+
+#endif
 
 #endif // #ifndef BOOST_DESCRIBE_ENUM_HPP_INCLUDED
