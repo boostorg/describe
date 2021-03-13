@@ -28,7 +28,7 @@ enum class E2
     v2_2 = 7
 };
 
-BOOST_DESCRIBE_ENUM_CLASS(E2, v2_1, v2_2);
+BOOST_DESCRIBE_ENUM(E2, v2_1, v2_2);
 
 BOOST_DEFINE_ENUM(E3, v3_1, v3_2, v3_3);
 BOOST_DEFINE_FIXED_ENUM(E4, int, v4_1, v4_2, v4_3, v4_4);
