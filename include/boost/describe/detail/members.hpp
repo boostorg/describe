@@ -49,24 +49,24 @@ template<unsigned M, class... T> auto member_descriptor_fn_impl( int, T... )
 
 #if defined(_MSC_VER) && !defined(__clang__)
 
-#define BOOST_DESCRIBE_PUBLIC_MEMBERS(C, ...) inline auto _public_member_descriptor_fn( C * ) \
+#define BOOST_DESCRIBE_PUBLIC_MEMBERS(C, ...) inline auto boost_public_member_descriptor_fn( C * ) \
 { return boost::describe::detail::member_descriptor_fn_impl<boost::describe::mod_public>( 0 BOOST_DESCRIBE_PP_FOR_EACH(BOOST_DESCRIBE_MEMBER_IMPL, C, __VA_ARGS__) ); }
 
-#define BOOST_DESCRIBE_PROTECTED_MEMBERS(C, ...) inline auto _protected_member_descriptor_fn( C * ) \
+#define BOOST_DESCRIBE_PROTECTED_MEMBERS(C, ...) inline auto boost_protected_member_descriptor_fn( C * ) \
 { return boost::describe::detail::member_descriptor_fn_impl<boost::describe::mod_protected>( 0 BOOST_DESCRIBE_PP_FOR_EACH(BOOST_DESCRIBE_MEMBER_IMPL, C, __VA_ARGS__) ); }
 
-#define BOOST_DESCRIBE_PRIVATE_MEMBERS(C, ...) inline auto _private_member_descriptor_fn( C * ) \
+#define BOOST_DESCRIBE_PRIVATE_MEMBERS(C, ...) inline auto boost_private_member_descriptor_fn( C * ) \
 { return boost::describe::detail::member_descriptor_fn_impl<boost::describe::mod_private>( 0 BOOST_DESCRIBE_PP_FOR_EACH(BOOST_DESCRIBE_MEMBER_IMPL, C, __VA_ARGS__) ); }
 
 #else
 
-#define BOOST_DESCRIBE_PUBLIC_MEMBERS(C, ...) inline auto _public_member_descriptor_fn( C * ) \
+#define BOOST_DESCRIBE_PUBLIC_MEMBERS(C, ...) inline auto boost_public_member_descriptor_fn( C * ) \
 { return boost::describe::detail::member_descriptor_fn_impl<boost::describe::mod_public>( 0 BOOST_DESCRIBE_PP_FOR_EACH(BOOST_DESCRIBE_MEMBER_IMPL, C, ##__VA_ARGS__) ); }
 
-#define BOOST_DESCRIBE_PROTECTED_MEMBERS(C, ...) inline auto _protected_member_descriptor_fn( C * ) \
+#define BOOST_DESCRIBE_PROTECTED_MEMBERS(C, ...) inline auto boost_protected_member_descriptor_fn( C * ) \
 { return boost::describe::detail::member_descriptor_fn_impl<boost::describe::mod_protected>( 0 BOOST_DESCRIBE_PP_FOR_EACH(BOOST_DESCRIBE_MEMBER_IMPL, C, ##__VA_ARGS__) ); }
 
-#define BOOST_DESCRIBE_PRIVATE_MEMBERS(C, ...) inline auto _private_member_descriptor_fn( C * ) \
+#define BOOST_DESCRIBE_PRIVATE_MEMBERS(C, ...) inline auto boost_private_member_descriptor_fn( C * ) \
 { return boost::describe::detail::member_descriptor_fn_impl<boost::describe::mod_private>( 0 BOOST_DESCRIBE_PP_FOR_EACH(BOOST_DESCRIBE_MEMBER_IMPL, C, ##__VA_ARGS__) ); }
 
 #endif
