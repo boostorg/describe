@@ -5,7 +5,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // https://www.boost.org/LICENSE_1_0.txt
 
-#include <boost/describe/modifiers.hpp>
+#include <boost/describe/detail/compute_base_modifiers.hpp>
 #include <boost/describe/detail/pp_for_each.hpp>
 #include <boost/describe/detail/list.hpp>
 #include <type_traits>
@@ -17,29 +17,13 @@ namespace describe
 namespace detail
 {
 
-// is_public_base_of
-template<class T, class U> using is_public_base_of = std::is_convertible<U*, T*>;
-
-// is_virtual_base_of
-template<class T, class U, class = void> struct can_cast: std::false_type {};
-template<class T, class U> struct can_cast<T, U, decltype((void)(U*)(T*)0)>: std::true_type {};
-
-template<class T, class U> using is_virtual_base_of =
-    std::integral_constant<bool, can_cast<U, T>::value && !can_cast<T, U>::value>;
-
-// base_modifiers
-template<class C, class B> constexpr unsigned base_modifiers() noexcept
-{
-    return (is_public_base_of<B, C>::value? mod_public: mod_private) | (is_virtual_base_of<B, C>::value? mod_virtual: 0);
-}
-
 // base_descriptor
 template<class C, class B> struct base_descriptor
 {
     static_assert( std::is_base_of<B, C>::value, "A type listed as a base is not one" );
 
     using type = B;
-    static constexpr unsigned modifiers = base_modifiers<C, B>();
+    static constexpr unsigned modifiers = compute_base_modifiers<C, B>();
 };
 
 template<class C, class B> constexpr unsigned base_descriptor<C, B>::modifiers;
