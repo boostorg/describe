@@ -48,6 +48,10 @@ struct Y: public X1, protected X2, private X3, public virtual V1, protected virt
 {
 };
 
+struct Z final: public X1, protected X2, private X3, public virtual V1, protected virtual V2, private virtual V3
+{
+};
+
 int main()
 {
     using namespace boost::describe::detail;
@@ -80,6 +84,34 @@ int main()
     BOOST_TEST( (!is_protected_base_of<V3, Y>::value) );
     BOOST_TEST( (is_virtual_base_of<V3, Y>::value) );
     BOOST_TEST_EQ( (compute_base_modifiers<Y, V3>()), mod_private | mod_virtual );
+
+    BOOST_TEST( (is_public_base_of<X1, Z>::value) );
+    BOOST_TEST( (!is_virtual_base_of<X1, Z>::value) );
+    BOOST_TEST_EQ( (compute_base_modifiers<Z, X1>()), mod_public );
+
+    BOOST_TEST( (!is_public_base_of<X2, Z>::value) );
+    BOOST_TEST( (!is_protected_base_of<X2, Z>::value) );
+    BOOST_TEST( (!is_virtual_base_of<X2, Z>::value) );
+    BOOST_TEST_EQ( (compute_base_modifiers<Z, X2>()), mod_private );
+
+    BOOST_TEST( (!is_public_base_of<X3, Z>::value) );
+    BOOST_TEST( (!is_protected_base_of<X3, Z>::value) );
+    BOOST_TEST( (!is_virtual_base_of<X3, Z>::value) );
+    BOOST_TEST_EQ( (compute_base_modifiers<Z, X3>()), mod_private );
+
+    BOOST_TEST( (is_public_base_of<V1, Z>::value) );
+    BOOST_TEST( (is_virtual_base_of<V1, Z>::value) );
+    BOOST_TEST_EQ( (compute_base_modifiers<Z, V1>()), mod_public | mod_virtual );
+
+    BOOST_TEST( (!is_public_base_of<V2, Z>::value) );
+    BOOST_TEST( (!is_protected_base_of<V2, Z>::value) );
+    BOOST_TEST( (is_virtual_base_of<V2, Z>::value) );
+    BOOST_TEST_EQ( (compute_base_modifiers<Z, V2>()), mod_private | mod_virtual );
+
+    BOOST_TEST( (!is_public_base_of<V3, Z>::value) );
+    BOOST_TEST( (!is_protected_base_of<V3, Z>::value) );
+    BOOST_TEST( (is_virtual_base_of<V3, Z>::value) );
+    BOOST_TEST_EQ( (compute_base_modifiers<Z, V3>()), mod_private | mod_virtual );
 
     return boost::report_errors();
 }
