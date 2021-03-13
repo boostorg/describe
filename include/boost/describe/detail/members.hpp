@@ -43,9 +43,9 @@ template<unsigned M, class... T> auto member_descriptor_fn_impl( int, T... )
     return list<member_descriptor<T, M>...>();
 }
 
-#define BOOST_DESCRIBE_MEMBER_IMPL(C, m) , []{ struct D { \
+#define BOOST_DESCRIBE_MEMBER_IMPL(C, m) , []{ struct _boost_desc { \
     static constexpr auto pointer() noexcept { return &C::m; } \
-    static constexpr auto name() noexcept { return #m; } }; return D(); }()
+    static constexpr auto name() noexcept { return #m; } }; return _boost_desc(); }()
 
 #if defined(_MSC_VER) && !defined(__clang__)
 
