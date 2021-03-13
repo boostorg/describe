@@ -73,17 +73,11 @@ These primitives are defined in namespace `boost::describe`, in the headers
 presence of `mod_public` includes the public bases in the result, its absence
 excludes them. The other two modifiers work similarly.
 
-(At least in principle. The current implementation cannot distinguish between
-protected and private base classes, so protected bases are returned as private.
-Consequently, using `mod_protected` gives no result. Lifting this limitation
-would require compiler support.)
-
 `describe_members` takes a bitwise-or combination of the following possible
 modifiers: `mod_public`, `mod_protected`, `mod_private`, `mod_static`,
 `mod_function`, `mod_inherited`, `mod_hidden`.
 
-The access modifiers work the same as with `describe_bases` (except here
-`mod_protected` actually works when `BOOST_DESCRIBE_CLASS` is used.)
+The access modifiers work the same as with `describe_bases`.
 
 (For types annotated with `BOOST_DESCRIBE_STRUCT`, the protected and private
 member lists will be empty.)
