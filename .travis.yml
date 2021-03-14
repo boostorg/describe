@@ -22,7 +22,7 @@ matrix:
   include:
     - os: linux
       compiler: g++-5
-      env: TOOLSET=gcc CXXSTD=14-gnu,1z-gnu
+      env: TOOLSET=gcc CXXSTD=14,14-gnu,1z,1z-gnu
       addons:
         apt:
           packages:
@@ -32,7 +32,7 @@ matrix:
 
     - os: linux
       compiler: g++-6
-      env: TOOLSET=gcc CXXSTD=14-gnu,1z-gnu
+      env: TOOLSET=gcc CXXSTD=14,14-gnu,1z,1z-gnu
       addons:
         apt:
           packages:
@@ -42,7 +42,7 @@ matrix:
 
     - os: linux
       compiler: g++-7
-      env: TOOLSET=gcc CXXSTD=14-gnu,17-gnu
+      env: TOOLSET=gcc CXXSTD=14,14-gnu,17,17-gnu
       addons:
         apt:
           packages:
