@@ -438,6 +438,221 @@ body.book #toc,body.book #preamble,body.book h1.sect0,body.book .sect1>h2{page-b
 #footer-text{color:rgba(0,0,0,.6);font-size:.9em}}
 @media amzn-kf8{#header,#content,#footnotes,#footer{padding:0}}
 </style>
+<style>
+pre.rouge table td { padding: 5px; }
+pre.rouge table pre { margin: 0; }
+pre.rouge .cm {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cp {
+  color: #999999;
+  font-weight: bold;
+}
+pre.rouge .c1 {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .cs {
+  color: #999999;
+  font-weight: bold;
+  font-style: italic;
+}
+pre.rouge .c, pre.rouge .ch, pre.rouge .cd, pre.rouge .cpf {
+  color: #999988;
+  font-style: italic;
+}
+pre.rouge .err {
+  color: #a61717;
+  background-color: #e3d2d2;
+}
+pre.rouge .gd {
+  color: #000000;
+  background-color: #ffdddd;
+}
+pre.rouge .ge {
+  color: #000000;
+  font-style: italic;
+}
+pre.rouge .gr {
+  color: #aa0000;
+}
+pre.rouge .gh {
+  color: #999999;
+}
+pre.rouge .gi {
+  color: #000000;
+  background-color: #ddffdd;
+}
+pre.rouge .go {
+  color: #888888;
+}
+pre.rouge .gp {
+  color: #555555;
+}
+pre.rouge .gs {
+  font-weight: bold;
+}
+pre.rouge .gu {
+  color: #aaaaaa;
+}
+pre.rouge .gt {
+  color: #aa0000;
+}
+pre.rouge .kc {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kd {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kn {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kp {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kr {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .kt {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .k, pre.rouge .kv {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .mf {
+  color: #009999;
+}
+pre.rouge .mh {
+  color: #009999;
+}
+pre.rouge .il {
+  color: #009999;
+}
+pre.rouge .mi {
+  color: #009999;
+}
+pre.rouge .mo {
+  color: #009999;
+}
+pre.rouge .m, pre.rouge .mb, pre.rouge .mx {
+  color: #009999;
+}
+pre.rouge .sa {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .sb {
+  color: #d14;
+}
+pre.rouge .sc {
+  color: #d14;
+}
+pre.rouge .sd {
+  color: #d14;
+}
+pre.rouge .s2 {
+  color: #d14;
+}
+pre.rouge .se {
+  color: #d14;
+}
+pre.rouge .sh {
+  color: #d14;
+}
+pre.rouge .si {
+  color: #d14;
+}
+pre.rouge .sx {
+  color: #d14;
+}
+pre.rouge .sr {
+  color: #009926;
+}
+pre.rouge .s1 {
+  color: #d14;
+}
+pre.rouge .ss {
+  color: #990073;
+}
+pre.rouge .s, pre.rouge .dl {
+  color: #d14;
+}
+pre.rouge .na {
+  color: #008080;
+}
+pre.rouge .bp {
+  color: #999999;
+}
+pre.rouge .nb {
+  color: #0086B3;
+}
+pre.rouge .nc {
+  color: #445588;
+  font-weight: bold;
+}
+pre.rouge .no {
+  color: #008080;
+}
+pre.rouge .nd {
+  color: #3c5d5d;
+  font-weight: bold;
+}
+pre.rouge .ni {
+  color: #800080;
+}
+pre.rouge .ne {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nf, pre.rouge .fm {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nl {
+  color: #990000;
+  font-weight: bold;
+}
+pre.rouge .nn {
+  color: #555555;
+}
+pre.rouge .nt {
+  color: #000080;
+}
+pre.rouge .vc {
+  color: #008080;
+}
+pre.rouge .vg {
+  color: #008080;
+}
+pre.rouge .vi {
+  color: #008080;
+}
+pre.rouge .nv, pre.rouge .vm {
+  color: #008080;
+}
+pre.rouge .ow {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .o {
+  color: #000000;
+  font-weight: bold;
+}
+pre.rouge .w {
+  color: #bbbbbb;
+}
+pre.rouge {
+  background-color: #f8f8f8;
+}
+</style>
 </head>
 <body class="article toc2 toc-left">
 <div id="header">
@@ -557,12 +772,12 @@ the types, making manual macro annotation unnecessary.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>enum E
-{
-    v1 = 1,
-    v2 = 2,
-    v3 = 4,
-};</code></pre>
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">enum</span> <span class="n">E</span>
+<span class="p">{</span>
+    <span class="n">v1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">v2</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">v3</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+<span class="p">};</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -570,7 +785,7 @@ the types, making manual macro annotation unnecessary.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>BOOST_DESCRIBE_ENUM(E, v1, v2, v3)</code></pre>
+<pre class="rouge highlight"><code data-lang="c++"><span class="n">BOOST_DESCRIBE_ENUM</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">v3</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -582,8 +797,8 @@ the same namespace as the enum.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>enum E2 { a, b, c, d };
-BOOST_DESCRIBE_ENUM(E2, a, b, c, d)</code></pre>
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">enum</span> <span class="n">E2</span> <span class="p">{</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span> <span class="p">};</span>
+<span class="n">BOOST_DESCRIBE_ENUM</span><span class="p">(</span><span class="n">E2</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -591,7 +806,7 @@ BOOST_DESCRIBE_ENUM(E2, a, b, c, d)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>BOOST_DEFINE_ENUM(E2, a, b, c, d)</code></pre>
+<pre class="rouge highlight"><code data-lang="c++"><span class="n">BOOST_DEFINE_ENUM</span><span class="p">(</span><span class="n">E2</span><span class="p">,</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -613,11 +828,11 @@ the form <code>template&lt;class&#8230;&#8203; T&gt; struct L {};</code> and <co
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>struct Di
-{
-    static constexpr E value;
-    static constexpr char const* name;
-};</code></pre>
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">struct</span> <span class="nc">Di</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="n">E</span> <span class="n">value</span><span class="p">;</span>
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">char</span> <span class="k">const</span><span class="o">*</span> <span class="n">name</span><span class="p">;</span>
+<span class="p">};</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -626,11 +841,11 @@ use <code>mp_for_each</code> from <a href="https://boost.org/libs/mp11">Mp11</a>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>boost::mp11::mp_for_each&lt; boost::describe::describe_enumerators&lt;E&gt; &gt;([](auto D){
+<pre class="rouge highlight"><code data-lang="c++"><span class="n">boost</span><span class="o">::</span><span class="n">mp11</span><span class="o">::</span><span class="n">mp_for_each</span><span class="o">&lt;</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">describe_enumerators</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">&gt;</span><span class="p">([](</span><span class="k">auto</span> <span class="n">D</span><span class="p">){</span>
 
-    std::printf( "%s: %d\n", D.name, D.value );
+    <span class="n">std</span><span class="o">::</span><span class="n">printf</span><span class="p">(</span> <span class="s">"%s: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">D</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">D</span><span class="p">.</span><span class="n">value</span> <span class="p">);</span>
 
-});</code></pre>
+<span class="p">});</span></code></pre>
 </div>
 </div>
 </div>
@@ -643,11 +858,11 @@ use <code>mp_for_each</code> from <a href="https://boost.org/libs/mp11">Mp11</a>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>struct X
-{
-    int m1;
-    int m2;
-};</code></pre>
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">struct</span> <span class="nc">X</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">m1</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">m2</span><span class="p">;</span>
+<span class="p">};</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -655,7 +870,7 @@ use <code>mp_for_each</code> from <a href="https://boost.org/libs/mp11">Mp11</a>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>BOOST_DESCRIBE_STRUCT(X, (), (m1, m2))</code></pre>
+<pre class="rouge highlight"><code data-lang="c++"><span class="n">BOOST_DESCRIBE_STRUCT</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="p">(),</span> <span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">))</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -673,28 +888,28 @@ both data members and member functions.)</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>class Y: private X
-{
-public:
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">class</span> <span class="nc">Y</span><span class="o">:</span> <span class="k">private</span> <span class="n">X</span>
+<span class="p">{</span>
+<span class="nl">public:</span>
 
-    int m3;
+    <span class="kt">int</span> <span class="n">m3</span><span class="p">;</span>
 
-protected:
+<span class="nl">protected:</span>
 
-    int m4;
+    <span class="kt">int</span> <span class="n">m4</span><span class="p">;</span>
 
-private:
+<span class="nl">private:</span>
 
-    int m5;
+    <span class="kt">int</span> <span class="n">m5</span><span class="p">;</span>
 
-public:
+<span class="nl">public:</span>
 
-    int f() const;
+    <span class="kt">int</span> <span class="n">f</span><span class="p">()</span> <span class="k">const</span><span class="p">;</span>
 
-private:
+<span class="nl">private:</span>
 
-    BOOST_DESCRIBE_CLASS(Y, (X), (m3, f), (m4), (m5))
-};</code></pre>
+    <span class="n">BOOST_DESCRIBE_CLASS</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="p">(</span><span class="n">m3</span><span class="p">,</span> <span class="n">f</span><span class="p">),</span> <span class="p">(</span><span class="n">m4</span><span class="p">),</span> <span class="p">(</span><span class="n">m5</span><span class="p">))</span>
+<span class="p">};</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -748,11 +963,11 @@ type list <code>L&lt;D1&gt;</code> containing a single base descriptor <code>D1<
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>struct D1
-{
-    using type = X;
-    static constexpr unsigned modifiers = mod_private;
-};</code></pre>
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">struct</span> <span class="nc">D1</span>
+<span class="p">{</span>
+    <span class="k">using</span> <span class="n">type</span> <span class="o">=</span> <span class="n">X</span><span class="p">;</span>
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">unsigned</span> <span class="n">modifiers</span> <span class="o">=</span> <span class="n">mod_private</span><span class="p">;</span>
+<span class="p">};</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -761,12 +976,12 @@ the descriptor of the data member <code>Y::m5</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>struct D2
-{
-    static constexpr int Y::* pointer = &amp;Y::m5;
-    static constexpr char const * name = "m5";
-    static constexpr unsigned modifiers = mod_private;
-};</code></pre>
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">struct</span> <span class="nc">D2</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">int</span> <span class="n">Y</span><span class="o">::*</span> <span class="n">pointer</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">Y</span><span class="o">::</span><span class="n">m5</span><span class="p">;</span>
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"m5"</span><span class="p">;</span>
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">unsigned</span> <span class="n">modifiers</span> <span class="o">=</span> <span class="n">mod_private</span><span class="p">;</span>
+<span class="p">};</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -790,27 +1005,27 @@ descriptors using <code>mp11::mp_for_each</code> and prints them.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>#include &lt;boost/describe.hpp&gt;
+<pre class="rouge highlight"><code data-lang="c++"><span class="cp">#include &lt;boost/describe.hpp&gt;
 #include &lt;boost/mp11.hpp&gt;
 #include &lt;cstdio&gt;
+</span>
+<span class="k">enum</span> <span class="n">E</span>
+<span class="p">{</span>
+    <span class="n">v1</span> <span class="o">=</span> <span class="mi">11</span><span class="p">,</span>
+    <span class="n">v2</span><span class="p">,</span>
+    <span class="n">v3</span> <span class="o">=</span> <span class="mi">5</span>
+<span class="p">};</span>
 
-enum E
-{
-    v1 = 11,
-    v2,
-    v3 = 5
-};
+<span class="n">BOOST_DESCRIBE_ENUM</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">v3</span><span class="p">)</span>
 
-BOOST_DESCRIBE_ENUM(E, v1, v2, v3)
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">boost</span><span class="o">::</span><span class="n">mp11</span><span class="o">::</span><span class="n">mp_for_each</span><span class="o">&lt;</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">describe_enumerators</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">&gt;</span><span class="p">([](</span><span class="k">auto</span> <span class="n">D</span><span class="p">){</span>
 
-int main()
-{
-    boost::mp11::mp_for_each&lt; boost::describe::describe_enumerators&lt;E&gt; &gt;([](auto D){
+        <span class="n">std</span><span class="o">::</span><span class="n">printf</span><span class="p">(</span> <span class="s">"%s: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">D</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">D</span><span class="p">.</span><span class="n">value</span> <span class="p">);</span>
 
-        std::printf( "%s: %d\n", D.name, D.value );
-
-    });
-}</code></pre>
+    <span class="p">});</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -823,39 +1038,39 @@ an ordinary <code>for</code> loop, instead of <code>mp_for_each</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>#include &lt;boost/describe.hpp&gt;
+<pre class="rouge highlight"><code data-lang="c++"><span class="cp">#include &lt;boost/describe.hpp&gt;
 #include &lt;cstdio&gt;
 #include &lt;array&gt;
+</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="p">&gt;</span> <span class="k">struct</span> <span class="nc">enum_descriptor</span>
+<span class="p">{</span>
+    <span class="n">E</span> <span class="n">value</span><span class="p">;</span>
+    <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">name</span><span class="p">;</span>
+<span class="p">};</span>
 
-template&lt;class E&gt; struct enum_descriptor
-{
-    E value;
-    char const * name;
-};
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="p">,</span> <span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="o">...</span> <span class="nc">T</span><span class="p">&gt;</span> <span class="k">class</span> <span class="nc">L</span><span class="p">,</span> <span class="k">class</span><span class="o">...</span> <span class="nc">T</span><span class="p">&gt;</span>
+  <span class="k">constexpr</span> <span class="n">std</span><span class="o">::</span><span class="n">array</span><span class="o">&lt;</span><span class="n">enum_descriptor</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">...(</span><span class="n">T</span><span class="p">)</span><span class="o">&gt;</span>
+    <span class="n">describe_enumerators_as_array_impl</span><span class="p">(</span> <span class="n">L</span><span class="o">&lt;</span><span class="n">T</span><span class="p">...</span><span class="o">&gt;</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="p">{</span> <span class="p">{</span> <span class="p">{</span> <span class="n">T</span><span class="o">::</span><span class="n">value</span><span class="p">,</span> <span class="n">T</span><span class="o">::</span><span class="n">name</span> <span class="p">}...</span> <span class="p">}</span> <span class="p">};</span>
+<span class="p">}</span>
 
-template&lt;class E, template&lt;class... T&gt; class L, class... T&gt;
-  constexpr std::array&lt;enum_descriptor&lt;E&gt;, sizeof...(T)&gt;
-    describe_enumerators_as_array_impl( L&lt;T...&gt; )
-{
-    return { { { T::value, T::name }... } };
-}
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="p">&gt;</span> <span class="k">constexpr</span> <span class="k">auto</span> <span class="nf">describe_enumerators_as_array</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">describe_enumerators_as_array_impl</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span><span class="p">(</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">describe_enumerators</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">);</span>
+<span class="p">}</span>
 
-template&lt;class E&gt; constexpr auto describe_enumerators_as_array()
-{
-    return describe_enumerators_as_array_impl&lt;E&gt;( boost::describe::describe_enumerators&lt;E&gt;() );
-}
+<span class="n">BOOST_DEFINE_ENUM</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">v3</span><span class="p">,</span> <span class="n">v4</span><span class="p">,</span> <span class="n">v5</span><span class="p">,</span> <span class="n">v6</span><span class="p">)</span>
 
-BOOST_DEFINE_ENUM(E, v1, v2, v3, v4, v5, v6)
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">constexpr</span> <span class="k">auto</span> <span class="n">D</span> <span class="o">=</span> <span class="n">describe_enumerators_as_array</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span><span class="p">();</span>
 
-int main()
-{
-    constexpr auto D = describe_enumerators_as_array&lt;E&gt;();
-
-    for( auto const&amp; x: D )
-    {
-        std::printf( "%s: %d\n", x.name, x.value );
-    }
-}</code></pre>
+    <span class="k">for</span><span class="p">(</span> <span class="k">auto</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">x</span><span class="o">:</span> <span class="n">D</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">printf</span><span class="p">(</span> <span class="s">"%s: %d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">x</span><span class="p">.</span><span class="n">value</span> <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -879,38 +1094,38 @@ the enum value doesn&#8217;t have a name.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>#include &lt;boost/describe.hpp&gt;
+<pre class="rouge highlight"><code data-lang="c++"><span class="cp">#include &lt;boost/describe.hpp&gt;
 #include &lt;boost/mp11.hpp&gt;
+</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="p">&gt;</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="nf">enum_to_string</span><span class="p">(</span> <span class="n">E</span> <span class="n">e</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">r</span> <span class="o">=</span> <span class="s">"(unnamed)"</span><span class="p">;</span>
 
-template&lt;class E&gt; char const * enum_to_string( E e )
-{
-    char const * r = "(unnamed)";
+    <span class="n">boost</span><span class="o">::</span><span class="n">mp11</span><span class="o">::</span><span class="n">mp_for_each</span><span class="o">&lt;</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">describe_enumerators</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">&gt;</span><span class="p">([</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span> <span class="n">D</span><span class="p">){</span>
 
-    boost::mp11::mp_for_each&lt; boost::describe::describe_enumerators&lt;E&gt; &gt;([&amp;](auto D){
+        <span class="k">if</span><span class="p">(</span> <span class="n">e</span> <span class="o">==</span> <span class="n">D</span><span class="p">.</span><span class="n">value</span> <span class="p">)</span> <span class="n">r</span> <span class="o">=</span> <span class="n">D</span><span class="p">.</span><span class="n">name</span><span class="p">;</span>
 
-        if( e == D.value ) r = D.name;
+    <span class="p">});</span>
 
-    });
+    <span class="k">return</span> <span class="n">r</span><span class="p">;</span>
+<span class="p">}</span>
 
-    return r;
-}
+<span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="k">enum</span> <span class="n">E</span>
+<span class="p">{</span>
+    <span class="n">v1</span> <span class="o">=</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="n">v2</span><span class="p">,</span>
+    <span class="n">v3</span> <span class="o">=</span> <span class="mi">11</span>
+<span class="p">};</span>
 
-#include &lt;iostream&gt;
+<span class="n">BOOST_DESCRIBE_ENUM</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">v3</span><span class="p">)</span>
 
-enum E
-{
-    v1 = 3,
-    v2,
-    v3 = 11
-};
-
-BOOST_DESCRIBE_ENUM(E, v1, v2, v3)
-
-int main()
-{
-    std::cout &lt;&lt; "E(" &lt;&lt; v1 &lt;&lt; "): " &lt;&lt; enum_to_string( v1 ) &lt;&lt; std::endl;
-    std::cout &lt;&lt; "E(" &lt;&lt; 0 &lt;&lt; "): " &lt;&lt; enum_to_string( E(0) ) &lt;&lt; std::endl;
-}</code></pre>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"E("</span> <span class="o">&lt;&lt;</span> <span class="n">v1</span> <span class="o">&lt;&lt;</span> <span class="s">"): "</span> <span class="o">&lt;&lt;</span> <span class="n">enum_to_string</span><span class="p">(</span> <span class="n">v1</span> <span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"E("</span> <span class="o">&lt;&lt;</span> <span class="mi">0</span> <span class="o">&lt;&lt;</span> <span class="s">"): "</span> <span class="o">&lt;&lt;</span> <span class="n">enum_to_string</span><span class="p">(</span> <span class="n">E</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -925,62 +1140,62 @@ throws an exception.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>#include &lt;boost/describe.hpp&gt;
+<pre class="rouge highlight"><code data-lang="c++"><span class="cp">#include &lt;boost/describe.hpp&gt;
 #include &lt;boost/mp11.hpp&gt;
 #include &lt;stdexcept&gt;
 #include &lt;typeinfo&gt;
 #include &lt;string&gt;
 #include &lt;cstring&gt;
+</span>
+<span class="p">[[</span><span class="n">noreturn</span><span class="p">]]</span> <span class="kt">void</span> <span class="nf">throw_invalid_name</span><span class="p">(</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">name</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">type</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">runtime_error</span><span class="p">(</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">(</span> <span class="s">"Invalid enumerator name '"</span> <span class="p">)</span> <span class="o">+</span> <span class="n">name</span> <span class="o">+</span> <span class="s">"' for enum type '"</span> <span class="o">+</span> <span class="n">type</span> <span class="o">+</span> <span class="s">"'"</span> <span class="p">);</span>
+<span class="p">}</span>
 
-[[noreturn]] void throw_invalid_name( char const * name, char const * type )
-{
-    throw std::runtime_error(
-        std::string( "Invalid enumerator name '" ) + name + "' for enum type '" + type + "'" );
-}
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="p">&gt;</span> <span class="n">E</span> <span class="nf">string_to_enum</span><span class="p">(</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">name</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">bool</span> <span class="n">found</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="n">E</span> <span class="n">r</span> <span class="o">=</span> <span class="p">{};</span>
 
-template&lt;class E&gt; E string_to_enum( char const * name )
-{
-    bool found = false;
-    E r = {};
+    <span class="n">boost</span><span class="o">::</span><span class="n">mp11</span><span class="o">::</span><span class="n">mp_for_each</span><span class="o">&lt;</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">describe_enumerators</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span> <span class="o">&gt;</span><span class="p">([</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span> <span class="n">D</span><span class="p">){</span>
 
-    boost::mp11::mp_for_each&lt; boost::describe::describe_enumerators&lt;E&gt; &gt;([&amp;](auto D){
+        <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="n">found</span> <span class="o">&amp;&amp;</span> <span class="n">std</span><span class="o">::</span><span class="n">strcmp</span><span class="p">(</span> <span class="n">D</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">name</span> <span class="p">)</span> <span class="o">==</span> <span class="mi">0</span> <span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">found</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+            <span class="n">r</span> <span class="o">=</span> <span class="n">D</span><span class="p">.</span><span class="n">value</span><span class="p">;</span>
+        <span class="p">}</span>
 
-        if( !found &amp;&amp; std::strcmp( D.name, name ) == 0 )
-        {
-            found = true;
-            r = D.value;
-        }
+    <span class="p">});</span>
 
-    });
+    <span class="k">if</span><span class="p">(</span> <span class="n">found</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">r</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">else</span>
+    <span class="p">{</span>
+        <span class="n">throw_invalid_name</span><span class="p">(</span> <span class="n">name</span><span class="p">,</span> <span class="k">typeid</span><span class="p">(</span> <span class="n">E</span> <span class="p">).</span><span class="n">name</span><span class="p">()</span> <span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 
-    if( found )
-    {
-        return r;
-    }
-    else
-    {
-        throw_invalid_name( name, typeid( E ).name() );
-    }
-}
+<span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="n">BOOST_DEFINE_ENUM</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="n">v3</span><span class="p">)</span>
 
-#include &lt;iostream&gt;
-
-BOOST_DEFINE_ENUM(E, v1, v2, v3)
-
-int main()
-{
-    try
-    {
-        std::cout &lt;&lt; "v1: " &lt;&lt; string_to_enum&lt;E&gt;( "v1" ) &lt;&lt; std::endl;
-        std::cout &lt;&lt; "v2: " &lt;&lt; string_to_enum&lt;E&gt;( "v2" ) &lt;&lt; std::endl;
-        std::cout &lt;&lt; "v3: " &lt;&lt; string_to_enum&lt;E&gt;( "v3" ) &lt;&lt; std::endl;
-        std::cout &lt;&lt; "v4: " &lt;&lt; string_to_enum&lt;E&gt;( "v4" ) &lt;&lt; std::endl;
-    }
-    catch( std::exception const &amp; x )
-    {
-        std::cout &lt;&lt; x.what() &lt;&lt; std::endl;
-    }
-}</code></pre>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="k">try</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"v1: "</span> <span class="o">&lt;&lt;</span> <span class="n">string_to_enum</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span><span class="p">(</span> <span class="s">"v1"</span> <span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"v2: "</span> <span class="o">&lt;&lt;</span> <span class="n">string_to_enum</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span><span class="p">(</span> <span class="s">"v2"</span> <span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"v3: "</span> <span class="o">&lt;&lt;</span> <span class="n">string_to_enum</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span><span class="p">(</span> <span class="s">"v3"</span> <span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"v4: "</span> <span class="o">&lt;&lt;</span> <span class="n">string_to_enum</span><span class="o">&lt;</span><span class="n">E</span><span class="o">&gt;</span><span class="p">(</span> <span class="s">"v4"</span> <span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+    <span class="k">catch</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">exception</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">x</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">x</span><span class="p">.</span><span class="n">what</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -1003,70 +1218,70 @@ change its state and hence cannot violate its invariant.)</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>#include &lt;boost/describe.hpp&gt;
+<pre class="rouge highlight"><code data-lang="c++"><span class="cp">#include &lt;boost/describe.hpp&gt;
 #include &lt;boost/mp11.hpp&gt;
 #include &lt;ostream&gt;
+</span>
+<span class="k">using</span> <span class="k">namespace</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="p">;</span>
 
-using namespace boost::describe;
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span>
+    <span class="k">class</span> <span class="nc">Bd</span> <span class="o">=</span> <span class="n">describe_bases</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">mod_any_access</span><span class="p">&gt;,</span>
+    <span class="k">class</span> <span class="nc">Md</span> <span class="o">=</span> <span class="n">describe_members</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">mod_any_access</span><span class="o">&gt;&gt;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">ostream</span><span class="o">&amp;</span> <span class="k">operator</span><span class="o">&lt;&lt;</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">ostream</span> <span class="o">&amp;</span> <span class="n">os</span><span class="p">,</span> <span class="n">T</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">t</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="s">"{"</span><span class="p">;</span>
 
-template&lt;class T,
-    class Bd = describe_bases&lt;T, mod_any_access&gt;,
-    class Md = describe_members&lt;T, mod_any_access&gt;&gt;
-    std::ostream&amp; operator&lt;&lt;( std::ostream &amp; os, T const &amp; t )
-{
-    os &lt;&lt; "{";
+    <span class="kt">bool</span> <span class="n">first</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
 
-    bool first = true;
+    <span class="n">boost</span><span class="o">::</span><span class="n">mp11</span><span class="o">::</span><span class="n">mp_for_each</span><span class="o">&lt;</span><span class="n">Bd</span><span class="o">&gt;</span><span class="p">([</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span> <span class="n">D</span><span class="p">){</span>
 
-    boost::mp11::mp_for_each&lt;Bd&gt;([&amp;](auto D){
+        <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="n">first</span> <span class="p">)</span> <span class="p">{</span> <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="s">", "</span><span class="p">;</span> <span class="p">}</span> <span class="n">first</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
 
-        if( !first ) { os &lt;&lt; ", "; } first = false;
+        <span class="k">using</span> <span class="n">B</span> <span class="o">=</span> <span class="k">typename</span> <span class="k">decltype</span><span class="p">(</span><span class="n">D</span><span class="p">)</span><span class="o">::</span><span class="n">type</span><span class="p">;</span>
+        <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="p">(</span><span class="n">B</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">)</span><span class="n">t</span><span class="p">;</span>
 
-        using B = typename decltype(D)::type;
-        os &lt;&lt; (B const&amp;)t;
+    <span class="p">});</span>
 
-    });
+    <span class="n">boost</span><span class="o">::</span><span class="n">mp11</span><span class="o">::</span><span class="n">mp_for_each</span><span class="o">&lt;</span><span class="n">Md</span><span class="o">&gt;</span><span class="p">([</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span> <span class="n">D</span><span class="p">){</span>
 
-    boost::mp11::mp_for_each&lt;Md&gt;([&amp;](auto D){
+        <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="n">first</span> <span class="p">)</span> <span class="p">{</span> <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="s">", "</span><span class="p">;</span> <span class="p">}</span> <span class="n">first</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
 
-        if( !first ) { os &lt;&lt; ", "; } first = false;
+        <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="s">"."</span> <span class="o">&lt;&lt;</span> <span class="n">D</span><span class="p">.</span><span class="n">name</span> <span class="o">&lt;&lt;</span> <span class="s">" = "</span> <span class="o">&lt;&lt;</span> <span class="n">t</span><span class="p">.</span><span class="o">*</span><span class="n">D</span><span class="p">.</span><span class="n">pointer</span><span class="p">;</span>
 
-        os &lt;&lt; "." &lt;&lt; D.name &lt;&lt; " = " &lt;&lt; t.*D.pointer;
+    <span class="p">});</span>
 
-    });
+    <span class="n">os</span> <span class="o">&lt;&lt;</span> <span class="s">"}"</span><span class="p">;</span>
+    <span class="k">return</span> <span class="n">os</span><span class="p">;</span>
+<span class="p">}</span>
 
-    os &lt;&lt; "}";
-    return os;
-}
+<span class="k">struct</span> <span class="nc">X</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">m1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+<span class="p">};</span>
 
-struct X
-{
-    int m1 = 1;
-};
+<span class="n">BOOST_DESCRIBE_STRUCT</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="p">(),</span> <span class="p">(</span><span class="n">m1</span><span class="p">))</span>
 
-BOOST_DESCRIBE_STRUCT(X, (), (m1))
+<span class="k">struct</span> <span class="nc">Y</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">m2</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="p">};</span>
 
-struct Y
-{
-    int m2 = 2;
-};
+<span class="n">BOOST_DESCRIBE_STRUCT</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="p">(),</span> <span class="p">(</span><span class="n">m2</span><span class="p">))</span>
 
-BOOST_DESCRIBE_STRUCT(Y, (), (m2))
+<span class="k">class</span> <span class="nc">Z</span><span class="o">:</span> <span class="k">public</span> <span class="n">X</span><span class="p">,</span> <span class="k">private</span> <span class="n">Y</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">m1</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">m2</span> <span class="o">=</span> <span class="mi">4</span><span class="p">;</span>
 
-class Z: public X, private Y
-{
-    int m1 = 3;
-    int m2 = 4;
+    <span class="n">BOOST_DESCRIBE_CLASS</span><span class="p">(</span><span class="n">Z</span><span class="p">,</span> <span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Y</span><span class="p">),</span> <span class="p">(),</span> <span class="p">(),</span> <span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">m2</span><span class="p">))</span>
+<span class="p">};</span>
 
-    BOOST_DESCRIBE_CLASS(Z, (X, Y), (), (), (m1, m2))
-};
-
-#include &lt;iostream&gt;
-
-int main()
-{
-    std::cout &lt;&lt; Z() &lt;&lt; std::endl;
-}</code></pre>
+<span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">Z</span><span class="p">()</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -1090,59 +1305,59 @@ disabled in this case using <code>std::enable_if_t</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>#include &lt;boost/describe.hpp&gt;
+<pre class="rouge highlight"><code data-lang="c++"><span class="cp">#include &lt;boost/describe.hpp&gt;
 #include &lt;boost/mp11.hpp&gt;
 #include &lt;boost/json.hpp&gt;
 #include &lt;type_traits&gt;
 #include &lt;vector&gt;
 #include &lt;map&gt;
+</span>
+<span class="k">namespace</span> <span class="n">app</span>
+<span class="p">{</span>
 
-namespace app
-{
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span>
+    <span class="k">class</span> <span class="nc">D1</span> <span class="o">=</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">describe_members</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span>
+        <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">mod_public</span> <span class="o">|</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">mod_protected</span><span class="p">&gt;,</span>
+    <span class="k">class</span> <span class="nc">D2</span> <span class="o">=</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">describe_members</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">mod_private</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="k">class</span> <span class="nc">En</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">enable_if_t</span><span class="o">&lt;</span><span class="n">boost</span><span class="o">::</span><span class="n">mp11</span><span class="o">::</span><span class="n">mp_empty</span><span class="o">&lt;</span><span class="n">D2</span><span class="o">&gt;::</span><span class="n">value</span><span class="o">&gt;</span> <span class="o">&gt;</span>
 
-template&lt;class T,
-    class D1 = boost::describe::describe_members&lt;T,
-        boost::describe::mod_public | boost::describe::mod_protected&gt;,
-    class D2 = boost::describe::describe_members&lt;T, boost::describe::mod_private&gt;,
-    class En = std::enable_if_t&lt;boost::mp11::mp_empty&lt;D2&gt;::value&gt; &gt;
+    <span class="kt">void</span> <span class="n">tag_invoke</span><span class="p">(</span> <span class="n">boost</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">value_from_tag</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">,</span> <span class="n">boost</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">value</span><span class="o">&amp;</span> <span class="n">v</span><span class="p">,</span> <span class="n">T</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">t</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">auto</span><span class="o">&amp;</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">emplace_object</span><span class="p">();</span>
 
-    void tag_invoke( boost::json::value_from_tag const&amp;, boost::json::value&amp; v, T const &amp; t )
-{
-    auto&amp; obj = v.emplace_object();
+    <span class="n">boost</span><span class="o">::</span><span class="n">mp11</span><span class="o">::</span><span class="n">mp_for_each</span><span class="o">&lt;</span><span class="n">D1</span><span class="o">&gt;</span><span class="p">([</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span> <span class="n">D</span><span class="p">){</span>
 
-    boost::mp11::mp_for_each&lt;D1&gt;([&amp;](auto D){
+        <span class="n">obj</span><span class="p">[</span> <span class="n">D</span><span class="p">.</span><span class="n">name</span> <span class="p">]</span> <span class="o">=</span> <span class="n">boost</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">value_from</span><span class="p">(</span> <span class="n">t</span><span class="p">.</span><span class="o">*</span><span class="n">D</span><span class="p">.</span><span class="n">pointer</span> <span class="p">);</span>
 
-        obj[ D.name ] = boost::json::value_from( t.*D.pointer );
+    <span class="p">});</span>
+<span class="p">}</span>
 
-    });
-}
+<span class="k">struct</span> <span class="nc">A</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">};</span>
 
-struct A
-{
-    int x;
-    int y;
-};
+<span class="n">BOOST_DESCRIBE_STRUCT</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="p">(),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
 
-BOOST_DESCRIBE_STRUCT(A, (), (x, y))
+<span class="k">struct</span> <span class="nc">B</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">map</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">string</span><span class="p">,</span> <span class="n">A</span><span class="o">&gt;</span> <span class="n">m</span><span class="p">;</span>
+<span class="p">};</span>
 
-struct B
-{
-    std::vector&lt;A&gt; v;
-    std::map&lt;std::string, A&gt; m;
-};
+<span class="n">BOOST_DESCRIBE_STRUCT</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="p">(),</span> <span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">m</span><span class="p">))</span>
 
-BOOST_DESCRIBE_STRUCT(B, (), (v, m))
+<span class="p">}</span> <span class="c1">// namespace app</span>
 
-} // namespace app
+<span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">app</span><span class="o">::</span><span class="n">B</span> <span class="n">b</span><span class="p">{</span> <span class="p">{</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">},</span> <span class="p">{</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">}</span> <span class="p">},</span> <span class="p">{</span> <span class="p">{</span> <span class="s">"k1"</span><span class="p">,</span> <span class="p">{</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span> <span class="p">}</span> <span class="p">},</span> <span class="p">{</span> <span class="s">"k2"</span><span class="p">,</span> <span class="p">{</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">8</span> <span class="p">}</span> <span class="p">}</span> <span class="p">}</span> <span class="p">};</span>
 
-#include &lt;iostream&gt;
-
-int main()
-{
-    app::B b{ { { 1, 2 }, { 3, 4 } }, { { "k1", { 5, 6 } }, { "k2", { 7, 8 } } } };
-
-    std::cout &lt;&lt; boost::json::value_from( b ) &lt;&lt; std::endl;
-}</code></pre>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">boost</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">value_from</span><span class="p">(</span> <span class="n">b</span> <span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -1155,62 +1370,62 @@ an annotated struct.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>#include &lt;boost/describe.hpp&gt;
+<pre class="rouge highlight"><code data-lang="c++"><span class="cp">#include &lt;boost/describe.hpp&gt;
 #include &lt;boost/mp11.hpp&gt;
 #include &lt;boost/json.hpp&gt;
 #include &lt;type_traits&gt;
+</span>
+<span class="k">namespace</span> <span class="n">app</span>
+<span class="p">{</span>
 
-namespace app
-{
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">&gt;</span> <span class="kt">void</span> <span class="n">extract</span><span class="p">(</span> <span class="n">boost</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">object</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">obj</span><span class="p">,</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">name</span><span class="p">,</span> <span class="n">T</span> <span class="o">&amp;</span> <span class="n">value</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="n">boost</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">value_to</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span><span class="p">(</span> <span class="n">obj</span><span class="p">.</span><span class="n">at</span><span class="p">(</span> <span class="n">name</span> <span class="p">)</span> <span class="p">);</span>
+<span class="p">}</span>
 
-template&lt;class T&gt; void extract( boost::json::object const &amp; obj, char const * name, T &amp; value )
-{
-    value = boost::json::value_to&lt;T&gt;( obj.at( name ) );
-}
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span>
+    <span class="k">class</span> <span class="nc">D1</span> <span class="o">=</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">describe_members</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span>
+        <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">mod_public</span> <span class="o">|</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">mod_protected</span><span class="p">&gt;,</span>
+    <span class="k">class</span> <span class="nc">D2</span> <span class="o">=</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">describe_members</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">mod_private</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="k">class</span> <span class="nc">En</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">enable_if_t</span><span class="o">&lt;</span><span class="n">boost</span><span class="o">::</span><span class="n">mp11</span><span class="o">::</span><span class="n">mp_empty</span><span class="o">&lt;</span><span class="n">D2</span><span class="o">&gt;::</span><span class="n">value</span><span class="o">&gt;</span> <span class="o">&gt;</span>
 
-template&lt;class T,
-    class D1 = boost::describe::describe_members&lt;T,
-        boost::describe::mod_public | boost::describe::mod_protected&gt;,
-    class D2 = boost::describe::describe_members&lt;T, boost::describe::mod_private&gt;,
-    class En = std::enable_if_t&lt;boost::mp11::mp_empty&lt;D2&gt;::value&gt; &gt;
+    <span class="n">T</span> <span class="n">tag_invoke</span><span class="p">(</span> <span class="n">boost</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">value_to_tag</span><span class="o">&lt;</span><span class="n">T</span><span class="o">&gt;</span> <span class="k">const</span><span class="o">&amp;</span><span class="p">,</span> <span class="n">boost</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">value</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">v</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">auto</span> <span class="k">const</span><span class="o">&amp;</span> <span class="n">obj</span> <span class="o">=</span> <span class="n">v</span><span class="p">.</span><span class="n">as_object</span><span class="p">();</span>
 
-    T tag_invoke( boost::json::value_to_tag&lt;T&gt; const&amp;, boost::json::value const&amp; v )
-{
-    auto const&amp; obj = v.as_object();
+    <span class="n">T</span> <span class="n">t</span><span class="p">{};</span>
 
-    T t{};
+    <span class="n">boost</span><span class="o">::</span><span class="n">mp11</span><span class="o">::</span><span class="n">mp_for_each</span><span class="o">&lt;</span><span class="n">D1</span><span class="o">&gt;</span><span class="p">([</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span> <span class="n">D</span><span class="p">){</span>
 
-    boost::mp11::mp_for_each&lt;D1&gt;([&amp;](auto D){
+        <span class="n">extract</span><span class="p">(</span> <span class="n">obj</span><span class="p">,</span> <span class="n">D</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="o">*</span><span class="n">D</span><span class="p">.</span><span class="n">pointer</span> <span class="p">);</span>
 
-        extract( obj, D.name, t.*D.pointer );
+    <span class="p">});</span>
 
-    });
+    <span class="k">return</span> <span class="n">t</span><span class="p">;</span>
+<span class="p">}</span>
 
-    return t;
-}
+<span class="k">struct</span> <span class="nc">A</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">};</span>
 
-struct A
-{
-    int x;
-    int y;
-};
+<span class="n">BOOST_DESCRIBE_STRUCT</span><span class="p">(</span><span class="n">A</span><span class="p">,</span> <span class="p">(),</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">))</span>
 
-BOOST_DESCRIBE_STRUCT(A, (), (x, y))
+<span class="p">}</span> <span class="c1">// namespace app</span>
 
-} // namespace app
+<span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">boost</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">value</span> <span class="n">jv</span><span class="p">{</span> <span class="p">{</span> <span class="s">"x"</span><span class="p">,</span> <span class="mi">1</span> <span class="p">},</span> <span class="p">{</span> <span class="s">"y"</span><span class="p">,</span> <span class="mi">2</span> <span class="p">}</span> <span class="p">};</span>
 
-#include &lt;iostream&gt;
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"jv: "</span> <span class="o">&lt;&lt;</span> <span class="n">jv</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-int main()
-{
-    boost::json::value jv{ { "x", 1 }, { "y", 2 } };
+    <span class="k">auto</span> <span class="n">a</span> <span class="o">=</span> <span class="n">boost</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">value_to</span><span class="o">&lt;</span><span class="n">app</span><span class="o">::</span><span class="n">A</span><span class="o">&gt;</span><span class="p">(</span> <span class="n">jv</span> <span class="p">);</span>
 
-    std::cout &lt;&lt; "jv: " &lt;&lt; jv &lt;&lt; std::endl;
-
-    auto a = boost::json::value_to&lt;app::A&gt;( jv );
-
-    std::cout &lt;&lt; "a: { " &lt;&lt; a.x &lt;&lt; ", " &lt;&lt; a.y &lt;&lt; " }" &lt;&lt; std::endl;
-}</code></pre>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="s">"a: { "</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">x</span> <span class="o">&lt;&lt;</span> <span class="s">", "</span> <span class="o">&lt;&lt;</span> <span class="n">a</span><span class="p">.</span><span class="n">y</span> <span class="o">&lt;&lt;</span> <span class="s">" }"</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -1223,9 +1438,9 @@ support to annotated classes.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>#define _CRT_SECURE_NO_WARNINGS
-
-#include &lt;boost/describe.hpp&gt;
+<pre class="rouge highlight"><code data-lang="c++"><span class="cp">#define _CRT_SECURE_NO_WARNINGS
+</span>
+<span class="cp">#include &lt;boost/describe.hpp&gt;
 #include &lt;boost/mp11.hpp&gt;
 #include &lt;boost/serialization/serialization.hpp&gt;
 #include &lt;boost/serialization/base_object.hpp&gt;
@@ -1234,113 +1449,113 @@ support to annotated classes.</p>
 #include &lt;type_traits&gt;
 #include &lt;cstdio&gt;
 #include &lt;vector&gt;
+</span>
+<span class="k">namespace</span> <span class="n">app</span>
+<span class="p">{</span>
 
-namespace app
-{
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">Archive</span><span class="p">,</span> <span class="k">class</span> <span class="nc">T</span><span class="p">,</span>
+    <span class="k">class</span> <span class="nc">D1</span> <span class="o">=</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">describe_bases</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">mod_public</span><span class="p">&gt;,</span>
+    <span class="k">class</span> <span class="nc">D2</span> <span class="o">=</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">describe_bases</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span>
+        <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">mod_protected</span> <span class="o">|</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">mod_private</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="k">class</span> <span class="nc">D3</span> <span class="o">=</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">describe_members</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span>
+        <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">mod_public</span> <span class="o">|</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">mod_protected</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="k">class</span> <span class="nc">D4</span> <span class="o">=</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">describe_members</span><span class="o">&lt;</span><span class="n">T</span><span class="p">,</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">mod_private</span><span class="o">&gt;</span><span class="p">,</span>
+    <span class="k">class</span> <span class="nc">En</span> <span class="o">=</span> <span class="n">std</span><span class="o">::</span><span class="n">enable_if_t</span><span class="o">&lt;</span>
+        <span class="n">boost</span><span class="o">::</span><span class="n">mp11</span><span class="o">::</span><span class="n">mp_empty</span><span class="o">&lt;</span><span class="n">D2</span><span class="o">&gt;::</span><span class="n">value</span> <span class="o">&amp;&amp;</span> <span class="n">boost</span><span class="o">::</span><span class="n">mp11</span><span class="o">::</span><span class="n">mp_empty</span><span class="o">&lt;</span><span class="n">D4</span><span class="o">&gt;::</span><span class="n">value</span><span class="o">&gt;</span> <span class="o">&gt;</span>
 
-template&lt;class Archive, class T,
-    class D1 = boost::describe::describe_bases&lt;T, boost::describe::mod_public&gt;,
-    class D2 = boost::describe::describe_bases&lt;T,
-        boost::describe::mod_protected | boost::describe::mod_private&gt;,
-    class D3 = boost::describe::describe_members&lt;T,
-        boost::describe::mod_public | boost::describe::mod_protected&gt;,
-    class D4 = boost::describe::describe_members&lt;T, boost::describe::mod_private&gt;,
-    class En = std::enable_if_t&lt;
-        boost::mp11::mp_empty&lt;D2&gt;::value &amp;&amp; boost::mp11::mp_empty&lt;D4&gt;::value&gt; &gt;
+    <span class="kt">void</span> <span class="n">serialize</span><span class="p">(</span> <span class="n">Archive</span> <span class="o">&amp;</span> <span class="n">ar</span><span class="p">,</span> <span class="n">T</span> <span class="o">&amp;</span> <span class="n">t</span><span class="p">,</span> <span class="n">boost</span><span class="o">::</span><span class="n">serialization</span><span class="o">::</span><span class="n">version_type</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">k</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
 
-    void serialize( Archive &amp; ar, T &amp; t, boost::serialization::version_type )
-{
-    int k = 0;
+    <span class="c1">// public bases: use base_object</span>
 
-    // public bases: use base_object
+    <span class="n">boost</span><span class="o">::</span><span class="n">mp11</span><span class="o">::</span><span class="n">mp_for_each</span><span class="o">&lt;</span><span class="n">D1</span><span class="o">&gt;</span><span class="p">([</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span> <span class="n">D</span><span class="p">){</span>
 
-    boost::mp11::mp_for_each&lt;D1&gt;([&amp;](auto D){
+        <span class="k">using</span> <span class="n">B</span> <span class="o">=</span> <span class="k">typename</span> <span class="k">decltype</span><span class="p">(</span><span class="n">D</span><span class="p">)</span><span class="o">::</span><span class="n">type</span><span class="p">;</span>
 
-        using B = typename decltype(D)::type;
+        <span class="kt">char</span> <span class="n">name</span><span class="p">[</span> <span class="mi">32</span> <span class="p">];</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">sprintf</span><span class="p">(</span> <span class="n">name</span><span class="p">,</span> <span class="s">"base.%d"</span><span class="p">,</span> <span class="o">++</span><span class="n">k</span> <span class="p">);</span>
 
-        char name[ 32 ];
-        std::sprintf( name, "base.%d", ++k );
+        <span class="n">ar</span> <span class="o">&amp;</span> <span class="n">boost</span><span class="o">::</span><span class="n">make_nvp</span><span class="p">(</span> <span class="n">name</span><span class="p">,</span> <span class="n">boost</span><span class="o">::</span><span class="n">serialization</span><span class="o">::</span><span class="n">base_object</span><span class="o">&lt;</span><span class="n">B</span><span class="o">&gt;</span><span class="p">(</span> <span class="n">t</span> <span class="p">)</span> <span class="p">);</span>
 
-        ar &amp; boost::make_nvp( name, boost::serialization::base_object&lt;B&gt;( t ) );
+    <span class="p">});</span>
 
-    });
+    <span class="c1">// public (and protected) members</span>
 
-    // public (and protected) members
+    <span class="n">boost</span><span class="o">::</span><span class="n">mp11</span><span class="o">::</span><span class="n">mp_for_each</span><span class="o">&lt;</span><span class="n">D3</span><span class="o">&gt;</span><span class="p">([</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span> <span class="n">D</span><span class="p">){</span>
 
-    boost::mp11::mp_for_each&lt;D3&gt;([&amp;](auto D){
+        <span class="n">ar</span> <span class="o">&amp;</span> <span class="n">boost</span><span class="o">::</span><span class="n">make_nvp</span><span class="p">(</span> <span class="n">D</span><span class="p">.</span><span class="n">name</span><span class="p">,</span> <span class="n">t</span><span class="p">.</span><span class="o">*</span><span class="n">D</span><span class="p">.</span><span class="n">pointer</span> <span class="p">);</span>
 
-        ar &amp; boost::make_nvp( D.name, t.*D.pointer );
+    <span class="p">});</span>
+<span class="p">}</span>
 
-    });
-}
+<span class="k">struct</span> <span class="nc">A1</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">x</span><span class="p">;</span>
+<span class="p">};</span>
 
-struct A1
-{
-    int x;
-};
+<span class="n">BOOST_DESCRIBE_STRUCT</span><span class="p">(</span><span class="n">A1</span><span class="p">,</span> <span class="p">(),</span> <span class="p">(</span><span class="n">x</span><span class="p">))</span>
 
-BOOST_DESCRIBE_STRUCT(A1, (), (x))
+<span class="k">struct</span> <span class="nc">A2</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">y</span><span class="p">;</span>
+<span class="p">};</span>
 
-struct A2
-{
-    int y;
-};
+<span class="n">BOOST_DESCRIBE_STRUCT</span><span class="p">(</span><span class="n">A2</span><span class="p">,</span> <span class="p">(),</span> <span class="p">(</span><span class="n">y</span><span class="p">))</span>
 
-BOOST_DESCRIBE_STRUCT(A2, (), (y))
+<span class="k">struct</span> <span class="nc">B</span><span class="o">:</span> <span class="k">public</span> <span class="n">A1</span><span class="p">,</span> <span class="k">public</span> <span class="n">A2</span>
+<span class="p">{</span>
+    <span class="c1">// these constructors aren't needed in C++17</span>
+    <span class="n">B</span><span class="p">()</span><span class="o">:</span> <span class="n">A1</span><span class="p">(),</span> <span class="n">A2</span><span class="p">()</span> <span class="p">{}</span>
+    <span class="n">B</span><span class="p">(</span> <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span> <span class="p">)</span><span class="o">:</span> <span class="n">A1</span><span class="p">{</span> <span class="n">x</span> <span class="p">},</span> <span class="n">A2</span><span class="p">{</span> <span class="n">y</span> <span class="p">}</span> <span class="p">{}</span>
+<span class="p">};</span>
 
-struct B: public A1, public A2
-{
-    // these constructors aren't needed in C++17
-    B(): A1(), A2() {}
-    B( int x, int y ): A1{ x }, A2{ y } {}
-};
+<span class="n">BOOST_DESCRIBE_STRUCT</span><span class="p">(</span><span class="n">B</span><span class="p">,</span> <span class="p">(</span><span class="n">A1</span><span class="p">,</span> <span class="n">A2</span><span class="p">),</span> <span class="p">())</span>
 
-BOOST_DESCRIBE_STRUCT(B, (A1, A2), ())
+<span class="k">struct</span> <span class="nc">C</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="n">B</span><span class="o">&gt;</span> <span class="n">v</span><span class="p">;</span>
+<span class="p">};</span>
 
-struct C
-{
-    std::vector&lt;B&gt; v;
-};
+<span class="n">BOOST_DESCRIBE_STRUCT</span><span class="p">(</span><span class="n">C</span><span class="p">,</span> <span class="p">(),</span> <span class="p">(</span><span class="n">v</span><span class="p">))</span>
 
-BOOST_DESCRIBE_STRUCT(C, (), (v))
+<span class="p">}</span> <span class="c1">// namespace app</span>
 
-} // namespace app
-
-#include &lt;boost/archive/xml_oarchive.hpp&gt;
+<span class="cp">#include &lt;boost/archive/xml_oarchive.hpp&gt;
 #include &lt;boost/archive/xml_iarchive.hpp&gt;
 #include &lt;boost/archive/text_oarchive.hpp&gt;
 #include &lt;string&gt;
 #include &lt;sstream&gt;
 #include &lt;iostream&gt;
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">app</span><span class="o">::</span><span class="n">C</span> <span class="n">c1</span><span class="p">{</span> <span class="p">{</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">},</span> <span class="p">{</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span> <span class="p">},</span> <span class="p">{</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span> <span class="p">}</span> <span class="p">}</span> <span class="p">};</span>
 
-int main()
-{
-    app::C c1{ { { 1, 2 }, { 3, 4 }, { 5, 6 } } };
+    <span class="n">std</span><span class="o">::</span><span class="n">ostringstream</span> <span class="n">os</span><span class="p">;</span>
 
-    std::ostringstream os;
+    <span class="p">{</span>
+        <span class="n">boost</span><span class="o">::</span><span class="n">archive</span><span class="o">::</span><span class="n">xml_oarchive</span> <span class="n">ar</span><span class="p">(</span> <span class="n">os</span> <span class="p">);</span>
+        <span class="n">ar</span> <span class="o">&lt;&lt;</span> <span class="n">boost</span><span class="o">::</span><span class="n">make_nvp</span><span class="p">(</span> <span class="s">"c1"</span><span class="p">,</span> <span class="n">c1</span> <span class="p">);</span>
+    <span class="p">}</span>
 
-    {
-        boost::archive::xml_oarchive ar( os );
-        ar &lt;&lt; boost::make_nvp( "c1", c1 );
-    }
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">s</span> <span class="o">=</span> <span class="n">os</span><span class="p">.</span><span class="n">str</span><span class="p">();</span>
 
-    std::string s = os.str();
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">s</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
 
-    std::cout &lt;&lt; s &lt;&lt; std::endl;
+    <span class="n">app</span><span class="o">::</span><span class="n">C</span> <span class="n">c2</span><span class="p">;</span>
 
-    app::C c2;
+    <span class="p">{</span>
+        <span class="n">std</span><span class="o">::</span><span class="n">istringstream</span> <span class="n">is</span><span class="p">(</span> <span class="n">s</span> <span class="p">);</span>
+        <span class="n">boost</span><span class="o">::</span><span class="n">archive</span><span class="o">::</span><span class="n">xml_iarchive</span> <span class="n">ar</span><span class="p">(</span> <span class="n">is</span> <span class="p">);</span>
+        <span class="n">ar</span> <span class="o">&gt;&gt;</span> <span class="n">boost</span><span class="o">::</span><span class="n">make_nvp</span><span class="p">(</span> <span class="s">"c2"</span><span class="p">,</span> <span class="n">c2</span> <span class="p">);</span>
+    <span class="p">}</span>
 
-    {
-        std::istringstream is( s );
-        boost::archive::xml_iarchive ar( is );
-        ar &gt;&gt; boost::make_nvp( "c2", c2 );
-    }
-
-    {
-        boost::archive::text_oarchive ar( std::cout );
-        ar &lt;&lt; c2;
-    }
-}</code></pre>
+    <span class="p">{</span>
+        <span class="n">boost</span><span class="o">::</span><span class="n">archive</span><span class="o">::</span><span class="n">text_oarchive</span> <span class="n">ar</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="p">);</span>
+        <span class="n">ar</span> <span class="o">&lt;&lt;</span> <span class="n">c2</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -1354,87 +1569,87 @@ in a <code>boost::json::value</code>.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>#include &lt;boost/describe.hpp&gt;
+<pre class="rouge highlight"><code data-lang="c++"><span class="cp">#include &lt;boost/describe.hpp&gt;
 #include &lt;boost/mp11.hpp&gt;
 #include &lt;boost/json.hpp&gt;
 #include &lt;boost/type_traits.hpp&gt;
 #include &lt;boost/utility/string_view.hpp&gt;
 #include &lt;stdexcept&gt;
 #include &lt;string&gt;
+</span>
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">C1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">C2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">R</span><span class="p">,</span> <span class="k">class</span><span class="o">...</span> <span class="nc">A</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="kt">size_t</span><span class="p">...</span> <span class="n">I</span><span class="p">&gt;</span>
+  <span class="n">boost</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">value</span>
+    <span class="nf">call_impl_</span><span class="p">(</span> <span class="n">C1</span> <span class="o">&amp;</span> <span class="n">c1</span><span class="p">,</span> <span class="n">R</span> <span class="p">(</span><span class="n">C2</span><span class="o">::*</span><span class="n">pmf</span><span class="p">)(</span><span class="n">A</span><span class="p">...),</span> <span class="n">boost</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">array</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">args</span><span class="p">,</span>
+      <span class="n">std</span><span class="o">::</span><span class="n">index_sequence</span><span class="o">&lt;</span><span class="n">I</span><span class="p">...</span><span class="o">&gt;</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">return</span> <span class="n">boost</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">value_from</span><span class="p">(</span>
+      <span class="p">(</span><span class="n">c1</span><span class="p">.</span><span class="o">*</span><span class="n">pmf</span><span class="p">)(</span>
+        <span class="n">boost</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">value_to</span><span class="o">&lt;</span> <span class="n">boost</span><span class="o">::</span><span class="n">remove_cv_ref_t</span><span class="o">&lt;</span><span class="n">A</span><span class="o">&gt;</span> <span class="o">&gt;</span><span class="p">(</span> <span class="n">args</span><span class="p">[</span> <span class="n">I</span> <span class="p">]</span> <span class="p">)...</span> <span class="p">)</span> <span class="p">);</span>
+<span class="p">}</span>
 
-template&lt;class C1, class C2, class R, class... A, std::size_t... I&gt;
-  boost::json::value
-    call_impl_( C1 &amp; c1, R (C2::*pmf)(A...), boost::json::array const &amp; args,
-      std::index_sequence&lt;I...&gt; )
-{
-    return boost::json::value_from(
-      (c1.*pmf)(
-        boost::json::value_to&lt; boost::remove_cv_ref_t&lt;A&gt; &gt;( args[ I ] )... ) );
-}
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">C1</span><span class="p">,</span> <span class="k">class</span> <span class="nc">C2</span><span class="p">,</span> <span class="k">class</span> <span class="nc">R</span><span class="p">,</span> <span class="k">class</span><span class="o">...</span> <span class="nc">A</span><span class="p">&gt;</span>
+  <span class="n">boost</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">value</span>
+    <span class="nf">call_impl</span><span class="p">(</span> <span class="n">C1</span> <span class="o">&amp;</span> <span class="n">c1</span><span class="p">,</span> <span class="n">R</span> <span class="p">(</span><span class="n">C2</span><span class="o">::*</span><span class="n">pmf</span><span class="p">)(</span><span class="n">A</span><span class="p">...),</span> <span class="n">boost</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">array</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">args</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">if</span><span class="p">(</span> <span class="n">args</span><span class="p">.</span><span class="n">size</span><span class="p">()</span> <span class="o">!=</span> <span class="k">sizeof</span><span class="p">...(</span><span class="n">A</span><span class="p">)</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">invalid_argument</span><span class="p">(</span> <span class="s">"Invalid number of arguments"</span> <span class="p">);</span>
+    <span class="p">}</span>
 
-template&lt;class C1, class C2, class R, class... A&gt;
-  boost::json::value
-    call_impl( C1 &amp; c1, R (C2::*pmf)(A...), boost::json::array const &amp; args )
-{
-    if( args.size() != sizeof...(A) )
-    {
-        throw std::invalid_argument( "Invalid number of arguments" );
-    }
+    <span class="k">return</span> <span class="n">call_impl_</span><span class="p">(</span> <span class="n">c1</span><span class="p">,</span> <span class="n">pmf</span><span class="p">,</span> <span class="n">args</span><span class="p">,</span> <span class="n">std</span><span class="o">::</span><span class="n">index_sequence_for</span><span class="o">&lt;</span><span class="n">A</span><span class="p">...</span><span class="o">&gt;</span><span class="p">()</span> <span class="p">);</span>
+<span class="p">}</span>
 
-    return call_impl_( c1, pmf, args, std::index_sequence_for&lt;A...&gt;() );
-}
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">C</span><span class="p">&gt;</span>
+  <span class="n">boost</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">value</span>
+    <span class="nf">call</span><span class="p">(</span> <span class="n">C</span> <span class="o">&amp;</span> <span class="n">c</span><span class="p">,</span> <span class="n">boost</span><span class="o">::</span><span class="n">string_view</span> <span class="n">method</span><span class="p">,</span> <span class="n">boost</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">value</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">args</span> <span class="p">)</span>
+<span class="p">{</span>
+    <span class="k">using</span> <span class="n">Fd</span> <span class="o">=</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">describe_members</span><span class="o">&lt;</span><span class="n">C</span><span class="p">,</span>
+        <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">mod_public</span> <span class="o">|</span> <span class="n">boost</span><span class="o">::</span><span class="n">describe</span><span class="o">::</span><span class="n">mod_function</span><span class="o">&gt;</span><span class="p">;</span>
 
-template&lt;class C&gt;
-  boost::json::value
-    call( C &amp; c, boost::string_view method, boost::json::value const &amp; args )
-{
-    using Fd = boost::describe::describe_members&lt;C,
-        boost::describe::mod_public | boost::describe::mod_function&gt;;
+    <span class="kt">bool</span> <span class="n">found</span> <span class="o">=</span> <span class="nb">false</span><span class="p">;</span>
+    <span class="n">boost</span><span class="o">::</span><span class="n">json</span><span class="o">::</span><span class="n">value</span> <span class="n">result</span><span class="p">;</span>
 
-    bool found = false;
-    boost::json::value result;
+    <span class="n">boost</span><span class="o">::</span><span class="n">mp11</span><span class="o">::</span><span class="n">mp_for_each</span><span class="o">&lt;</span><span class="n">Fd</span><span class="o">&gt;</span><span class="p">([</span><span class="o">&amp;</span><span class="p">](</span><span class="k">auto</span> <span class="n">D</span><span class="p">){</span>
 
-    boost::mp11::mp_for_each&lt;Fd&gt;([&amp;](auto D){
+        <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="n">found</span> <span class="o">&amp;&amp;</span> <span class="n">method</span> <span class="o">==</span> <span class="n">D</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="p">{</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">call_impl</span><span class="p">(</span> <span class="n">c</span><span class="p">,</span> <span class="n">D</span><span class="p">.</span><span class="n">pointer</span><span class="p">,</span> <span class="n">args</span><span class="p">.</span><span class="n">as_array</span><span class="p">()</span> <span class="p">);</span>
+            <span class="n">found</span> <span class="o">=</span> <span class="nb">true</span><span class="p">;</span>
+        <span class="p">}</span>
 
-        if( !found &amp;&amp; method == D.name)
-        {
-            result = call_impl( c, D.pointer, args.as_array() );
-            found = true;
-        }
+    <span class="p">});</span>
 
-    });
+    <span class="k">if</span><span class="p">(</span> <span class="o">!</span><span class="n">found</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">throw</span> <span class="n">std</span><span class="o">::</span><span class="n">invalid_argument</span><span class="p">(</span> <span class="s">"Invalid method name"</span> <span class="p">);</span>
+    <span class="p">}</span>
 
-    if( !found )
-    {
-        throw std::invalid_argument( "Invalid method name" );
-    }
+    <span class="k">return</span> <span class="n">result</span><span class="p">;</span>
+<span class="p">}</span>
 
-    return result;
-}
+<span class="k">struct</span> <span class="nc">Object</span>
+<span class="p">{</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="n">greet</span><span class="p">(</span> <span class="n">std</span><span class="o">::</span><span class="n">string</span> <span class="k">const</span> <span class="o">&amp;</span> <span class="n">who</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="s">"Hello, "</span> <span class="o">+</span> <span class="n">who</span> <span class="o">+</span> <span class="s">"!"</span><span class="p">;</span>
+    <span class="p">}</span>
 
-struct Object
-{
-    std::string greet( std::string const &amp; who )
-    {
-        return "Hello, " + who + "!";
-    }
+    <span class="kt">int</span> <span class="n">add</span><span class="p">(</span> <span class="kt">int</span> <span class="n">x</span><span class="p">,</span> <span class="kt">int</span> <span class="n">y</span> <span class="p">)</span>
+    <span class="p">{</span>
+        <span class="k">return</span> <span class="n">x</span> <span class="o">+</span> <span class="n">y</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">};</span>
 
-    int add( int x, int y )
-    {
-        return x + y;
-    }
-};
+<span class="n">BOOST_DESCRIBE_STRUCT</span><span class="p">(</span><span class="n">Object</span><span class="p">,</span> <span class="p">(),</span> <span class="p">(</span><span class="n">greet</span><span class="p">,</span> <span class="n">add</span><span class="p">))</span>
 
-BOOST_DESCRIBE_STRUCT(Object, (), (greet, add))
-
-#include &lt;iostream&gt;
-
-int main()
-{
-    Object obj;
-    std::cout &lt;&lt; call( obj, "greet", { "world" } ) &lt;&lt; std::endl;
-    std::cout &lt;&lt; call( obj, "add", { 1, 2 } ) &lt;&lt; std::endl;
-}</code></pre>
+<span class="cp">#include &lt;iostream&gt;
+</span>
+<span class="kt">int</span> <span class="nf">main</span><span class="p">()</span>
+<span class="p">{</span>
+    <span class="n">Object</span> <span class="n">obj</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">call</span><span class="p">(</span> <span class="n">obj</span><span class="p">,</span> <span class="s">"greet"</span><span class="p">,</span> <span class="p">{</span> <span class="s">"world"</span> <span class="p">}</span> <span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+    <span class="n">std</span><span class="o">::</span><span class="n">cout</span> <span class="o">&lt;&lt;</span> <span class="n">call</span><span class="p">(</span> <span class="n">obj</span><span class="p">,</span> <span class="s">"add"</span><span class="p">,</span> <span class="p">{</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span> <span class="p">}</span> <span class="p">)</span> <span class="o">&lt;&lt;</span> <span class="n">std</span><span class="o">::</span><span class="n">endl</span><span class="p">;</span>
+<span class="p">}</span></code></pre>
 </div>
 </div>
 </div>
@@ -1515,20 +1730,20 @@ pointer to member to a reference.</p>
 <h3 id="ref_boostdescribeenum_hpp">&lt;boost/describe/enum.hpp&gt;</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>#define BOOST_DESCRIBE_ENUM(E, ...) /*...*/
-#define BOOST_DESCRIBE_ENUM_CLASS(E, ...) /*...*/
-
-#define BOOST_DEFINE_ENUM(E, ...) \
+<pre class="rouge highlight"><code data-lang="c++"><span class="cp">#define BOOST_DESCRIBE_ENUM(E, ...) </span><span class="cm">/*...*/</span><span class="cp">
+#define BOOST_DESCRIBE_ENUM_CLASS(E, ...) </span><span class="cm">/*...*/</span><span class="cp">
+</span>
+<span class="cp">#define BOOST_DEFINE_ENUM(E, ...) \
     enum E { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM(E, __VA_ARGS__)
-
-#define BOOST_DEFINE_ENUM_CLASS(E, ...) \
+</span>
+<span class="cp">#define BOOST_DEFINE_ENUM_CLASS(E, ...) \
     enum class E { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM_CLASS(E, __VA_ARGS__)
-
-#define BOOST_DEFINE_FIXED_ENUM(E, Base, ...) \
+</span>
+<span class="cp">#define BOOST_DEFINE_FIXED_ENUM(E, Base, ...) \
     enum E: Base { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM(E, __VA_ARGS__)
-
-#define BOOST_DEFINE_FIXED_ENUM_CLASS(E, Base, ...) \
-    enum class E: Base { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM_CLASS(E, __VA_ARGS__)</code></pre>
+</span>
+<span class="cp">#define BOOST_DEFINE_FIXED_ENUM_CLASS(E, Base, ...) \
+    enum class E: Base { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM_CLASS(E, __VA_ARGS__)</span></code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -1544,7 +1759,7 @@ where <code>L</code> is a class template of the form</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>template&lt;class...&gt; struct L {};</code></pre>
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="o">...</span><span class="p">&gt;</span> <span class="k">struct</span> <span class="nc">L</span> <span class="p">{};</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1552,11 +1767,11 @@ where <code>L</code> is a class template of the form</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>struct Di
-{
-    static constexpr E value = vi;
-    static constexpr char const * name = "vi";
-};</code></pre>
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">struct</span> <span class="nc">Di</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="n">E</span> <span class="n">value</span> <span class="o">=</span> <span class="n">vi</span><span class="p">;</span>
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"vi"</span><span class="p">;</span>
+<span class="p">};</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1570,8 +1785,8 @@ where <code>L</code> is a class template of the form</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>enum E { v1, v2, ..., vN };
-BOOST_DESCRIBE_ENUM(E, v1, v2, ..., vN)</code></pre>
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">enum</span> <span class="n">E</span> <span class="p">{</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">vN</span> <span class="p">};</span>
+<span class="n">BOOST_DESCRIBE_ENUM</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">vN</span><span class="p">)</span></code></pre>
 </div>
 </div>
 </div>
@@ -1582,8 +1797,8 @@ BOOST_DESCRIBE_ENUM(E, v1, v2, ..., vN)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>enum class E { v1, v2, ..., vN };
-BOOST_DESCRIBE_ENUM(E, v1, v2, ..., vN)</code></pre>
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">enum</span> <span class="k">class</span> <span class="nc">E</span> <span class="p">{</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">vN</span> <span class="p">};</span>
+<span class="n">BOOST_DESCRIBE_ENUM</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">vN</span><span class="p">)</span></code></pre>
 </div>
 </div>
 </div>
@@ -1594,8 +1809,8 @@ BOOST_DESCRIBE_ENUM(E, v1, v2, ..., vN)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>enum E: Base { v1, v2, ..., vN };
-BOOST_DESCRIBE_ENUM(E, v1, v2, ..., vN)</code></pre>
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">enum</span> <span class="n">E</span><span class="o">:</span> <span class="n">Base</span> <span class="p">{</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">vN</span> <span class="p">};</span>
+<span class="n">BOOST_DESCRIBE_ENUM</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">vN</span><span class="p">)</span></code></pre>
 </div>
 </div>
 </div>
@@ -1606,8 +1821,8 @@ BOOST_DESCRIBE_ENUM(E, v1, v2, ..., vN)</code></pre>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>enum class E: Base { v1, v2, ..., vN };
-BOOST_DESCRIBE_ENUM(E, v1, v2, ..., vN)</code></pre>
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">enum</span> <span class="k">class</span> <span class="nc">E</span><span class="o">:</span> <span class="n">Base</span> <span class="p">{</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">vN</span> <span class="p">};</span>
+<span class="n">BOOST_DESCRIBE_ENUM</span><span class="p">(</span><span class="n">E</span><span class="p">,</span> <span class="n">v1</span><span class="p">,</span> <span class="n">v2</span><span class="p">,</span> <span class="p">...,</span> <span class="n">vN</span><span class="p">)</span></code></pre>
 </div>
 </div>
 </div>
@@ -1616,12 +1831,12 @@ BOOST_DESCRIBE_ENUM(E, v1, v2, ..., vN)</code></pre>
 <h3 id="ref_boostdescribeenumerators_hpp">&lt;boost/describe/enumerators.hpp&gt;</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>namespace boost {
-namespace describe {
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">namespace</span> <span class="n">boost</span> <span class="p">{</span>
+<span class="k">namespace</span> <span class="n">describe</span> <span class="p">{</span>
 
-template&lt;class E&gt; using describe_enumerators = /*...*/;
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">E</span><span class="p">&gt;</span> <span class="k">using</span> <span class="n">describe_enumerators</span> <span class="o">=</span> <span class="cm">/*...*/</span><span class="p">;</span>
 
-} }</code></pre>
+<span class="p">}</span> <span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -1632,7 +1847,7 @@ template of the form</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>template&lt;class...&gt; struct L {};</code></pre>
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="o">...</span><span class="p">&gt;</span> <span class="k">struct</span> <span class="nc">L</span> <span class="p">{};</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1640,11 +1855,11 @@ template of the form</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>struct Di
-{
-    static constexpr E value = vi;
-    static constexpr char const * name = "vi";
-};</code></pre>
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">struct</span> <span class="nc">Di</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="n">E</span> <span class="n">value</span> <span class="o">=</span> <span class="n">vi</span><span class="p">;</span>
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"vi"</span><span class="p">;</span>
+<span class="p">};</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1656,8 +1871,8 @@ template of the form</p>
 <h3 id="ref_boostdescribeclass_hpp">&lt;boost/describe/class.hpp&gt;</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>#define BOOST_DESCRIBE_STRUCT(Name, Bases, Members) /*...*/
-#define BOOST_DESCRIBE_CLASS(Name, Bases, Public, Protected, Private) /*...*/</code></pre>
+<pre class="rouge highlight"><code data-lang="c++"><span class="cp">#define BOOST_DESCRIBE_STRUCT(Name, Bases, Members) </span><span class="cm">/*...*/</span><span class="cp">
+#define BOOST_DESCRIBE_CLASS(Name, Bases, Public, Protected, Private) </span><span class="cm">/*...*/</span></code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -1673,19 +1888,19 @@ of public members.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>struct X
-{
-};
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">struct</span> <span class="nc">X</span>
+<span class="p">{</span>
+<span class="p">};</span>
 
-BOOST_DESCRIBE_STRUCT(X, (), ())
+<span class="n">BOOST_DESCRIBE_STRUCT</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="p">(),</span> <span class="p">())</span>
 
-struct Y: public X
-{
-    int m;
-    static void f();
-};
+<span class="k">struct</span> <span class="nc">Y</span><span class="o">:</span> <span class="k">public</span> <span class="n">X</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">m</span><span class="p">;</span>
+    <span class="k">static</span> <span class="kt">void</span> <span class="n">f</span><span class="p">();</span>
+<span class="p">};</span>
 
-BOOST_DESCRIBE_STRUCT(Y, (X), (m, f))</code></pre>
+<span class="n">BOOST_DESCRIBE_STRUCT</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">f</span><span class="p">))</span></code></pre>
 </div>
 </div>
 </div>
@@ -1702,30 +1917,30 @@ list of private members.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>class X
-{
-    int m1;
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">class</span> <span class="nc">X</span>
+<span class="p">{</span>
+    <span class="kt">int</span> <span class="n">m1</span><span class="p">;</span>
 
-    BOOST_DESCRIBE_CLASS(X, (), (), (), (m1))
-};
+    <span class="n">BOOST_DESCRIBE_CLASS</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="p">(),</span> <span class="p">(),</span> <span class="p">(),</span> <span class="p">(</span><span class="n">m1</span><span class="p">))</span>
+<span class="p">};</span>
 
-class Y: private X
-{
-public:
+<span class="k">class</span> <span class="nc">Y</span><span class="o">:</span> <span class="k">private</span> <span class="n">X</span>
+<span class="p">{</span>
+<span class="nl">public:</span>
 
-    int m1;
-    void f() const {}
+    <span class="kt">int</span> <span class="n">m1</span><span class="p">;</span>
+    <span class="kt">void</span> <span class="n">f</span><span class="p">()</span> <span class="k">const</span> <span class="p">{}</span>
 
-protected:
+<span class="nl">protected:</span>
 
-    int m2;
+    <span class="kt">int</span> <span class="n">m2</span><span class="p">;</span>
 
-private:
+<span class="nl">private:</span>
 
-    int m3;
+    <span class="kt">int</span> <span class="n">m3</span><span class="p">;</span>
 
-    BOOST_DESCRIBE_CLASS(Y, (X), (m1, f), (m2), (m3))
-};</code></pre>
+    <span class="n">BOOST_DESCRIBE_CLASS</span><span class="p">(</span><span class="n">Y</span><span class="p">,</span> <span class="p">(</span><span class="n">X</span><span class="p">),</span> <span class="p">(</span><span class="n">m1</span><span class="p">,</span> <span class="n">f</span><span class="p">),</span> <span class="p">(</span><span class="n">m2</span><span class="p">),</span> <span class="p">(</span><span class="n">m3</span><span class="p">))</span>
+<span class="p">};</span></code></pre>
 </div>
 </div>
 </div>
@@ -1734,27 +1949,27 @@ private:
 <h3 id="ref_boostdescribemodifiers_hpp">&lt;boost/describe/modifiers.hpp&gt;</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>namespace boost
-{
-namespace describe
-{
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">namespace</span> <span class="n">boost</span>
+<span class="p">{</span>
+<span class="k">namespace</span> <span class="n">describe</span>
+<span class="p">{</span>
 
-enum modifiers
-{
-    mod_public = 1,
-    mod_protected = 2,
-    mod_private = 4,
-    mod_virtual = 8,
-    mod_static = 16,
-    mod_function = 32,
-    mod_inherited = 64,
-    mod_hidden = 128,
-};
+<span class="k">enum</span> <span class="n">modifiers</span>
+<span class="p">{</span>
+    <span class="n">mod_public</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="n">mod_protected</span> <span class="o">=</span> <span class="mi">2</span><span class="p">,</span>
+    <span class="n">mod_private</span> <span class="o">=</span> <span class="mi">4</span><span class="p">,</span>
+    <span class="n">mod_virtual</span> <span class="o">=</span> <span class="mi">8</span><span class="p">,</span>
+    <span class="n">mod_static</span> <span class="o">=</span> <span class="mi">16</span><span class="p">,</span>
+    <span class="n">mod_function</span> <span class="o">=</span> <span class="mi">32</span><span class="p">,</span>
+    <span class="n">mod_inherited</span> <span class="o">=</span> <span class="mi">64</span><span class="p">,</span>
+    <span class="n">mod_hidden</span> <span class="o">=</span> <span class="mi">128</span><span class="p">,</span>
+<span class="p">};</span>
 
-constexpr modifiers mod_any_access = static_cast&lt;modifiers&gt;( mod_public | mod_protected | mod_private );
+<span class="k">constexpr</span> <span class="n">modifiers</span> <span class="n">mod_any_access</span> <span class="o">=</span> <span class="k">static_cast</span><span class="o">&lt;</span><span class="n">modifiers</span><span class="o">&gt;</span><span class="p">(</span> <span class="n">mod_public</span> <span class="o">|</span> <span class="n">mod_protected</span> <span class="o">|</span> <span class="n">mod_private</span> <span class="p">);</span>
 
-} // namespace describe
-} // namespace boost</code></pre>
+<span class="p">}</span> <span class="c1">// namespace describe</span>
+<span class="p">}</span> <span class="c1">// namespace boost</span></code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -1797,12 +2012,12 @@ following flags:</p>
 <h3 id="ref_boostdescribebases_hpp">&lt;boost/describe/bases.hpp&gt;</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>namespace boost {
-namespace describe {
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">namespace</span> <span class="n">boost</span> <span class="p">{</span>
+<span class="k">namespace</span> <span class="n">describe</span> <span class="p">{</span>
 
-template&lt;class T, unsigned M&gt; using describe_bases = /*...*/;
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">M</span><span class="p">&gt;</span> <span class="k">using</span> <span class="n">describe_bases</span> <span class="o">=</span> <span class="cm">/*...*/</span><span class="p">;</span>
 
-} }</code></pre>
+<span class="p">}</span> <span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -1817,7 +2032,7 @@ template of the form</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>template&lt;class...&gt; struct L {};</code></pre>
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="o">...</span><span class="p">&gt;</span> <span class="k">struct</span> <span class="nc">L</span> <span class="p">{};</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1825,11 +2040,11 @@ template of the form</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>struct Di
-{
-    using type = /*...*/;
-    static constexpr unsigned modifiers = /*...*/;
-};</code></pre>
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">struct</span> <span class="nc">Di</span>
+<span class="p">{</span>
+    <span class="k">using</span> <span class="n">type</span> <span class="o">=</span> <span class="cm">/*...*/</span><span class="p">;</span>
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">unsigned</span> <span class="n">modifiers</span> <span class="o">=</span> <span class="cm">/*...*/</span><span class="p">;</span>
+<span class="p">};</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1843,12 +2058,12 @@ that reflects the properties of the base class.</p>
 <h3 id="ref_boostdescribemembers_hpp">&lt;boost/describe/members.hpp&gt;</h3>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>namespace boost {
-namespace describe {
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">namespace</span> <span class="n">boost</span> <span class="p">{</span>
+<span class="k">namespace</span> <span class="n">describe</span> <span class="p">{</span>
 
-template&lt;class T, unsigned M&gt; using describe_members = /*...*/;
+<span class="k">template</span><span class="o">&lt;</span><span class="k">class</span> <span class="nc">T</span><span class="p">,</span> <span class="kt">unsigned</span> <span class="n">M</span><span class="p">&gt;</span> <span class="k">using</span> <span class="n">describe_members</span> <span class="o">=</span> <span class="cm">/*...*/</span><span class="p">;</span>
 
-} }</code></pre>
+<span class="p">}</span> <span class="p">}</span></code></pre>
 </div>
 </div>
 <div class="sect3">
@@ -1864,7 +2079,7 @@ template of the form</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>template&lt;class...&gt; struct L {};</code></pre>
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">template</span><span class="o">&lt;</span><span class="k">class</span><span class="o">...</span><span class="p">&gt;</span> <span class="k">struct</span> <span class="nc">L</span> <span class="p">{};</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1872,12 +2087,12 @@ template of the form</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlight"><code>struct Di
-{
-    static constexpr auto pointer = &amp;T::m;
-    static constexpr char const * name = "m";
-    static constexpr unsigned modifiers = /*...*/;
-};</code></pre>
+<pre class="rouge highlight"><code data-lang="c++"><span class="k">struct</span> <span class="nc">Di</span>
+<span class="p">{</span>
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="k">auto</span> <span class="n">pointer</span> <span class="o">=</span> <span class="o">&amp;</span><span class="n">T</span><span class="o">::</span><span class="n">m</span><span class="p">;</span>
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">char</span> <span class="k">const</span> <span class="o">*</span> <span class="n">name</span> <span class="o">=</span> <span class="s">"m"</span><span class="p">;</span>
+    <span class="k">static</span> <span class="k">constexpr</span> <span class="kt">unsigned</span> <span class="n">modifiers</span> <span class="o">=</span> <span class="cm">/*...*/</span><span class="p">;</span>
+<span class="p">};</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -1910,7 +2125,7 @@ the <a href="http://www.boost.org/LICENSE_1_0.txt">Boost Software License, Versi
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2020-09-14 01:08:42 +0300
+Last updated 2021-03-14 20:33:35 +0200
 </div>
 </div>
 <style>
