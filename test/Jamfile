@@ -20,6 +20,8 @@ run pp_is_empty_test.cpp ;
 run pp_call_test.cpp ;
 
 run enumerators_test.cpp ;
+run empty_enum_test.cpp ;
+run trailing_comma_test.cpp ;
 
 run compute_base_modifiers.cpp ;
 run bases_test.cpp ;
@@ -33,8 +35,6 @@ run members_test6.cpp ;
 run members_test7.cpp : : : <toolset>msvc-14.0:<build>no ;
 
 compile test_d_type.cpp ;
-
-run empty_enum_test.cpp ;
 
 obj describe_cxx14 : describe_cxx14.cpp ;
 explicit describe_cxx14 ;
