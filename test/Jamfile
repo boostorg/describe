@@ -15,6 +15,9 @@ project : requirements
 run quick.cpp ;
 
 run pp_for_each_test.cpp ;
+run pp_is_paren_test.cpp ;
+run pp_is_empty_test.cpp ;
+run pp_call_test.cpp ;
 
 run enumerators_test.cpp ;
 
