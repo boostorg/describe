@@ -45,4 +45,46 @@
 #define BOOST_DESCRIBE_PP_CALL_I_0(F, a, x) F(a, x)
 #define BOOST_DESCRIBE_PP_CALL_I_1(F, a, x)
 
+#define BOOST_DESCRIBE_PP_PARSE(x) BOOST_DESCRIBE_PP_CAT(BOOST_DESCRIBE_PP_PARSE_I_, BOOST_DESCRIBE_PP_PARSE_II x)
+#define BOOST_DESCRIBE_PP_PARSE_II(...) 0, (__VA_ARGS__),
+#define BOOST_DESCRIBE_PP_PARSE_I_BOOST_DESCRIBE_PP_PARSE_II 0, ~,
+#define BOOST_DESCRIBE_PP_PARSE_I_0 1
+
+#if defined(_MSC_VER) && !defined(__clang__)
+
+#define BOOST_DESCRIBE_PP_NAME(x) BOOST_DESCRIBE_PP_NAME_I(BOOST_DESCRIBE_PP_PARSE(x))
+#define BOOST_DESCRIBE_PP_NAME_I(x) BOOST_DESCRIBE_PP_NAME_II((x))
+#define BOOST_DESCRIBE_PP_NAME_II(x) BOOST_DESCRIBE_PP_NAME_III x
+#define BOOST_DESCRIBE_PP_NAME_III(x, y, z) #z
+
+#else
+
+#define BOOST_DESCRIBE_PP_NAME(x) BOOST_DESCRIBE_PP_NAME_I(BOOST_DESCRIBE_PP_PARSE(x))
+#define BOOST_DESCRIBE_PP_NAME_I(x) BOOST_DESCRIBE_PP_NAME_II(x)
+#define BOOST_DESCRIBE_PP_NAME_II(x, y, z) #z
+
+#endif
+
+// template<class C, class F> constexpr auto mfn( F C::* p ) { return p; }
+// template<class C, class F> constexpr auto mfn( F * p ) { return p; }
+
+#define BOOST_DESCRIBE_PP_POINTER(C, x) BOOST_DESCRIBE_PP_POINTER_I(C, BOOST_DESCRIBE_PP_PARSE(x))
+
+#if defined(_MSC_VER) && !defined(__clang__)
+
+#define BOOST_DESCRIBE_PP_POINTER_I(C, x) BOOST_DESCRIBE_PP_POINTER_II((C, x))
+#define BOOST_DESCRIBE_PP_POINTER_II(x) BOOST_DESCRIBE_PP_POINTER_III x
+#define BOOST_DESCRIBE_PP_POINTER_III(C, x, y, z) BOOST_DESCRIBE_PP_POINTER_III_##x(C, y, z)
+#define BOOST_DESCRIBE_PP_POINTER_III_0(C, y, z) &C::z
+#define BOOST_DESCRIBE_PP_POINTER_III_1(C, y, z) ::boost::describe::detail::mfn<C, BOOST_DESCRIBE_PP_EXPAND y>(&C::z)
+
+#else
+
+#define BOOST_DESCRIBE_PP_POINTER_I(C, x) BOOST_DESCRIBE_PP_POINTER_II(C, x)
+#define BOOST_DESCRIBE_PP_POINTER_II(C, x, y, z) BOOST_DESCRIBE_PP_POINTER_III_##x(C, y, z)
+#define BOOST_DESCRIBE_PP_POINTER_III_0(C, y, z) &C::z
+#define BOOST_DESCRIBE_PP_POINTER_III_1(C, y, z) ::boost::describe::detail::mfn<C, BOOST_DESCRIBE_PP_EXPAND y>(&C::z)
+
+#endif
+
 #endif // #ifndef BOOST_DESCRIBE_DETAIL_PP_UTILITIES_HPP_INCLUDED
