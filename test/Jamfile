@@ -36,6 +36,7 @@ run members_test4.cpp ;
 run members_test5.cpp ;
 run members_test6.cpp ;
 run members_test7.cpp : : : <toolset>msvc-14.0:<build>no ;
+run overloaded_test.cpp ;
 
 compile test_d_type.cpp ;
 

@@ -7,6 +7,7 @@
 
 #include <boost/describe/modifiers.hpp>
 #include <boost/describe/detail/pp_for_each.hpp>
+#include <boost/describe/detail/pp_utilities.hpp>
 #include <boost/describe/detail/list.hpp>
 #include <type_traits>
 
@@ -43,9 +44,12 @@ template<unsigned M, class... T> auto member_descriptor_fn_impl( int, T... )
     return list<member_descriptor<T, M>...>();
 }
 
+template<class C, class F> constexpr auto mfn( F C::* p ) { return p; }
+template<class C, class F> constexpr auto mfn( F * p ) { return p; }
+
 #define BOOST_DESCRIBE_MEMBER_IMPL(C, m) , []{ struct _boost_desc { \
-    static constexpr auto pointer() noexcept { return &C::m; } \
-    static constexpr auto name() noexcept { return #m; } }; return _boost_desc(); }()
+    static constexpr auto pointer() noexcept { return BOOST_DESCRIBE_PP_POINTER(C, m); } \
+    static constexpr auto name() noexcept { return BOOST_DESCRIBE_PP_NAME(m); } }; return _boost_desc(); }()
 
 #if defined(_MSC_VER) && !defined(__clang__)
 
