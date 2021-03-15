@@ -7,8 +7,7 @@ and usage examples.
 
 ## Supported Compilers
 
-* GCC 5 or later with `-std=gnu++14` or above
-* GCC 8 or later with `-std=c++14` or above
+* GCC 5 or later with `-std=c++14` or above
 * Clang 3.6 or later with `-std=c++14` or above
 * Visual Studio 2015, 2017, 2019
 
