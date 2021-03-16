@@ -30,8 +30,6 @@ This implementation has the following limitations:
 * Protected base classes cannot be distinguished from private
   base classes when the described class is final, and are considered
   private.
-* Overloaded member functions are not supported. Member names
-  must be unique within the class.
 * Bitfields are not supported. It's not possible to form a pointer
   to member to a bitfield.
 * Reference members are not supported. It's not possible to form a
