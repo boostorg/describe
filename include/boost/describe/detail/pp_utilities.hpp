@@ -70,20 +70,22 @@
 
 #define BOOST_DESCRIBE_PP_POINTER(C, x) BOOST_DESCRIBE_PP_POINTER_I(C, BOOST_DESCRIBE_PP_PARSE(x))
 
+#define BOOST_DESCRIBE_PP_EXPAND_V(...) __VA_ARGS__
+
 #if defined(_MSC_VER) && !defined(__clang__)
 
 #define BOOST_DESCRIBE_PP_POINTER_I(C, x) BOOST_DESCRIBE_PP_POINTER_II((C, x))
 #define BOOST_DESCRIBE_PP_POINTER_II(x) BOOST_DESCRIBE_PP_POINTER_III x
 #define BOOST_DESCRIBE_PP_POINTER_III(C, x, y, z) BOOST_DESCRIBE_PP_POINTER_III_##x(C, y, z)
 #define BOOST_DESCRIBE_PP_POINTER_III_0(C, y, z) &C::z
-#define BOOST_DESCRIBE_PP_POINTER_III_1(C, y, z) ::boost::describe::detail::mfn<C, BOOST_DESCRIBE_PP_EXPAND y>(&C::z)
+#define BOOST_DESCRIBE_PP_POINTER_III_1(C, y, z) ::boost::describe::detail::mfn<C, BOOST_DESCRIBE_PP_EXPAND_V y>(&C::z)
 
 #else
 
 #define BOOST_DESCRIBE_PP_POINTER_I(C, x) BOOST_DESCRIBE_PP_POINTER_II(C, x)
 #define BOOST_DESCRIBE_PP_POINTER_II(C, x, y, z) BOOST_DESCRIBE_PP_POINTER_III_##x(C, y, z)
 #define BOOST_DESCRIBE_PP_POINTER_III_0(C, y, z) &C::z
-#define BOOST_DESCRIBE_PP_POINTER_III_1(C, y, z) ::boost::describe::detail::mfn<C, BOOST_DESCRIBE_PP_EXPAND y>(&C::z)
+#define BOOST_DESCRIBE_PP_POINTER_III_1(C, y, z) ::boost::describe::detail::mfn<C, BOOST_DESCRIBE_PP_EXPAND_V y>(&C::z)
 
 #endif
 
