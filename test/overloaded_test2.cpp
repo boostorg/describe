@@ -7,27 +7,18 @@
 #include <boost/core/lightweight_test.hpp>
 #include <utility>
 
-#if !defined(BOOST_DESCRIBE_CXX11)
-
-#include <boost/config/pragma_message.hpp>
-
-BOOST_PRAGMA_MESSAGE("Skipping test because C++11 is not available")
-int main() {}
-
-#else
-
 class X
 {
 private:
 
-    std::pair<int, int> p_{};
+    std::pair<int, int> p_;
 
 public:
 
-    std::pair<int, int>& f() noexcept { return p_; }
-    std::pair<int, int> const& f() const noexcept { return p_; }
+    std::pair<int, int>& f() { return p_; }
+    std::pair<int, int> const& f() const { return p_; }
 
-    BOOST_DESCRIBE_CLASS(X, (), ((std::pair<int, int>& () noexcept) f, (std::pair<int, int> const& () const noexcept) f), (), (p_))
+    BOOST_DESCRIBE_CLASS(X, (), ((std::pair<int, int>& ()) f, (std::pair<int, int> const& () const) f), (), (p_))
 };
 
 
@@ -81,4 +72,3 @@ int main()
 }
 
 #endif // !defined(BOOST_DESCRIBE_CXX14)
-#endif // !defined(BOOST_DESCRIBE_CXX11)
