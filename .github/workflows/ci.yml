@@ -200,4 +200,5 @@ jobs:
         shell: cmd
         run: |
           cd ../boost-root
-          b2 -j3 libs/%LIBRARY%/test toolset=${{matrix.toolset}} cxxstd=${{matrix.cxxstd}} address-model=${{matrix.addrmd}} cxxflags=${{matrix.cxxflags}} variant=debug,release
+          if not "${{matrix.cxxflags}}" == "" set CXXFLAGS=cxxflags=${{matrix.cxxflags}}
+          b2 -j3 libs/%LIBRARY%/test toolset=${{matrix.toolset}} cxxstd=${{matrix.cxxstd}} address-model=${{matrix.addrmd}} %CXXFLAGS% variant=debug,release
