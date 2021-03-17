@@ -16,6 +16,7 @@
 
 #include <boost/describe/detail/bases.hpp>
 #include <boost/describe/detail/members.hpp>
+#include <type_traits>
 
 namespace boost
 {
@@ -33,6 +34,7 @@ namespace describe
     friend BOOST_DESCRIBE_PRIVATE_MEMBERS(C, BOOST_DESCRIBE_PP_UNPACK Private)
 
 #define BOOST_DESCRIBE_STRUCT(C, Bases, Members) \
+    static_assert(std::is_class<C>::value, "BOOST_DESCRIBE_STRUCT should only be used with class types"); \
     BOOST_DESCRIBE_BASES(C, BOOST_DESCRIBE_PP_UNPACK Bases) \
     BOOST_DESCRIBE_PUBLIC_MEMBERS(C, BOOST_DESCRIBE_PP_UNPACK Members) \
     BOOST_DESCRIBE_PROTECTED_MEMBERS(C) \
@@ -58,6 +60,7 @@ namespace describe
     friend BOOST_DESCRIBE_PRIVATE_MEMBERS_(C BOOST_DESCRIBE_PP_UNPACK Private)
 
 #define BOOST_DESCRIBE_STRUCT(C, Bases, Members) \
+    static_assert(std::is_class<C>::value, "BOOST_DESCRIBE_STRUCT should only be used with class types"); \
     BOOST_DESCRIBE_BASES_(C BOOST_DESCRIBE_PP_UNPACK Bases) \
     BOOST_DESCRIBE_PUBLIC_MEMBERS_(C BOOST_DESCRIBE_PP_UNPACK Members) \
     BOOST_DESCRIBE_PROTECTED_MEMBERS_(C) \
