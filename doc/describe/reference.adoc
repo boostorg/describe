@@ -12,7 +12,8 @@ https://www.boost.org/LICENSE_1_0.txt
 
 ```
 #define BOOST_DESCRIBE_ENUM(E, ...) /*...*/
-#define BOOST_DESCRIBE_ENUM_CLASS(E, ...) /*...*/
+
+#define BOOST_DESCRIBE_NESTED_ENUM(E, ...) /*...*/
 
 #define BOOST_DEFINE_ENUM(E, ...) \
     enum E { __VA_ARGS__ }; BOOST_DESCRIBE_ENUM(E, __VA_ARGS__)
@@ -47,6 +48,13 @@ struct Di
 };
 ```
 where `vi` is the corresponding identifier passed to the macro.
+
+### BOOST_DESCRIBE_NESTED_ENUM
+
+`BOOST_DESCRIBE_NESTED_ENUM(E, v1, v2, ..., vN)` is similar to
+`BOOST_DESCRIBE_ENUM` and is used to annotate enumeration types nested inside
+class (or `struct`) types. It should be placed in the class type where the
+`enum` is defined.
 
 ### BOOST_DEFINE_ENUM
 

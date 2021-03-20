@@ -47,6 +47,28 @@ For defining `enum class E2` instead, use `BOOST_DEFINE_ENUM_CLASS`. To add
 an underlying type, i.e. `enum E3: int` or `enum class E4: unsigned char`,
 use `BOOST_DEFINE_FIXED_ENUM` and `BOOST_DEFINE_FIXED_ENUM_CLASS`, respectively.
 
+If your enumeration type is nested inside a class or a `struct`, use the
+`BOOST_DESCRIBE_NESTED_ENUM` macro next to the `enum`, as follows:
+
+```
+class X
+{
+private:
+
+    enum class E
+    {
+        v1,
+        v2
+    };
+
+    BOOST_DESCRIBE_NESTED_ENUM(E, v1, v2)
+
+public:
+
+    // ...
+};
+```
+
 Once an enumeration type `E` is annotated, one can use `describe_enumerators<E>`
 to obtain a _descriptor list_. (`describe_enumerators` is defined in the
 `boost::describe` namespace, in `<boost/describe/enumerators.hpp>`.)

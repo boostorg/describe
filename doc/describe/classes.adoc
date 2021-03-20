@@ -70,6 +70,8 @@ private:
 
 It takes three member lists, for the public, protected, and private members.
 
+## Retrieving Class Properties
+
 Once a type `T` is annotated, its properties can be retrieved via
 `describe_bases<T, M>` and `describe_members<T, M>` (`M` is a bitmask of
 modifiers such as `mod_public | mod_static | mod_function`).
