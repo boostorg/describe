@@ -25,6 +25,7 @@ run pp_pointer_test.cpp ;
 run enumerators_test.cpp ;
 run empty_enum_test.cpp ;
 run trailing_comma_test.cpp ;
+run nested_enum_test.cpp ;
 
 run compute_base_modifiers.cpp ;
 run bases_test.cpp ;

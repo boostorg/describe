@@ -10,6 +10,7 @@
 #if !defined(BOOST_DESCRIBE_CXX14)
 
 #define BOOST_DESCRIBE_ENUM(E, ...)
+#define BOOST_DESCRIBE_NESTED_ENUM(E, ...)
 
 #else
 
@@ -60,11 +61,23 @@ template<class... T> auto enum_descriptor_fn_impl( int, T... )
     BOOST_DESCRIBE_PP_FOR_EACH(BOOST_DESCRIBE_ENUM_ENTRY, E, __VA_ARGS__) \
     BOOST_DESCRIBE_ENUM_END(E)
 
+#define BOOST_DESCRIBE_NESTED_ENUM(E, ...) \
+    static_assert(std::is_enum<E>::value, "BOOST_DESCRIBE_NESTED_ENUM should only be used with enums"); \
+    friend BOOST_DESCRIBE_ENUM_BEGIN(E) \
+    BOOST_DESCRIBE_PP_FOR_EACH(BOOST_DESCRIBE_ENUM_ENTRY, E, __VA_ARGS__) \
+    BOOST_DESCRIBE_ENUM_END(E)
+
 #else
 
 #define BOOST_DESCRIBE_ENUM(E, ...) \
     static_assert(std::is_enum<E>::value, "BOOST_DESCRIBE_ENUM should only be used with enums"); \
     BOOST_DESCRIBE_ENUM_BEGIN(E) \
+    BOOST_DESCRIBE_PP_FOR_EACH(BOOST_DESCRIBE_ENUM_ENTRY, E, ##__VA_ARGS__) \
+    BOOST_DESCRIBE_ENUM_END(E)
+
+#define BOOST_DESCRIBE_NESTED_ENUM(E, ...) \
+    static_assert(std::is_enum<E>::value, "BOOST_DESCRIBE_NESTED_ENUM should only be used with enums"); \
+    friend BOOST_DESCRIBE_ENUM_BEGIN(E) \
     BOOST_DESCRIBE_PP_FOR_EACH(BOOST_DESCRIBE_ENUM_ENTRY, E, ##__VA_ARGS__) \
     BOOST_DESCRIBE_ENUM_END(E)
 
