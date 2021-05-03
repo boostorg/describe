@@ -122,7 +122,7 @@ include::../../example/equality.cpp[lines=5..-1]
 
 This example defines a universal `tag_invoke` overload that
 automatically converts an annotated struct to a
-http://master.json.cpp.al[Boost.JSON] value by iterating
+http://boost.org/libs/json[Boost.JSON] value by iterating
 over the described public members and adding them to the return
 `boost::json::object`.
 
@@ -167,7 +167,7 @@ include::../../example/serialization.cpp[lines=5..-1]
 
 This example defines a generic `call` function that can be used to
 invoke a member function by name, with the arguments passed in a
-http://master.json.cpp.al[Boost.JSON] array. The result is returned
+http://boost.org/libs/json[Boost.JSON] array. The result is returned
 in a `boost::json::value`.
 
 [source]
@@ -175,3 +175,14 @@ in a `boost::json::value`.
 include::../../example/json_rpc.cpp[lines=5..-1]
 ----
 
+[#example_console]
+## Interactive variable console
+
+This example implements an interactive console that allows printing
+and modifying variables. It uses http://boost.org/libs/json[Boost.JSON]
+for converting the variables to and from a string form.
+
+[source]
+----
+include::../../example/console.cpp[lines=5..-1]
+----

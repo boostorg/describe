@@ -12,7 +12,8 @@
 [[noreturn]] void throw_invalid_name( char const * name, char const * type )
 {
     throw std::runtime_error(
-        std::string( "Invalid enumerator name '" ) + name + "' for enum type '" + type + "'" );
+        std::string( "Invalid enumerator name '" ) + name
+        + "' for enum type '" + type + "'" );
 }
 
 template<class E> E string_to_enum( char const * name )
