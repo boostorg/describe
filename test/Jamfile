@@ -63,3 +63,4 @@ run ../example/from_json.cpp : : : $(CXX14) $(JSON) ;
 run ../example/serialization.cpp : : : $(CXX14) $(SERIALIZATION) ;
 run ../example/json_rpc.cpp : : : $(CXX14) $(JSON) ;
 run ../example/hash_value.cpp : : : $(CXX14) ;
+run ../example/equality.cpp : : : $(CXX14) ;

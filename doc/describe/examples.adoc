@@ -102,6 +102,21 @@ to all annotated classes also defined in `app`.
 include::../../example/hash_value.cpp[lines=5..-1]
 ----
 
+[#example_equality]
+## Implementing operator==
+
+This example defines a universal `operator==` overload that
+iterates over the described bases and members and compares
+them for equality using `==`.
+
+The overload is defined in namespace `app` in order to apply
+to all annotated classes also defined in `app`.
+
+[source]
+----
+include::../../example/equality.cpp[lines=5..-1]
+----
+
 [#example_to_json]
 ## Automatic Conversion to JSON
 
