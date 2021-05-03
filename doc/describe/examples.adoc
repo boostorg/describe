@@ -86,6 +86,22 @@ change its state and hence cannot violate its invariant.)
 include::../../example/print_function.cpp[lines=5..-1]
 ----
 
+[#example_hash_value]
+## Implementing hash_value
+
+This example defines a universal `hash_value` overload that
+computes the hash value of an annotated struct or class. It
+does so by iterating over the described bases and members and
+calling `boost::hash_combine` on each.
+
+The overload is defined in namespace `app` in order to apply
+to all annotated classes also defined in `app`.
+
+[source]
+----
+include::../../example/hash_value.cpp[lines=5..-1]
+----
+
 [#example_to_json]
 ## Automatic Conversion to JSON
 
