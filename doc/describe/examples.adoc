@@ -176,7 +176,7 @@ include::../../example/json_rpc.cpp[lines=5..-1]
 ----
 
 [#example_console]
-## Interactive variable console
+## Interactive Variable Console
 
 This example implements an interactive console that allows printing
 and modifying variables. It uses http://boost.org/libs/json[Boost.JSON]
@@ -184,5 +184,5 @@ for converting the variables to and from a string form.
 
 [source]
 ----
-include::../../example/console.cpp[lines=5..-1]
+include::../../example/console.cpp[lines=9..-1]
 ----
