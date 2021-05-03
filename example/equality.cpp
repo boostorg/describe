@@ -61,15 +61,13 @@ BOOST_DESCRIBE_STRUCT(C, (), (v))
 
 int main()
 {
-    app::C c1, c2, c3, c4;
+    app::C c1, c2, c3;
 
     c1.v.push_back( app::A{} );
     c2.v.push_back( app::A{} );
-    c3.v.push_back( app::A{2} );
-    c4.v.push_back( app::B{} );
+    c3.v.push_back( app::B{} );
 
     std::cout << std::boolalpha
         << ( c1 == c2 ) << ' '
-        << ( c1 == c3 ) << ' '
-        << ( c1 == c4 ) << std::endl;
+        << ( c1 == c3 ) << std::endl;
 }
