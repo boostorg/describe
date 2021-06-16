@@ -20,8 +20,9 @@ enum modifiers
     mod_virtual = 8,
     mod_static = 16,
     mod_function = 32,
-    mod_inherited = 64,
-    mod_hidden = 128,
+    mod_any_member = 64,
+    mod_inherited = 128,
+    mod_hidden = 256,
 };
 
 BOOST_DESCRIBE_ENUM(modifiers,
@@ -31,6 +32,7 @@ BOOST_DESCRIBE_ENUM(modifiers,
     mod_virtual,
     mod_static,
     mod_function,
+    mod_any_member,
     mod_inherited,
     mod_hidden);
 

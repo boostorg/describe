@@ -38,6 +38,8 @@ run members_test5.cpp ;
 run members_test6.cpp ;
 run members_test7.cpp
   : : : <toolset>msvc-14.0:<build>no ;
+run members_test8.cpp ;
+
 run overloaded_test.cpp ;
 run overloaded_test2.cpp ;
 

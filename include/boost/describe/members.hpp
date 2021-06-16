@@ -129,10 +129,10 @@ template<class T, unsigned M> using describe_members = mp11::mp_eval_if_c<(M & m
 template<unsigned M> struct member_filter
 {
     template<class T> using fn = mp11::mp_bool<
-        ( M & mod_any_access & T::modifiers ) != 0 &&
-        ( M & mod_static ) == ( T::modifiers & mod_static ) &&
-        ( M & mod_function ) == ( T::modifiers & mod_function ) &&
-        ( M & mod_hidden ) >= ( T::modifiers & mod_hidden )
+        (M & mod_any_access & T::modifiers) != 0 &&
+        ( (M & mod_any_member) != 0 || (M & mod_static) == (T::modifiers & mod_static) ) &&
+        ( (M & mod_any_member) != 0 || (M & mod_function) == (T::modifiers & mod_function) ) &&
+        (M & mod_hidden) >= (T::modifiers & mod_hidden)
     >;
 };
 
