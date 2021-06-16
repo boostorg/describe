@@ -30,13 +30,16 @@ template<class T1, class T2> class Z: public X<T1, T2>
 {
 private:
 
-    typedef X<T1, T2> X;
+    // error: declaration of 'typedef struct X<T1, T2> Z<T1, T2>::X' changes meaning of 'X' (g++)
+    // typedef X<T1, T2> X;
+
+    typedef X<T1, T2> XB;
 
 protected:
 
     Y<T1, T2> y;
 
-    BOOST_DESCRIBE_CLASS(Z, (X), (), (y), ())
+    BOOST_DESCRIBE_CLASS(Z, (XB), (), (y), ())
 };
 
 #if !defined(BOOST_DESCRIBE_CXX14)
