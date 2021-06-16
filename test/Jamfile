@@ -36,7 +36,8 @@ run members_test3.cpp ;
 run members_test4.cpp ;
 run members_test5.cpp ;
 run members_test6.cpp ;
-run members_test7.cpp : : : <toolset>msvc-14.0:<build>no ;
+run members_test7.cpp
+  : : : <toolset>msvc-14.0:<build>no ;
 run overloaded_test.cpp ;
 run overloaded_test2.cpp ;
 
@@ -44,6 +45,8 @@ compile test_d_type.cpp ;
 
 compile-fail enum_struct_fail.cpp ;
 compile-fail struct_enum_fail.cpp ;
+
+run class_template_test.cpp ;
 
 obj describe_cxx14 : describe_cxx14.cpp ;
 explicit describe_cxx14 ;
