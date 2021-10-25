@@ -16,13 +16,13 @@ int main() {}
 #else
 
 enum E1 { v1 };
-BOOST_DESCRIBE_ENUM(E1, v1);
+BOOST_DESCRIBE_ENUM(E1, v1)
 
 enum class E2 { v2 };
-BOOST_DESCRIBE_ENUM(E2, v2);
+BOOST_DESCRIBE_ENUM(E2, v2)
 
 BOOST_DEFINE_ENUM(E3, v3);
-BOOST_DEFINE_ENUM_CLASS(E4, v4);
+BOOST_DEFINE_ENUM_CLASS(E4, v4)
 
 enum E5 { v5 };
 enum class E6 { v6 };

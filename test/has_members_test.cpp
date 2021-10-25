@@ -16,11 +16,11 @@ int main() {}
 #else
 
 struct X1 {};
-BOOST_DESCRIBE_STRUCT(X1, (), ());
+BOOST_DESCRIBE_STRUCT(X1, (), ())
 
 class X2
 {
-    BOOST_DESCRIBE_CLASS(X2, (), (), (), ());
+    BOOST_DESCRIBE_CLASS(X2, (), (), (), ())
 };
 
 struct X3 {};
