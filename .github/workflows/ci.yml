@@ -74,7 +74,7 @@ jobs:
             install: clang-7
           - toolset: clang
             compiler: clang++-8
-            cxxstd: "03,11,14,17,2a"
+            cxxstd: "03,11,14,17"
             os: ubuntu-20.04
             install: clang-8
           - toolset: clang
@@ -97,11 +97,6 @@ jobs:
             cxxstd: "03,11,14,17,2a"
             os: ubuntu-20.04
             install: clang-12
-          - toolset: clang
-            compiler: clang++-13
-            cxxstd: "03,11,14,17,2a"
-            os: ubuntu-20.04
-            install: clang-13
           - toolset: clang
             cxxstd: "03,11,14,17,2a"
             os: macos-10.15
