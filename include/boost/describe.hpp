@@ -11,5 +11,6 @@
 #include <boost/describe/enum.hpp>
 #include <boost/describe/class.hpp>
 #include <boost/describe/modifiers.hpp>
+#include <boost/describe/enum_to_string.hpp>
 
 #endif // #ifndef BOOST_DESCRIBE_HPP_INCLUDED
