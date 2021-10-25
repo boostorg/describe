@@ -96,6 +96,8 @@ namespace describe {
 
 template<class E> using describe_enumerators = /*...*/;
 
+template<class E> using has_describe_enumerators = /*...*/;
+
 } }
 ```
 
@@ -115,6 +117,14 @@ struct Di
 };
 ```
 where `vi` is the i-th enumerator.
+
+If `E` is not a described enumeration type, `describe_enumerators<E>` causes
+a substitution failure.
+
+### has_describe_enumerators<E>
+
+`has_describe_enumerators<E>::value` is `true` when `E` is a described
+enumeration type, `false` otherwise.
 
 ## <boost/describe/class.hpp>
 
@@ -232,6 +242,8 @@ namespace describe {
 
 template<class T, unsigned M> using describe_bases = /*...*/;
 
+template<class T> using has_describe_bases = /*...*/;
+
 } }
 ```
 
@@ -257,6 +269,18 @@ where `type` is the type of the base class, and `modifiers` are a bitwise-or
 combination of `mod_public`, `mod_protected`, `mod_private`, and `mod_virtual`
 that reflects the properties of the base class.
 
+If `T` is not a described class type, `describe_bases<T, M>` causes a
+substitution failure.
+
+### has_describe_bases<T>
+
+`has_describe_bases<T>::value` is `true` when `T` is a described class type,
+`false` otherwise.
+
+Since the library does not provide a way to describe bases and members separately,
+`has_describe_bases` and `has_describe_members` are, in practice, synonyms. They
+are provided separately for consistency.
+
 ## <boost/describe/members.hpp>
 
 ```
@@ -264,6 +288,8 @@ namespace boost {
 namespace describe {
 
 template<class T, unsigned M> using describe_members = /*...*/;
+
+template<class T> using has_describe_members = /*...*/;
 
 } }
 ```
@@ -293,6 +319,18 @@ where `pointer` is a pointer to member (for nonstatic members) or a pointer
 member, and `modifiers` are a bitwise-or combination of `mod_public`,
 `mod_protected`, `mod_private`, `mod_static`, `mod_function`, `mod_inherited`,
 and `mod_hidden` that reflects the properties of the member.
+
+If `T` is not a described class type, `describe_members<T, M>` causes a
+substitution failure.
+
+### has_describe_members<T>
+
+`has_describe_members<T>::value` is `true` when `T` is a described class type,
+`false` otherwise.
+
+Since the library does not provide a way to describe bases and members separately,
+`has_describe_bases` and `has_describe_members` are, in practice, synonyms. They
+are provided separately for consistency.
 
 ## <boost/describe.hpp>
 

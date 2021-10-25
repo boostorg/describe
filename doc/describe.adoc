@@ -16,6 +16,7 @@ Peter Dimov
 :leveloffset: +1
 
 include::describe/overview.adoc[]
+include::describe/changes.adoc[]
 include::describe/enums.adoc[]
 include::describe/classes.adoc[]
 include::describe/examples.adoc[]
