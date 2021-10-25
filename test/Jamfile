@@ -51,6 +51,7 @@ compile-fail struct_enum_fail.cpp ;
 run class_template_test.cpp ;
 
 run has_enumerators_test.cpp ;
+run has_bases_test.cpp ;
 
 # examples
 
