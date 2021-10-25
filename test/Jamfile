@@ -52,6 +52,7 @@ run class_template_test.cpp ;
 
 run has_enumerators_test.cpp ;
 run has_bases_test.cpp ;
+run has_members_test.cpp ;
 
 # examples
 

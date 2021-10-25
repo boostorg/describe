@@ -7,6 +7,8 @@
 
 #include <boost/describe/modifiers.hpp>
 #include <boost/describe/bases.hpp>
+#include <boost/describe/detail/void_t.hpp>
+#include <boost/describe/detail/config.hpp>
 
 #if defined(BOOST_DESCRIBE_CXX11)
 
@@ -15,6 +17,7 @@
 #include <boost/mp11/integral.hpp>
 #include <boost/mp11/list.hpp>
 #include <boost/mp11/bind.hpp>
+#include <type_traits>
 
 namespace boost
 {
@@ -136,9 +139,21 @@ template<unsigned M> struct member_filter
     >;
 };
 
+// has_describe_members
+
+template<class T, class En = void> struct has_describe_members: std::false_type
+{
+};
+
+template<class T> struct has_describe_members<T, void_t<_describe_members<T>>>: std::true_type
+{
+};
+
 } // namespace detail
 
 template<class T, unsigned M> using describe_members = mp11::mp_copy_if_q<detail::describe_members<T, M>, detail::member_filter<M>>;
+
+template<class T> using has_describe_members = detail::has_describe_members<T>;
 
 } // namespace describe
 } // namespace boost
