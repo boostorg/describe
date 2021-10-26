@@ -54,15 +54,18 @@ run has_enumerators_test.cpp ;
 run has_bases_test.cpp ;
 run has_members_test.cpp ;
 
-local CXX14 = [ check-target-builds describe_cxx14 describe_cxx14 : : <build>no ] ;
-
 run enum_to_string_test.cpp ;
 run enum_from_string_test.cpp ;
+
+run operator_eq_test.cpp ;
+run operator_lt_test.cpp ;
 
 # examples
 
 obj describe_cxx14 : describe_cxx14.cpp ;
 explicit describe_cxx14 ;
+
+local CXX14 = [ check-target-builds describe_cxx14 describe_cxx14 : : <build>no ] ;
 
 local JSON = <library>/boost//json/<warnings>off "<toolset>msvc-14.0:<build>no" "<toolset>msvc-14.2:<cxxflags>-wd5104" ;
 local SERIALIZATION = <library>/boost//serialization/<warnings>off "-<toolset>clang:<warnings-as-errors>on" ;

@@ -13,5 +13,6 @@
 #include <boost/describe/modifiers.hpp>
 #include <boost/describe/enum_to_string.hpp>
 #include <boost/describe/enum_from_string.hpp>
+#include <boost/describe/operators.hpp>
 
 #endif // #ifndef BOOST_DESCRIBE_HPP_INCLUDED
