@@ -15,11 +15,11 @@ https://boost.org/libs/mp11[Boost.Mp11].
 ## Supported Compilers
 
 * GCC 5 or later with `-std=c++14` or above
-* Clang 3.6 or later with `-std=c++14` or above
+* Clang 3.9 or later with `-std=c++14` or above
 * Visual Studio 2015, 2017, 2019
 
-Tested on https://travis-ci.org/github/pdimov/describe[Travis] and
-https://ci.appveyor.com/project/pdimov/describe[Appveyor].
+Tested on https://github.com/boostorg/describe/actions[Github Actions]
+and https://ci.appveyor.com/project/pdimov/describe[Appveyor].
 
 ## Limitations
 

@@ -8,10 +8,10 @@ for more information and usage examples.
 ## Supported Compilers
 
 * GCC 5 or later with `-std=c++14` or above
-* Clang 3.6 or later with `-std=c++14` or above
+* Clang 3.9 or later with `-std=c++14` or above
 * Visual Studio 2015, 2017, 2019
 
-Tested on [Travis](https://travis-ci.org/github/pdimov/describe/) and
+Tested on [Github Actions](https://github.com/boostorg/describe/actions) and
 [Appveyor](https://ci.appveyor.com/project/pdimov/describe).
 
 ## License
