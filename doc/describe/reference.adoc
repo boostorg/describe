@@ -349,6 +349,23 @@ The function `enum_to_string` returns the name of the enumerator `e`. `E` must
 be a described enumeration type. If `e` does not correspond to one of the described
 values, the function returns `def`.
 
+## <boost/describe/enum_from_string.hpp>
+
+```
+namespace boost {
+namespace describe {
+
+template<class E> bool enum_from_string( char const * name, E & e ) noexcept;
+
+} }
+```
+
+### enum_from_string
+
+The function `enum_from_string` assigns to `e` the enumerator value corresponding
+to `name` and returns `true`. `E` must be a described enumeration type. If `name`
+does not correspond to one of the described values, the function returns `false`.
+
 ## <boost/describe.hpp>
 
 This convenience header includes all the headers previously

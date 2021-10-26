@@ -52,15 +52,18 @@ value doesn't correspond to a named enumerator.
 ## string_to_enum
 
 The opposite of the previous example; returns an enumerator
-value when given the enumerator name. The same problem exists
-here with respect to the error handling strategy when the string
-passed does not correspond to any enumerator name. This example
-throws an exception.
+value when given the enumerator name. When the string passed
+does not correspond to any enumerator name, throws an exception.
 
 [source]
 ----
 include::../../example/string_to_enum.cpp[lines=5..-1]
 ----
+
+Since release 1.78.0, the library provides `enum_from_string`.
+It differs from the function in the example by signaling failure
+by a `bool` return value instead of using exceptions. The
+enumerator value is assigned to the output argument.
 
 [#example_print_function]
 ## Defining a Universal Print Function
