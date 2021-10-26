@@ -54,9 +54,9 @@ int main() {}
 BOOST_PRAGMA_MESSAGE("Skipping test because BOOST_MSVC is below 1920")
 int main() {}
 
-#elif defined(BOOST_MSVC) && BOOST_MSVC >= 1920 && BOOST_MSVC < 1930 && _MSVC_LANG <= 201703L
+#elif defined(BOOST_MSVC) && BOOST_MSVC >= 1920 && BOOST_MSVC < 1940 && _MSVC_LANG <= 201703L
 
-BOOST_PRAGMA_MESSAGE("Skipping test because BOOST_MSVC is 192x and _MSVC_LANG is 201703L or below")
+BOOST_PRAGMA_MESSAGE("Skipping test because BOOST_MSVC is 192x or 193x and _MSVC_LANG is 201703L or below")
 int main() {}
 
 #else
