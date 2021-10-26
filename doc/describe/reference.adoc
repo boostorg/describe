@@ -366,6 +366,80 @@ The function `enum_from_string` assigns to `e` the enumerator value correspondin
 to `name` and returns `true`. `E` must be a described enumeration type. If `name`
 does not correspond to one of the described values, the function returns `false`.
 
+## <boost/describe/operators.hpp>
+
+```
+namespace boost {
+namespace describe {
+namespace operators {
+
+template<class T> bool operator==( T const& t1, T const& t2 );
+template<class T> bool operator!=( T const& t1, T const& t2 );
+template<class T> bool operator<( T const& t1, T const& t2 );
+template<class T> bool operator>( T const& t1, T const& t2 );
+template<class T> bool operator<=( T const& t1, T const& t2 );
+template<class T> bool operator>=( T const& t1, T const& t2 );
+
+template<class T, class Ch, class Tr>
+  std::basic_ostream<Ch, Tr>&
+    operator<<( std::basic_ostream<Ch, Tr>& os, T const& t );
+
+} } }
+```
+
+The header `<boost/describe/operators.hpp>` defines generic operators for
+described class types. They are used by bringing them into the namespace
+containing the described types via a using declaration, as in the example
+below:
+
+```
+namespace app
+{
+
+struct X
+{
+    int a = 1;
+};
+
+BOOST_DESCRIBE_STRUCT(X, (), (a))
+
+using boost::describe::operators::operator==;
+using boost::describe::operators::operator!=;
+using boost::describe::operators::operator<<;
+
+}
+```
+
+### operator==
+
+If all bases and members compare equal, returns `true`, otherwise `false`.
+
+### operator!=
+
+Returns the negation of `operator==`.
+
+### operator<
+
+Performs a lexicographical comparison over the bases and members in sequence
+using `operator<` and returns the result.
+
+### operator>
+
+Returns the result of `operator<` with the arguments reversed.
+
+### operator\<=
+
+Returns the negated result of `operator>`.
+
+### operator>=
+
+Returns the negated result of `operator<`.
+
+### operator<<
+
+Outputs a representation of `t` to `os` by recursively using `operator<<`
+to output all bases and then all members.
+
 ## <boost/describe.hpp>
 
 This convenience header includes all the headers previously

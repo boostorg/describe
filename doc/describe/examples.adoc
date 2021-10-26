@@ -85,6 +85,27 @@ change its state and hence cannot violate its invariant.)
 include::../../example/print_function.cpp[lines=5..-1]
 ----
 
+Since release 1.78.0, this universal `operator<<` is supplied
+by the library, in the `boost::describe::operators` namespace.
+It's enabled by means of a using declaration in the namespace
+containing the described application types, like in the example
+below:
+```
+namespace app
+{
+
+struct X
+{
+    int a = 1;
+};
+
+BOOST_DESCRIBE_STRUCT(X, (), (a))
+
+using boost::describe::operators::operator<<;
+
+}
+```
+
 [#example_hash_value]
 ## Implementing hash_value
 
@@ -115,6 +136,30 @@ to all annotated classes also defined in `app`.
 ----
 include::../../example/equality.cpp[lines=5..-1]
 ----
+
+Since release 1.78.0, this universal `operator==` is supplied
+by the library, in the `boost::describe::operators` namespace.
+It's enabled by means of a using declaration in the namespace
+containing the described application types, like in the example
+below:
+```
+namespace app
+{
+
+struct X
+{
+    int a = 1;
+};
+
+BOOST_DESCRIBE_STRUCT(X, (), (a))
+
+using boost::describe::operators::operator==;
+
+}
+```
+
+The rest of the relational operators are also provided and can
+be enabled similarly.
 
 [#example_to_json]
 ## Automatic Conversion to JSON
