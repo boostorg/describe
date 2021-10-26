@@ -35,22 +35,18 @@ include::../../example/printing_enums_rt.cpp[lines=5..-1]
 ## enum_to_string
 
 This example shows a function that, given an enumerator
-value, returns its name.
-
-Providing `enum_to_string` in a library is made difficult
-by the fact that the desired behavior when the passed value
-does not correspond to a named enumerator varies depending
-on the specific use case. But, since defining the function
-is trivial when `describe_enumerators` is available, every
-user can easily have his own.
-
-This specific example elects to return `"(unnamed)"` when
-the enum value doesn't have a name.
+value, returns its name. If the value does not correspond
+to a named value, the function returns `"(unnamed)"`.
 
 [source]
 ----
 include::../../example/enum_to_string.cpp[lines=5..-1]
 ----
+
+Since release 1.78.0, the library provides `enum_to_string`.
+It differs from the one in the example by having a second
+parameter that determines what should be returned when the
+value doesn't correspond to a named enumerator.
 
 [#example_string_to_enum]
 ## string_to_enum

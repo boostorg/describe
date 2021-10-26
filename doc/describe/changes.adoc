@@ -11,3 +11,4 @@ https://www.boost.org/LICENSE_1_0.txt
 ## Changes in Boost 1.78.0
 
 * Added `has_describe_enumerators`, `has_describe_bases`, `has_describe_members`.
+* Added `enum_to_string`.

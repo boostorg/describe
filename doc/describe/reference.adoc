@@ -332,6 +332,23 @@ Since the library does not provide a way to describe bases and members separatel
 `has_describe_bases` and `has_describe_members` are, in practice, synonyms. They
 are provided separately for consistency.
 
+## <boost/describe/enum_to_string.hpp>
+
+```
+namespace boost {
+namespace describe {
+
+template<class E> char const * enum_to_string( E e, char const * def ) noexcept;
+
+} }
+```
+
+### enum_to_string
+
+The function `enum_to_string` returns the name of the enumerator `e`. `E` must
+be a described enumeration type. If `e` does not correspond to one of the described
+values, the function returns `def`.
+
 ## <boost/describe.hpp>
 
 This convenience header includes all the headers previously
