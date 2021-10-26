@@ -155,6 +155,7 @@ template<class T, class Ch, class Tr> std::enable_if_t<
     std::basic_ostream<Ch, Tr>&>
     operator<<( std::basic_ostream<Ch, Tr>& os, T const& t )
 {
+    os.width( 0 );
     detail::print( os, t );
     return os;
 }
