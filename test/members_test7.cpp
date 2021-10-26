@@ -59,7 +59,7 @@ int main()
 
         using D1 = mp_at_c<L, 0>;
 
-#if !BOOST_WORKAROUND(BOOST_MSVC, < 1930)
+#if !BOOST_WORKAROUND(BOOST_MSVC, < 1940)
 // https://developercommunity.visualstudio.com/content/problem/1186002/constexpr-pointer-to-member-has-incorrect-value.html
         BOOST_TEST( D1::pointer == &C::m2 );
 #endif
@@ -79,7 +79,7 @@ int main()
         BOOST_TEST_CSTR_EQ( D1::name, "m1" );
         BOOST_TEST_EQ( D1::modifiers, mod_public | mod_inherited );
 
-#if !BOOST_WORKAROUND(BOOST_MSVC, < 1930)
+#if !BOOST_WORKAROUND(BOOST_MSVC, < 1940)
         BOOST_TEST( D2::pointer == &C::m2 );
 #endif
         BOOST_TEST_CSTR_EQ( D2::name, "m2" );
