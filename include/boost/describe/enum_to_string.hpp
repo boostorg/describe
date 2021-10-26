@@ -18,7 +18,7 @@ namespace describe
 {
 
 template<class E, class De = describe_enumerators<E>>
-char const * enum_to_string( E e, char const* def )
+char const * enum_to_string( E e, char const* def ) noexcept
 {
     char const * r = def;
 
