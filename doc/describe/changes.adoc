@@ -13,3 +13,4 @@ https://www.boost.org/LICENSE_1_0.txt
 * Added `has_describe_enumerators`, `has_describe_bases`, `has_describe_members`.
 * Added `enum_to_string`, `enum_from_string`.
 * Added relational and stream insertion operators.
+* Added `descriptor_by_name`.

@@ -440,6 +440,43 @@ Returns the negated result of `operator<`.
 Outputs a representation of `t` to `os` by recursively using `operator<<`
 to output all bases and then all members.
 
+## <boost/describe/descriptor_by_name.hpp>
+
+```
+namespace boost {
+namespace describe {
+
+#define BOOST_DESCRIBE_MAKE_NAME(s) /*...*/
+
+template<class L, class N> using descriptor_by_name = /*...*/;
+
+} }
+```
+
+### BOOST_DESCRIBE_MAKE_NAME
+
+The macro `BOOST_DESCRIBE_MAKE_NAME` creates a type that identifies the
+name given as an argument. It should be used as follows:
+
+```
+using N = BOOST_DESCRIBE_MAKE_NAME(some_member);
+```
+
+### descriptor_by_name
+
+`descriptor_by_name<L, N>` searches the descriptor list `L` for the member
+with the name identified by `N`. `N` should be a type created by
+`BOOST_DESCRIBE_MAKE_NAME` as in the above example. `L` is intended to be
+a list returned by `describe_members`, although since enumerator descriptors
+also have `::name`, a list returned by `describe_enumerators` will work as
+well.
+
+```
+using L = describe_members<SomeType, mod_any_access>;
+using N = BOOST_DESCRIBE_MAKE_NAME(some_member);
+using D = descriptor_by_name<L, N>; // descriptor for SomeType::some_member
+```
+
 ## <boost/describe.hpp>
 
 This convenience header includes all the headers previously
