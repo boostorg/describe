@@ -161,6 +161,18 @@ using boost::describe::operators::operator==;
 The rest of the relational operators are also provided and can
 be enabled similarly.
 
+[#example_struct_to_tuple]
+## struct_to_tuple
+
+This example defines a function `struct_to_tuple` that takes
+a described class type as an argument and returns a tuple of
+all its public members.
+
+[source]
+----
+include::../../example/struct_to_tuple.cpp[lines=5..-1]
+----
+
 [#example_to_json]
 ## Automatic Conversion to JSON
 

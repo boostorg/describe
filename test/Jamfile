@@ -85,3 +85,4 @@ run ../example/json_rpc.cpp : : : $(CXX14) $(JSON) ;
 run ../example/hash_value.cpp : : : $(CXX14) ;
 run ../example/equality.cpp : : : $(CXX14) ;
 link ../example/console.cpp : $(CXX14) $(JSON) ;
+run ../example/struct_to_tuple.cpp : : : $(CXX14) ;
