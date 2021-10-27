@@ -60,6 +60,8 @@ run enum_from_string_test.cpp ;
 run operator_eq_test.cpp ;
 run operator_lt_test.cpp ;
 
+run descriptor_by_name_test.cpp ;
+
 # examples
 
 obj describe_cxx14 : describe_cxx14.cpp ;

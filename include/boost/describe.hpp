@@ -14,5 +14,6 @@
 #include <boost/describe/enum_to_string.hpp>
 #include <boost/describe/enum_from_string.hpp>
 #include <boost/describe/operators.hpp>
+#include <boost/describe/descriptor_by_name.hpp>
 
 #endif // #ifndef BOOST_DESCRIBE_HPP_INCLUDED
