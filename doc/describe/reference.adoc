@@ -88,7 +88,7 @@ enum class E: Base { v1, v2, ..., vN };
 BOOST_DESCRIBE_ENUM(E, v1, v2, ..., vN)
 ```
 
-## <boost/describe/enumerators.hpp>
+## <boost/describe/{zwsp}enumerators{zwsp}.hpp>
 
 ```
 namespace boost {
@@ -332,7 +332,7 @@ Since the library does not provide a way to describe bases and members separatel
 `has_describe_bases` and `has_describe_members` are, in practice, synonyms. They
 are provided separately for consistency.
 
-## <boost/describe/enum_to_string.hpp>
+## <boost/describe/{zwsp}enum_to_string{zwsp}.hpp>
 
 ```
 namespace boost {
@@ -349,7 +349,7 @@ The function `enum_to_string` returns the name of the enumerator `e`. `E` must
 be a described enumeration type. If `e` does not correspond to one of the described
 values, the function returns `def`.
 
-## <boost/describe/enum_from_string.hpp>
+## <boost/describe/{zwsp}enum_from_string{zwsp}.hpp>
 
 ```
 namespace boost {
@@ -440,7 +440,7 @@ Returns the negated result of `operator<`.
 Outputs a representation of `t` to `os` by recursively using `operator<<`
 to output all bases and then all members.
 
-## <boost/describe/descriptor_by_name.hpp>
+## <boost/describe/{zwsp}descriptor_by_name{zwsp}.hpp>
 
 ```
 namespace boost {
@@ -478,7 +478,7 @@ using N = BOOST_DESCRIBE_MAKE_NAME(some_member);
 using D = descriptor_by_name<L, N>; // descriptor for SomeType::some_member
 ```
 
-## <boost/describe/descriptor_by_pointer.hpp>
+## <boost/describe/{zwsp}descriptor_by_pointer{zwsp}.hpp>
 
 ```
 namespace boost {
