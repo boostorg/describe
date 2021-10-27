@@ -471,10 +471,36 @@ a list returned by `describe_members`, although since enumerator descriptors
 also have `::name`, a list returned by `describe_enumerators` will work as
 well.
 
+.Using descriptor_by_name
 ```
 using L = describe_members<SomeType, mod_any_access>;
 using N = BOOST_DESCRIBE_MAKE_NAME(some_member);
 using D = descriptor_by_name<L, N>; // descriptor for SomeType::some_member
+```
+
+## <boost/describe/descriptor_by_pointer.hpp>
+
+```
+namespace boost {
+namespace describe {
+
+template<class L, auto Pm> using descriptor_by_pointer = /*...*/;
+
+} }
+```
+
+### descriptor_by_pointer
+
+`descriptor_by_pointer<L, Pm>` searches the descriptor list `L` for the member
+pointer `Pm`. `L` should be a list returned by `describe_members`.
+
+Since `auto` template parameters are a {cpp}17 feature, using
+`descriptor_by_pointer` requires {cpp}17.
+
+.Using descriptor_by_pointer
+```
+using L = describe_members<X, mod_any_access>;
+using D = descriptor_by_pointer<L, &X::a>; // descriptor for X::a
 ```
 
 ## <boost/describe.hpp>

@@ -9,6 +9,7 @@ Peter Dimov
 :toc: left
 :toclevels: 4
 :idprefix:
+:listing-caption: Code Example
 :docinfo: private-footer
 :source-highlighter: rouge
 :source-language: c++
