@@ -9,6 +9,7 @@
     ],
     "description": "A C++14 reflection library.",
     "category": [
+        "Emulation",
         "Metaprogramming"
     ]
 }
