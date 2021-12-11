@@ -42,7 +42,7 @@ template<class... T> auto enum_descriptor_fn_impl( int, T... )
 }
 
 #define BOOST_DESCRIBE_ENUM_BEGIN(E) \
-    inline auto boost_enum_descriptor_fn( E* ) \
+    inline auto boost_enum_descriptor_fn( E** ) \
     { return boost::describe::detail::enum_descriptor_fn_impl( 0
 
 #define BOOST_DESCRIBE_ENUM_ENTRY(E, e) , []{ struct _boost_desc { \
