@@ -27,6 +27,9 @@ struct X3 {};
 class X4 {};
 union X5 {};
 
+struct X6: X1 {};
+struct X7: X2 {};
+
 int main()
 {
     using boost::describe::has_describe_bases;
@@ -46,6 +49,8 @@ int main()
     BOOST_TEST_TRAIT_FALSE((has_describe_bases<X3>));
     BOOST_TEST_TRAIT_FALSE((has_describe_bases<X4>));
     BOOST_TEST_TRAIT_FALSE((has_describe_bases<X5>));
+    BOOST_TEST_TRAIT_FALSE((has_describe_bases<X6>));
+    BOOST_TEST_TRAIT_FALSE((has_describe_bases<X7>));
     BOOST_TEST_TRAIT_FALSE((has_describe_bases<int>));
     BOOST_TEST_TRAIT_FALSE((has_describe_bases<void>));
 

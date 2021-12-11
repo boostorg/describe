@@ -27,6 +27,9 @@ struct X3 {};
 class X4 {};
 union X5 {};
 
+struct X6: X1 {};
+struct X7: X2 {};
+
 int main()
 {
     using boost::describe::has_describe_members;
@@ -46,6 +49,8 @@ int main()
     BOOST_TEST_TRAIT_FALSE((has_describe_members<X3>));
     BOOST_TEST_TRAIT_FALSE((has_describe_members<X4>));
     BOOST_TEST_TRAIT_FALSE((has_describe_members<X5>));
+    BOOST_TEST_TRAIT_FALSE((has_describe_members<X6>));
+    BOOST_TEST_TRAIT_FALSE((has_describe_members<X7>));
     BOOST_TEST_TRAIT_FALSE((has_describe_members<int>));
     BOOST_TEST_TRAIT_FALSE((has_describe_members<void>));
 
