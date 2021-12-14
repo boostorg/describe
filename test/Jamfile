@@ -67,6 +67,7 @@ compile unnamed_namespace_test.cpp ;
 compile unnamed_namespace_test2.cpp ;
 
 run union_test.cpp ;
+run union_test2.cpp ;
 
 # examples
 
