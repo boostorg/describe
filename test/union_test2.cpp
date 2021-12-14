@@ -6,6 +6,15 @@
 #include <boost/describe/class.hpp>
 #include <boost/core/lightweight_test.hpp>
 
+#if !defined(BOOST_DESCRIBE_CXX11)
+
+#include <boost/config/pragma_message.hpp>
+
+BOOST_PRAGMA_MESSAGE("Skipping test because C++11 is not available")
+int main() {}
+
+#else
+
 union A
 {
 public:
@@ -139,3 +148,4 @@ int main()
 }
 
 #endif // !defined(BOOST_DESCRIBE_CXX14)
+#endif // !defined(BOOST_DESCRIBE_CXX11)
