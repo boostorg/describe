@@ -13,8 +13,10 @@ auto struct_to_tuple_impl( T const& t, L<D...> )
     return std::make_tuple( t.*D::pointer... );
 }
 
-template<class T, class Dm = desc::describe_members<T,
-    desc::mod_public | desc::mod_inherited>>
+template<class T,
+    class Dm = desc::describe_members<T,
+        desc::mod_public | desc::mod_inherited>,
+    class En = std::enable_if_t<!std::is_union<T>::value> >
 auto struct_to_tuple( T const& t )
 {
     return struct_to_tuple_impl( t, Dm() );

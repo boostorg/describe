@@ -10,7 +10,8 @@ using namespace boost::describe;
 
 template<class T,
     class Bd = describe_bases<T, mod_any_access>,
-    class Md = describe_members<T, mod_any_access>>
+    class Md = describe_members<T, mod_any_access>,
+    class En = std::enable_if_t<!std::is_union<T>::value> >
     std::ostream& operator<<( std::ostream & os, T const & t )
 {
     os << "{";

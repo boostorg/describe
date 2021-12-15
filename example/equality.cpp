@@ -13,7 +13,8 @@ namespace app
 {
 template<class T,
     class Bd = describe_bases<T, mod_any_access>,
-    class Md = describe_members<T, mod_any_access>>
+    class Md = describe_members<T, mod_any_access>,
+    class En = std::enable_if_t<!std::is_union<T>::value> >
     bool operator==( T const& t1, T const& t2 )
 {
     bool r = true;

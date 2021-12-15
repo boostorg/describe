@@ -15,7 +15,8 @@ namespace app
 
 template<class T,
     class Bd = describe_bases<T, mod_any_access>,
-    class Md = describe_members<T, mod_any_access>>
+    class Md = describe_members<T, mod_any_access>,
+    class En = std::enable_if_t<!std::is_union<T>::value> >
     std::size_t hash_value( T const & t )
 {
     std::size_t r = 0;
