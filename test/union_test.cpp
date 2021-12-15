@@ -5,12 +5,16 @@
 #include <boost/describe/members.hpp>
 #include <boost/describe/class.hpp>
 #include <boost/core/lightweight_test.hpp>
+#include <boost/config/pragma_message.hpp>
 
 #if !defined(BOOST_DESCRIBE_CXX11)
 
-#include <boost/config/pragma_message.hpp>
-
 BOOST_PRAGMA_MESSAGE("Skipping test because C++11 is not available")
+int main() {}
+
+#elif defined(__GNUC__) && __GNUC__ < 5
+
+BOOST_PRAGMA_MESSAGE("Skipping test because g++ 4.8")
 int main() {}
 
 #else
@@ -28,8 +32,6 @@ BOOST_DESCRIBE_STRUCT(A, (), (m1, m2, f1, f2))
 int A::m2;
 
 #if !defined(BOOST_DESCRIBE_CXX14)
-
-#include <boost/config/pragma_message.hpp>
 
 BOOST_PRAGMA_MESSAGE("Skipping test because C++14 is not available")
 int main() {}
