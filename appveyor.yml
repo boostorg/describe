@@ -1,4 +1,4 @@
-# Copyright 2016-2020 Peter Dimov
+# Copyright 2016-2021 Peter Dimov
 # Distributed under the Boost Software License, Version 1.0.
 # (See accompanying file LICENSE_1_0.txt or copy at http://boost.org/LICENSE_1_0.txt)
 
@@ -19,23 +19,12 @@ environment:
       ADDRMD: 32,64
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
       TOOLSET: msvc-14.1
-      CXXSTD: 14,17
-      ADDRMD: 32,64
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2017
-      TOOLSET: clang-win
-      CXXSTD: 14,17,latest
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
-      TOOLSET: msvc-14.2
       CXXSTD: 14,17,latest
       ADDRMD: 32,64
     - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
       TOOLSET: clang-win
       CXXSTD: 14,17,latest
-    - APPVEYOR_BUILD_WORKER_IMAGE: Visual Studio 2019
-      TOOLSET: msvc-14.2
-      CXXSTD: 14,17,latest
       ADDRMD: 32,64
-      CXXFLAGS: -Zc:preprocessor
 
 install:
   - set BOOST_BRANCH=develop
