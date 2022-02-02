@@ -255,3 +255,13 @@ with `BOOST_DESCRIBE_STRUCT` or `BOOST_DESCRIBE_CLASS`. It's similar to
 ----
 include::../../example/fmtlib_formatter.cpp[lines=5..-1]
 ----
+
+[#example_pm_to_string]
+## Printing Pointers to Members
+
+This example defines an `operator<<` overload for pointers to members.
+
+[source]
+----
+include::../../example/pm_to_string.cpp[lines=5..-1]
+----
