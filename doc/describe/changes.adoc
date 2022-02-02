@@ -8,9 +8,16 @@ https://www.boost.org/LICENSE_1_0.txt
 # Revision History
 :idprefix:
 
+## Changes in Boost 1.79.0
+
+* Enabled unions in `BOOST_DESCRIBE_STRUCT` and updated examples to check `std::is_union<T>`.
+* Added example of defining a universal `fmtlib` formatter.
+* Added example of printing pointers to members.
+
 ## Changes in Boost 1.78.0
 
 * Added `has_describe_enumerators`, `has_describe_bases`, `has_describe_members`.
 * Added `enum_to_string`, `enum_from_string`.
 * Added relational and stream insertion operators.
 * Added `descriptor_by_name`, `descriptor_by_pointer`.
+* Added `struct_to_tuple` example.
