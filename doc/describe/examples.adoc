@@ -19,6 +19,14 @@ descriptors using `mp11::mp_for_each` and prints them.
 include::../../example/printing_enums_ct.cpp[lines=5..-1]
 ----
 
+Sample output:
+
+```none
+v1: 11
+v2: 12
+v3: 5
+```
+
 [#example_printing_enums_rt]
 ## Printing Enumerators with a Run Time Loop
 
@@ -31,6 +39,17 @@ an ordinary `for` loop, instead of `mp_for_each`.
 include::../../example/printing_enums_rt.cpp[lines=5..-1]
 ----
 
+Sample output:
+
+```none
+v1: 0
+v2: 1
+v3: 2
+v4: 3
+v5: 4
+v6: 5
+```
+
 [#example_enum_to_string]
 ## enum_to_string
 
@@ -42,6 +61,13 @@ to a named value, the function returns `"(unnamed)"`.
 ----
 include::../../example/enum_to_string.cpp[lines=5..-1]
 ----
+
+Sample output:
+
+```none
+E(3): v1
+E(0): (unnamed)
+```
 
 Since release 1.78.0, the library provides `enum_to_string`.
 It differs from the one in the example by having a second
@@ -59,6 +85,15 @@ does not correspond to any enumerator name, throws an exception.
 ----
 include::../../example/string_to_enum.cpp[lines=5..-1]
 ----
+
+Sample output:
+
+```none
+v1: 0
+v2: 1
+v3: 2
+v4: Invalid enumerator name 'v4' for enum type 'enum E'
+```
 
 Since release 1.78.0, the library provides `enum_from_string`.
 It differs from the function in the example by signaling failure
@@ -84,6 +119,12 @@ change its state and hence cannot violate its invariant.)
 ----
 include::../../example/print_function.cpp[lines=5..-1]
 ----
+
+Sample output:
+
+```none
+{{.m1 = 1}, {.m2 = 2}, .m1 = 3, .m2 = 4}
+```
 
 Since release 1.78.0, this universal `operator<<` is supplied
 by the library, in the `boost::describe::operators` namespace.
@@ -122,6 +163,12 @@ to all annotated classes also defined in `app`.
 include::../../example/hash_value.cpp[lines=5..-1]
 ----
 
+Sample output:
+
+```none
+12526671134390370097
+```
+
 [#example_equality]
 ## Implementing operator==
 
@@ -136,6 +183,12 @@ to all annotated classes also defined in `app`.
 ----
 include::../../example/equality.cpp[lines=5..-1]
 ----
+
+Sample output:
+
+```none
+true false
+```
 
 Since release 1.78.0, this universal `operator==` is supplied
 by the library, in the `boost::describe::operators` namespace.
@@ -173,6 +226,12 @@ all its public members.
 include::../../example/struct_to_tuple.cpp[lines=5..-1]
 ----
 
+Sample output:
+
+```none
+std::tuple<int, float>: 1, 3.14
+```
+
 [#example_to_json]
 ## Automatic Conversion to JSON
 
@@ -194,6 +253,12 @@ disabled in this case using `std::enable_if_t`.
 include::../../example/to_json.cpp[lines=5..-1]
 ----
 
+Sample output:
+
+```none
+{"v":[{"x":1,"y":2},{"x":3,"y":4}],"m":{"k1":{"x":5,"y":6},"k2":{"x":7,"y":8}}}
+```
+
 [#example_from_json]
 ## Automatic Conversion from JSON
 
@@ -206,6 +271,13 @@ an annotated struct.
 include::../../example/from_json.cpp[lines=5..-1]
 ----
 
+Sample output:
+
+```none
+jv: {"x":1,"y":2}
+a: { 1, 2 }
+```
+
 [#example_serialization]
 ## Automatic Serialization
 
@@ -217,6 +289,48 @@ support to annotated classes.
 ----
 include::../../example/serialization.cpp[lines=5..-1]
 ----
+
+Sample output:
+
+```none
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<!DOCTYPE boost_serialization>
+<boost_serialization signature="serialization::archive" version="19">
+<c1 class_id="0" tracking_level="0" version="0">
+        <v class_id="1" tracking_level="0" version="0">
+                <count>3</count>
+                <item_version>0</item_version>
+                <item class_id="2" tracking_level="0" version="0">
+                        <base.1 class_id="3" tracking_level="0" version="0">
+                                <x>1</x>
+                        </base.1>
+                        <base.2 class_id="4" tracking_level="0" version="0">
+                                <y>2</y>
+                        </base.2>
+                </item>
+                <item>
+                        <base.1>
+                                <x>3</x>
+                        </base.1>
+                        <base.2>
+                                <y>4</y>
+                        </base.2>
+                </item>
+                <item>
+                        <base.1>
+                                <x>5</x>
+                        </base.1>
+                        <base.2>
+                                <y>6</y>
+                        </base.2>
+                </item>
+        </v>
+</c1>
+</boost_serialization>
+
+
+22 serialization::archive 19 0 0 0 0 3 0 0 0 0 0 1 0 0 2 3 4 5 6
+```
 
 [#example_json_rpc]
 ## Automatic JSON RPC
@@ -231,6 +345,13 @@ in a `boost::json::value`.
 include::../../example/json_rpc.cpp[lines=5..-1]
 ----
 
+Sample output:
+
+```none
+"Hello, world!"
+3
+```
+
 [#example_console]
 ## Interactive Variable Console
 
@@ -242,6 +363,61 @@ for converting the variables to and from a string form.
 ----
 include::../../example/console.cpp[lines=9..-1]
 ----
+
+Sample output:
+
+```none
+
+> help
+"Enter a variable name ('x', 'y', 'v', or 'm') to print its value; enter variable=value to assign a new value to a variable. Values are in JSON format."
+
+> x
+1
+
+> y
+3.14E0
+
+> v
+[1,2,3]
+
+> m
+{"BTC":4.489868E4,"ETH":1.38657E3}
+
+> x="hello"
+Error: not a number [boost.json:15]
+
+> x=3.14
+Error: not exact [boost.json:16]
+
+> x=4
+
+> x
+4
+
+> y=6.28
+
+> y
+6.28E0
+
+> v=["hello", "world"]
+Error: not a number [boost.json:15]
+
+> v=[1.2, 3.4]
+Error: not exact [boost.json:16]
+
+> v=[11, 27]
+
+> c
+Error: 'c': no such variable
+
+> v
+[11,27]
+
+> m={"BTC": 42139.07, "ETH": 2912.00}
+
+> m
+{"BTC":4.213907E4,"ETH":2.912E3}
+```
 
 [#example_fmtlib_class_formatter]
 ## `fmtlib` Class Formatter
@@ -255,6 +431,12 @@ with `BOOST_DESCRIBE_STRUCT` or `BOOST_DESCRIBE_CLASS`. It's similar to
 ----
 include::../../example/fmtlib_class_formatter.cpp[lines=5..-1]
 ----
+
+Sample output:
+
+```none
+{ { .r=255, .g=192, .b=16 }, .first={ .x=1, .y=2 }, .last={ .x=3, .y=4 } }
+```
 
 [#example_fmtlib_enum_formatter]
 ## `fmtlib` Enum Formatter
@@ -283,3 +465,14 @@ This example defines an `operator<<` overload for pointers to members.
 ----
 include::../../example/pm_to_string.cpp[lines=5..-1]
 ----
+
+Sample output:
+
+```none
+&X::m [int]
+&X::f [int() const]
+&Y::m [int]
+&X::f [int() const]
+&Y::g [int() const]
+&Z::(unknown) [void()]
+```
