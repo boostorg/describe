@@ -244,7 +244,7 @@ include::../../example/console.cpp[lines=9..-1]
 ----
 
 [#example_fmtlib_formatter]
-## Universal `fmtlib` Formatter
+## Universal `fmtlib` Class Formatter
 
 This example defines a universal https://github.com/fmtlib/fmt[`fmtlib`]
 formatter that works on any class or struct type that has been described
@@ -253,7 +253,7 @@ with `BOOST_DESCRIBE_STRUCT` or `BOOST_DESCRIBE_CLASS`. It's similar to
 
 [source]
 ----
-include::../../example/fmtlib_formatter.cpp[lines=5..-1]
+include::../../example/fmtlib_class_formatter.cpp[lines=5..-1]
 ----
 
 [#example_pm_to_string]
