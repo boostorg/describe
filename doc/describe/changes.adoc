@@ -11,7 +11,8 @@ https://www.boost.org/LICENSE_1_0.txt
 ## Changes in Boost 1.79.0
 
 * Enabled unions in `BOOST_DESCRIBE_STRUCT` and updated examples to check `std::is_union<T>`.
-* Added example of defining a universal `fmtlib` formatter.
+* Added example of defining a `fmtlib` class formatter.
+* Added example of defining a `fmtlib` enum formatter.
 * Added example of printing pointers to members.
 
 ## Changes in Boost 1.78.0

@@ -243,8 +243,8 @@ for converting the variables to and from a string form.
 include::../../example/console.cpp[lines=9..-1]
 ----
 
-[#example_fmtlib_formatter]
-## Universal `fmtlib` Class Formatter
+[#example_fmtlib_class_formatter]
+## `fmtlib` Class Formatter
 
 This example defines a universal https://github.com/fmtlib/fmt[`fmtlib`]
 formatter that works on any class or struct type that has been described
@@ -255,6 +255,24 @@ with `BOOST_DESCRIBE_STRUCT` or `BOOST_DESCRIBE_CLASS`. It's similar to
 ----
 include::../../example/fmtlib_class_formatter.cpp[lines=5..-1]
 ----
+
+[#example_fmtlib_enum_formatter]
+## `fmtlib` Enum Formatter
+
+This example defines a https://github.com/fmtlib/fmt[`fmtlib`] formatter
+for described enums.
+
+[source]
+----
+include::../../example/fmtlib_enum_formatter.cpp[lines=5..-1]
+----
+
+Sample output:
+
+```none
+____v1____
+____7_____
+```
 
 [#example_pm_to_string]
 ## Printing Pointers to Members
