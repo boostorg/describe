@@ -149,7 +149,7 @@ jobs:
       matrix:
         include:
           - toolset: msvc-14.0
-            cxxstd: "14"
+            cxxstd: "14,latest"
             addrmd: 32,64
             os: windows-2019
           - toolset: msvc-14.1
@@ -157,22 +157,26 @@ jobs:
             addrmd: 32,64
             os: windows-2016
           - toolset: msvc-14.2
-            cxxstd: "14,17,latest"
+            cxxstd: "14,17,20,latest"
             addrmd: 32,64
             os: windows-2019
           - toolset: msvc-14.2
-            cxxstd: "14,17,latest"
+            cxxstd: "14,17,20,latest"
             addrmd: 32,64
             cxxflags: "-Zc:preprocessor"
             os: windows-2019
           - toolset: msvc-14.3
-            cxxstd: "14,17,latest"
+            cxxstd: "14,17,20,latest"
             addrmd: 32,64
             os: windows-2022
           - toolset: msvc-14.3
-            cxxstd: "14,17,latest"
+            cxxstd: "14,17,20,latest"
             addrmd: 32,64
             cxxflags: "-Zc:preprocessor"
+            os: windows-2022
+          - toolset: clang-win
+            cxxstd: "14,17,latest"
+            addrmd: 32,64
             os: windows-2022
           - toolset: gcc
             cxxstd: "03,11,14,17,2a"
@@ -211,4 +215,4 @@ jobs:
         run: |
           cd ../boost-root
           if not "${{matrix.cxxflags}}" == "" set CXXFLAGS=cxxflags=${{matrix.cxxflags}}
-          b2 -j3 libs/%LIBRARY%/test toolset=${{matrix.toolset}} cxxstd=${{matrix.cxxstd}} address-model=${{matrix.addrmd}} %CXXFLAGS% variant=debug,release
+          b2 -j3 libs/%LIBRARY%/test toolset=${{matrix.toolset}} cxxstd=${{matrix.cxxstd}} address-model=${{matrix.addrmd}} %CXXFLAGS% variant=debug,release embed-manifest-via=linker
