@@ -3,7 +3,6 @@
 // https://www.boost.org/LICENSE_1_0.txt
 
 #include <boost/describe.hpp>
-#include <boost/mp11.hpp>
 #include <fmt/format.h>
 #include <type_traits>
 
@@ -32,7 +31,7 @@ public:
         return i1;
     }
 
-    auto format( T const& t, format_context& ctx )
+    auto format( T const& t, format_context& ctx ) const
     {
         char const * s = boost::describe::enum_to_string( t, 0 );
 
@@ -49,7 +48,7 @@ public:
 
 enum E1
 {
-    v1, v2, v3
+    v1, v2, v3 = 11
 };
 
 BOOST_DESCRIBE_ENUM( E1, v1, v2, v3 )

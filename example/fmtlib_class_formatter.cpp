@@ -24,7 +24,7 @@ template<class T> struct fmt::formatter<T, char, std::enable_if_t<
         return it;
     }
 
-    auto format( T const& t, format_context& ctx )
+    auto format( T const& t, format_context& ctx ) const
     {
         using namespace boost::describe;
 
