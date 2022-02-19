@@ -9,7 +9,7 @@ for more information and usage examples.
 
 * GCC 5 or later with `-std=c++14` or above
 * Clang 3.9 or later with `-std=c++14` or above
-* Visual Studio 2015, 2017, 2019
+* Visual Studio 2015 or later
 
 Tested on [Github Actions](https://github.com/boostorg/describe/actions) and
 [Appveyor](https://ci.appveyor.com/project/pdimov/describe).
