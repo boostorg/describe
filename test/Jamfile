@@ -48,6 +48,9 @@ compile test_d_type.cpp ;
 compile-fail enum_struct_fail.cpp ;
 compile-fail struct_enum_fail.cpp ;
 
+compile-fail enum_nested_fail.cpp ;
+compile-fail nested_enum_fail.cpp ;
+
 run class_template_test.cpp ;
 
 run has_enumerators_test.cpp ;
