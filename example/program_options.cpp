@@ -26,15 +26,7 @@ enum class log_level {
 
 BOOST_DESCRIBE_ENUM(log_level, fatal, error, warning, trace)
 
-template <typename E, typename = std::enable_if_t<std::is_enum<E>::value>>
-std::ostream& operator<<(std::ostream& os, E e)
-{
-  boost::mp11::mp_for_each< boost::describe::describe_enumerators<E> >([&](auto D) {
-      if( e == D.value ) os << D.name;
-  });
-
-  return os;
-}
+using boost::describe::operators::operator<<;
 
 // Generic program_options custom validator for (described) enums
 template <
@@ -57,16 +49,8 @@ void validate(boost::any& v,
     const std::string& name = validators::get_single_string(values);
 
     // Convert string to enum
-    bool found = false;
     E r = {};
-
-    boost::mp11::mp_for_each<Ed>([&](auto D){
-        if( !found && std::strcmp( D.name, name.c_str() ) == 0 )
-        {
-            found = true;
-            r = D.value;
-        }
-    });
+    bool found = boost::describe::enum_from_string(name.c_str(), r);
 
     if (found)
       v = boost::any(r);

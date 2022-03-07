@@ -160,6 +160,16 @@ template<class T, class Ch, class Tr> std::enable_if_t<
     return os;
 }
 
+template <typename E, typename = std::enable_if_t<has_describe_enumerators<E>::value>>
+std::ostream& operator<<(std::ostream& os, E e)
+{
+  boost::mp11::mp_for_each< boost::describe::describe_enumerators<E> >([&](auto D) {
+      if( e == D.value ) os << D.name;
+  });
+
+  return os;
+}
+
 } // namespace operators
 
 } // namespace describe
