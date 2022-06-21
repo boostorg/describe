@@ -47,6 +47,10 @@ jobs:
             cxxstd: "03,11,14,17,2a"
             os: ubuntu-20.04
             install: g++-11
+          - toolset: gcc-12
+            cxxstd: "03,11,14,17,20"
+            os: ubuntu-22.04
+            install: g++-12
           - toolset: clang
             compiler: clang++-3.9
             cxxstd: "03,11,14"
@@ -97,6 +101,16 @@ jobs:
             cxxstd: "03,11,14,17,2a"
             os: ubuntu-20.04
             install: clang-12
+          - toolset: clang
+            compiler: clang++-13
+            cxxstd: "03,11,14,17,20"
+            os: ubuntu-22.04
+            install: clang-13
+          - toolset: clang
+            compiler: clang++-14
+            cxxstd: "03,11,14,17,20"
+            os: ubuntu-22.04
+            install: clang-14
           - toolset: clang
             cxxstd: "03,11,14,17,2a"
             os: macos-10.15
@@ -152,10 +166,6 @@ jobs:
             cxxstd: "14,latest"
             addrmd: 32,64
             os: windows-2019
-          - toolset: msvc-14.1
-            cxxstd: "14,17,latest"
-            addrmd: 32,64
-            os: windows-2016
           - toolset: msvc-14.2
             cxxstd: "14,17,20,latest"
             addrmd: 32,64
@@ -224,6 +234,7 @@ jobs:
         include:
           - os: ubuntu-18.04
           - os: ubuntu-20.04
+          - os: ubuntu-22.04
           - os: macos-10.15
 
     runs-on: ${{matrix.os}}
@@ -270,6 +281,7 @@ jobs:
         include:
           - os: ubuntu-18.04
           - os: ubuntu-20.04
+          - os: ubuntu-22.04
           - os: macos-10.15
 
     runs-on: ${{matrix.os}}
@@ -326,6 +338,7 @@ jobs:
         include:
           - os: ubuntu-18.04
           - os: ubuntu-20.04
+          - os: ubuntu-22.04
           - os: macos-10.15
 
     runs-on: ${{matrix.os}}
