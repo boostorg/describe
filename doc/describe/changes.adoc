@@ -8,6 +8,10 @@ https://www.boost.org/LICENSE_1_0.txt
 # Revision History
 :idprefix:
 
+## Changes in Boost 1.80.0
+
+* Added example of defining a `Boost Hana` class adapter.
+
 ## Changes in Boost 1.79.0
 
 * Enabled unions in `BOOST_DESCRIBE_STRUCT` and updated examples to check `std::is_union<T>`.
