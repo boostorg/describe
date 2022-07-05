@@ -492,3 +492,14 @@ Sample output:
 &Y::g [int() const]
 &Z::(unknown) [void()]
 ----
+
+[#example_boost_hana_struct_adapter]
+## `Boost Hana` Struct Adapter
+
+This example defines a https://github.com/boostorg/hana[`Boost Hana`] adapter
+for described structs.
+
+[source]
+----
+include::../../example/hana.cpp[lines=5..-1]
+----
