@@ -25,8 +25,8 @@ namespace detail
 {
 
 template<class T,
-    class Bd = describe_bases<T, mod_any_access>,
-    class Md = describe_members<T, mod_any_access>>
+    class Bd = describe::describe_bases<T, mod_any_access>,
+    class Md = describe::describe_members<T, mod_any_access>>
 bool eq( T const& t1, T const& t2 )
 {
     bool r = true;
@@ -48,8 +48,8 @@ bool eq( T const& t1, T const& t2 )
 }
 
 template<class T,
-    class Bd = describe_bases<T, mod_any_access>,
-    class Md = describe_members<T, mod_any_access>>
+    class Bd = describe::describe_bases<T, mod_any_access>,
+    class Md = describe::describe_members<T, mod_any_access>>
 bool lt( T const& t1, T const& t2 )
 {
     int r = 0;
@@ -73,8 +73,8 @@ bool lt( T const& t1, T const& t2 )
 }
 
 template<class Os, class T,
-    class Bd = describe_bases<T, mod_any_access>,
-    class Md = describe_members<T, mod_any_access>>
+    class Bd = describe::describe_bases<T, mod_any_access>,
+    class Md = describe::describe_members<T, mod_any_access>>
 void print( Os& os, T const& t )
 {
     os << "{";
