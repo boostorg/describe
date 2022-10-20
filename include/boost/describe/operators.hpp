@@ -16,6 +16,11 @@
 #include <type_traits>
 #include <iosfwd>
 
+#if defined(_MSC_VER) && _MSC_VER == 1900
+# pragma warning(push)
+# pragma warning(disable: 4100) // unreferenced formal parameter
+#endif
+
 namespace boost
 {
 namespace describe
@@ -164,6 +169,10 @@ template<class T, class Ch, class Tr> std::enable_if_t<
 
 } // namespace describe
 } // namespace boost
+
+#if defined(_MSC_VER) && _MSC_VER == 1900
+# pragma warning(pop)
+#endif
 
 #endif // defined(BOOST_DESCRIBE_CXX14)
 
