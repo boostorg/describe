@@ -7,6 +7,7 @@
 
 #include <boost/describe/enumerators.hpp>
 #include <boost/describe/bases.hpp>
+#include <boost/describe/constructor.hpp>
 #include <boost/describe/members.hpp>
 #include <boost/describe/enum.hpp>
 #include <boost/describe/class.hpp>
