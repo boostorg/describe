@@ -12,9 +12,13 @@
 #define BOOST_DESCRIBE_CLASS(C, Bases, Public, Protected, Private)
 #define BOOST_DESCRIBE_STRUCT(C, Bases, Members)
 
+#define BOOST_DESCRIBE_CLASS_CONSTRUCTORS(C, ...)
+#define BOOST_DESCRIBE_STRUCT_CONSTRUCTORS(C, ...)
+
 #else
 
 #include <boost/describe/detail/bases.hpp>
+#include <boost/describe/detail/constructor.hpp>
 #include <boost/describe/detail/members.hpp>
 #include <type_traits>
 
@@ -59,6 +63,10 @@ namespace describe
     BOOST_DESCRIBE_MAYBE_UNUSED friend BOOST_DESCRIBE_PROTECTED_MEMBERS_(C BOOST_DESCRIBE_PP_UNPACK Protected) \
     BOOST_DESCRIBE_MAYBE_UNUSED friend BOOST_DESCRIBE_PRIVATE_MEMBERS_(C BOOST_DESCRIBE_PP_UNPACK Private)
 
+#define BOOST_DESCRIBE_CLASS_CONSTRUCTORS(C, ...) \
+    template<typename S> friend struct ::boost::describe::detail::ctor_descriptor; \
+    friend BOOST_DESCRIBE_CTORS(C, __VA_ARGS__)
+
 #define BOOST_DESCRIBE_STRUCT(C, Bases, Members) \
     static_assert(std::is_class<C>::value || std::is_union<C>::value, "BOOST_DESCRIBE_STRUCT should only be used with class types"); \
     BOOST_DESCRIBE_MAYBE_UNUSED BOOST_DESCRIBE_BASES_(C BOOST_DESCRIBE_PP_UNPACK Bases) \
@@ -66,7 +74,12 @@ namespace describe
     BOOST_DESCRIBE_MAYBE_UNUSED BOOST_DESCRIBE_PROTECTED_MEMBERS_(C) \
     BOOST_DESCRIBE_MAYBE_UNUSED BOOST_DESCRIBE_PRIVATE_MEMBERS_(C)
 
+#define BOOST_DESCRIBE_STRUCT_CONSTRUCTORS(C, ...) \
+    BOOST_DESCRIBE_CTORS(C, __VA_ARGS__)
+
 #endif
+
+
 
 } // namespace describe
 } // namespace boost

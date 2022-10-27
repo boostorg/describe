@@ -187,3 +187,55 @@ public:
 
 The case where a member function and a static member function have the same name
 and the same function type is currently not supported.
+
+## Constructors
+
+Constructors can be described with either `BOOST_DESCRIBE_CLASS_CONSTRUCTORS` for classes with
+private members inside the class decleration
+or `BOOST_DESCRIBE_STRUCT_CONSTRUCTORS` for a public description from outside the class.
+
+```cpp
+class Y
+{
+  private:
+    Y();
+    Y(int);
+
+  BOOST_DESCRIBE_CLASS_CONSTRUCTORS(Y, (), (int));
+};
+```
+
+```cpp
+struct X
+{
+    X();
+    X(const double& );
+};
+
+BOOST_DESCRIBE_STRUCT_CONSTRUCTORS(X, (), (const double &));
+```
+
+
+The constructor list can be obtained with `describe_constructors<X>`, where `X` is the class.
+
+The entries in the list look like the following:
+
+```cpp
+struct C1
+{
+    // The signature of the constructors
+    using signature = Y(int);
+
+    static constexpr unsigned modifiers = mod_constructor;
+
+    static constexpr bool is_noexcept = false;
+    static constexpr bool is_trivial = false;
+
+    constexpr static C* construct_at(C* p, int i)
+    {
+        return new (p) C(i);
+    }
+};
+```
+
+The constructor descriptors do not provide a way to determine visibility.
