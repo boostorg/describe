@@ -71,6 +71,9 @@ compile unnamed_namespace_test2.cpp ;
 run union_test.cpp ;
 run union_test2.cpp ;
 
+run pedantic_enumerators_test.cpp
+  : : : <warnings>pedantic ;
+
 # examples
 
 obj describe_cxx14 : describe_cxx14.cpp ;
