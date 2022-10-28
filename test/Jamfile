@@ -75,6 +75,8 @@ run pedantic_enumerators_test.cpp
   : : : <warnings>pedantic ;
 run pedantic_bases_test.cpp
   : : : <warnings>pedantic ;
+run pedantic_members_test.cpp
+  : : : <warnings>pedantic ;
 
 # examples
 
