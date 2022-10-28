@@ -19,6 +19,10 @@
 
 # define BOOST_DESCRIBE_CXX11
 
+# if defined(__GNUC__) && __GNUC__ == 4 && __GNUC_MINOR__ == 7
+#  undef BOOST_DESCRIBE_CXX11
+# endif
+
 #endif
 
 #if defined(BOOST_DESCRIBE_CXX11)
