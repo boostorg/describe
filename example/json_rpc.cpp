@@ -80,6 +80,6 @@ BOOST_DESCRIBE_STRUCT(Object, (), (greet, add))
 int main()
 {
     Object obj;
-    std::cout << call( obj, "greet", { "world" } ) << std::endl;
-    std::cout << call( obj, "add", { 1, 2 } ) << std::endl;
+    std::cout << call( obj, "greet", {{ "world" }} ) << std::endl;
+    std::cout << call( obj, "add", {{ 1, 2 }} ) << std::endl;
 }
