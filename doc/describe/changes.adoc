@@ -8,6 +8,11 @@ https://www.boost.org/LICENSE_1_0.txt
 # Revision History
 :idprefix:
 
+## Changes in Boost 1.84.0
+
+* Added an overload of `enum_from_string` that takes a string view, to avoid
+  the need for null termination.
+
 ## Changes in Boost 1.81.0
 
 * To allow the inclusion of `enumerators.hpp`, `bases.hpp`, and `members.hpp`

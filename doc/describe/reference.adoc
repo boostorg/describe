@@ -362,6 +362,7 @@ namespace boost {
 namespace describe {
 
 template<class E> bool enum_from_string( char const * name, E & e ) noexcept;
+template<class S, class E> bool enum_from_string( S const & name, E & e ) noexcept;
 
 } }
 ```
@@ -371,6 +372,11 @@ template<class E> bool enum_from_string( char const * name, E & e ) noexcept;
 The function `enum_from_string` assigns to `e` the enumerator value corresponding
 to `name` and returns `true`. `E` must be a described enumeration type. If `name`
 does not correspond to one of the described values, the function returns `false`.
+
+The second overload only participates in overload resolution when `S` is a
+string-like type such as `std::string` or `std::string_view`. String-like types
+are recognized by the presence of nested `value_type` and `traits_type` typedefs
+and are expected to have a non-throwing `operator==` taking `char const*`.
 
 ## <boost/describe/operators.hpp>
 
