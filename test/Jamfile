@@ -78,6 +78,8 @@ run pedantic_bases_test.cpp
 run pedantic_members_test.cpp
   : : : <warnings>pedantic ;
 
+run enum_from_string_test2.cpp ;
+
 # examples
 
 obj describe_cxx14 : describe_cxx14.cpp ;
