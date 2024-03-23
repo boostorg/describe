@@ -4,17 +4,16 @@
 
 import testing ;
 
+local WERROR = <toolset>msvc:<warnings-as-errors>on <toolset>clang:<warnings-as-errors>on <toolset>gcc:<warnings-as-errors>on ;
+
 project : requirements
   <source>/boost/container_hash//boost_container_hash
   <source>/boost/core//boost_core
   <source>/boost/variant2//boost_variant2
 
   <warnings>extra
-  <toolset>msvc:<warnings-as-errors>on
-  <toolset>clang:<warnings-as-errors>on
-  <toolset>gcc:<warnings-as-errors>on
-  <toolset>clang:<cxxflags>"-Wno-unused-private-field"
-  ;
+  $(WERROR)
+  <toolset>clang:<cxxflags>"-Wno-unused-private-field" ;
 
 run quick.cpp ;
 
@@ -93,7 +92,7 @@ explicit describe_cxx14 ;
 local CXX14 = [ check-target-builds describe_cxx14 describe_cxx14 : : <build>no ] "<toolset>msvc-14.0:<cxxflags>-wd4100" ;
 
 local JSON = <library>/boost/json//boost_json/<warnings>off "<toolset>msvc-14.2:<cxxflags>-wd5104" ;
-local SERIALIZATION = <library>/boost/serialization//boost_serialization/<warnings>off "-<toolset>gcc:<warnings-as-errors>on" "-<toolset>clang:<warnings-as-errors>on" ;
+local SERIALIZATION = <library>/boost/serialization//boost_serialization/<warnings>off -$(WERROR) ;
 
 run ../example/printing_enums_ct.cpp : : : $(CXX14) ;
 run ../example/printing_enums_rt.cpp : : : $(CXX14) ;
