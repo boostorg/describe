@@ -7,9 +7,9 @@ import testing ;
 local WERROR = <toolset>msvc:<warnings-as-errors>on <toolset>clang:<warnings-as-errors>on <toolset>gcc:<warnings-as-errors>on ;
 
 project : requirements
-  <source>/boost/container_hash//boost_container_hash
-  <source>/boost/core//boost_core
-  <source>/boost/variant2//boost_variant2
+  <library>/boost/container_hash//boost_container_hash
+  <library>/boost/core//boost_core
+  <library>/boost/variant2//boost_variant2
 
   <warnings>extra
   $(WERROR)
