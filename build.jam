@@ -5,16 +5,19 @@
 
 require-b2 5.2 ;
 
+constant boost_dependencies :
+    /boost/mp11//boost_mp11 ;
+
 project /boost/describe
     : common-requirements
-        <library>/boost/mp11//boost_mp11
         <include>include
     ;
 
 explicit
-    [ alias boost_describe ]
+    [ alias boost_describe : : : : <library>$(boost_dependencies) ]
     [ alias all : boost_describe test ]
     ;
 
 call-if : boost-library describe
     ;
+
