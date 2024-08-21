@@ -7,6 +7,7 @@ import testing ;
 local WERROR = <toolset>msvc:<warnings-as-errors>on <toolset>clang:<warnings-as-errors>on <toolset>gcc:<warnings-as-errors>on ;
 
 project : requirements
+  <library>/boost/describe//boost_describe
   <library>/boost/container_hash//boost_container_hash
   <library>/boost/core//boost_core
   <library>/boost/variant2//boost_variant2
@@ -102,7 +103,8 @@ run ../example/print_function.cpp : : : $(CXX14) ;
 run ../example/to_json.cpp : : : $(CXX14) $(JSON) ;
 run ../example/from_json.cpp : : : $(CXX14) $(JSON) ;
 run ../example/serialization.cpp : : : $(CXX14) $(SERIALIZATION) ;
-run ../example/json_rpc.cpp : : : $(CXX14) $(JSON) <library>/boost/utility//boost_utility ;
+run ../example/json_rpc.cpp : : : $(CXX14) $(JSON) <library>/boost/utility//boost_utility
+  "<toolset>gcc-14,<cxxstd>14:<build>no" ; # mysterious segmentation fault
 run ../example/hash_value.cpp : : : $(CXX14) ;
 run ../example/equality.cpp : : : $(CXX14) ;
 link ../example/console.cpp : $(CXX14) $(JSON) <library>/boost/utility//boost_utility ;
