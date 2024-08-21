@@ -196,9 +196,16 @@ local windows_pipeline(name, image, environment, arch = "amd64") =
     ),
 
     linux_pipeline(
-        "Linux 24.04 GCC 14",
+        "Linux 24.04 GCC 14 UBSAN",
         "cppalliance/droneubuntu2404:1",
-        { TOOLSET: 'gcc', COMPILER: 'g++-14', CXXSTD: '03,11,14,17,20,2b' },
+        { TOOLSET: 'gcc', COMPILER: 'g++-14', CXXSTD: '03,11,14,17,20,2b' } + ubsan,
+        "g++-14",
+    ),
+
+    linux_pipeline(
+        "Linux 24.04 GCC 14 ASAN",
+        "cppalliance/droneubuntu2404:1",
+        { TOOLSET: 'gcc', COMPILER: 'g++-14', CXXSTD: '03,11,14,17,20,2b' } + asan,
         "g++-14",
     ),
 
@@ -336,20 +343,38 @@ local windows_pipeline(name, image, environment, arch = "amd64") =
     ),
 
     linux_pipeline(
-        "Linux 24.04 Clang 18",
+        "Linux 24.04 Clang 18 UBSAN",
         "cppalliance/droneubuntu2404:1",
-        { TOOLSET: 'clang', COMPILER: 'clang++-18', CXXSTD: '03,11,14,17,20,2b' },
+        { TOOLSET: 'clang', COMPILER: 'clang++-18', CXXSTD: '03,11,14,17,20,2b' } + ubsan,
+        "clang-18",
+    ),
+
+    linux_pipeline(
+        "Linux 24.04 Clang 18 ASAN",
+        "cppalliance/droneubuntu2404:1",
+        { TOOLSET: 'clang', COMPILER: 'clang++-18', CXXSTD: '03,11,14,17,20,2b' } + asan,
         "clang-18",
     ),
 
     macos_pipeline(
-        "MacOS 10.15 Xcode 12.2",
-        { TOOLSET: 'clang', COMPILER: 'clang++', CXXSTD: '03,11,14,1z' },
+        "MacOS 10.15 Xcode 12.2 UBSAN",
+        { TOOLSET: 'clang', COMPILER: 'clang++', CXXSTD: '03,11,14,1z' } + ubsan,
     ),
 
     macos_pipeline(
-        "MacOS 12.4 Xcode 13.4.1",
-        { TOOLSET: 'clang', COMPILER: 'clang++', CXXSTD: '03,11,14,17,20,2b' },
+        "MacOS 10.15 Xcode 12.2 ASAN",
+        { TOOLSET: 'clang', COMPILER: 'clang++', CXXSTD: '03,11,14,1z' } + asan,
+    ),
+
+    macos_pipeline(
+        "MacOS 12.4 Xcode 13.4.1 UBSAN",
+        { TOOLSET: 'clang', COMPILER: 'clang++', CXXSTD: '03,11,14,17,20,2b' } + ubsan,
+        xcode_version = "13.4.1", osx_version = "monterey", arch = "arm64",
+    ),
+
+    macos_pipeline(
+        "MacOS 12.4 Xcode 13.4.1 ASAN",
+        { TOOLSET: 'clang', COMPILER: 'clang++', CXXSTD: '03,11,14,17,20,2b' } + asan,
         xcode_version = "13.4.1", osx_version = "monterey", arch = "arm64",
     ),
 
