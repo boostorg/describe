@@ -49,7 +49,7 @@ template<class... T> auto enum_descriptor_fn_impl( int, T... )
 
 #define BOOST_DESCRIBE_ENUM_ENTRY(E, e) , []{ struct _boost_desc { \
     static constexpr auto value() noexcept { return E::e; } \
-    static constexpr auto name() noexcept { return #e; } }; return _boost_desc(); }()
+    static constexpr decltype(#e) name() noexcept { return #e; } }; return _boost_desc(); }()
 
 #define BOOST_DESCRIBE_ENUM_END(E) ); }
 
