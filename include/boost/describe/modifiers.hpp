@@ -22,7 +22,8 @@ enum modifiers
     mod_function = 32,
     mod_any_member = 64,
     mod_inherited = 128,
-    mod_hidden = 256
+    mod_hidden = 256,
+    mod_constructor = 512
 };
 
 BOOST_DESCRIBE_CONSTEXPR_OR_CONST modifiers mod_any_access = static_cast<modifiers>( mod_public | mod_protected | mod_private );
