@@ -33,7 +33,7 @@ It takes three arguments: the `struct` name, a list of base classes
 (empty in our example), and a list of (public) members by name (this includes
 both data members and member functions.)
 
-Since `BOOST_DESCRIBE_STRUCT` is placed outside the type, it's non-intrisive,
+Since `BOOST_DESCRIBE_STRUCT` is placed outside the type, it's non-intrusive,
 does not require access to the definition, and can therefore be used to describe
 third-party types or types defined in system headers.
 
@@ -187,3 +187,31 @@ public:
 
 The case where a member function and a static member function have the same name
 and the same function type is currently not supported.
+
+
+## Avoiding empty variadic macro
+
+The `BOOST_DESCRIBE_STRUCT` and `BOOST_DESCRIBE_CLASS` utilize empty variadic
+macro arguments for missing bases or members, which relies on a C++20
+preprocessor extension.
+
+If this behavior is undesired or unsupported by your toolchain,
+you can avoid it by explicitly specifying `void` for base classes
+in simple cases, and by using the lower-level `BOOST_DESCRIBE_...`
+macros for classes, as shown below:
+
+```_EMPTY
+struct X { int foo; };
+BOOST_DESCRIBE_STRUCT(X, (void), (foo))
+
+class Y {
+  public:
+    int foo;
+  private:
+    int bar;
+    friend BOOST_DESCRIBE_BASES(Y, void)
+    friend BOOST_DESCRIBE_PUBLIC_MEMBERS(Y, foo)
+    friend BOOST_DESCRIBE_PROTECTED_MEMBERS_EMPTY(Y) // use _EMPTY suffix for missing member groups
+    friend BOOST_DESCRIBE_PRIVATE_MEMBERS(Y, bar)
+};
+```
