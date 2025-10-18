@@ -12,6 +12,7 @@
 #include <boost/describe/bases.hpp>
 #include <boost/describe/members.hpp>
 #include <boost/describe/modifiers.hpp>
+#include <boost/describe/enumerators.hpp>
 #include <boost/mp11/algorithm.hpp>
 #include <type_traits>
 #include <iosfwd>
@@ -163,6 +164,18 @@ template<class T, class Ch, class Tr> std::enable_if_t<
     os.width( 0 );
     detail::print( os, t );
     return os;
+}
+
+template <typename E, class Ch, class Tr> std::enable_if_t<
+    has_describe_enumerators<E>::value,
+    std::basic_ostream<Ch, Tr>&>
+    operator<<( std::basic_ostream<Ch, Tr>& os, E e)
+{
+  boost::mp11::mp_for_each< boost::describe::describe_enumerators<E> >([&](auto D) {
+      if( e == D.value ) os << D.name;
+  });
+
+  return os;
 }
 
 } // namespace operators
