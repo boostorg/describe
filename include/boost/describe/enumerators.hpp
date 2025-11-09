@@ -20,6 +20,7 @@ namespace describe
 // describe_enumerators<E>
 
 template<class E> using describe_enumerators = decltype( boost_enum_descriptor_fn( static_cast<E**>(0) ) );
+template<class E> using nested_describe_enumerators = decltype (boost_has_nested_enum_descriptor_fn(static_cast<E**>(0) ) );
 
 // has_describe_enumerators<E>
 
@@ -31,6 +32,10 @@ template<class E, class En = void> struct has_describe_enumerators: std::false_t
 };
 
 template<class E> struct has_describe_enumerators<E, void_t<describe_enumerators<E>>>: std::true_type
+{
+};
+
+template<class E> struct has_describe_enumerators<E, void_t<nested_describe_enumerators<E>>>: std::true_type
 {
 };
 
