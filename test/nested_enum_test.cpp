@@ -27,6 +27,10 @@ private:
 
     BOOST_DESCRIBE_NESTED_ENUM(E, v1, v2)
 
+#if defined(BOOST_DESCRIBE_CXX14)
+    static_assert(boost::describe::has_describe_enumerators<E>::value, "");
+#endif
+
 public:
 
     typedef E E2;
