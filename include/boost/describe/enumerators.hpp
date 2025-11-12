@@ -35,13 +35,21 @@ template<class E> struct has_describe_enumerators<E, void_t<describe_enumerators
 {
 };
 
-template<class E> struct has_describe_enumerators<E, void_t<nested_describe_enumerators<E>>>: std::true_type
+template<class E, class En = void> struct has_nested_describe_enumerators: std::false_type
 {
 };
 
+template<class E> struct has_nested_describe_enumerators<E, void_t<nested_describe_enumerators<E>>>: std::true_type
+{
+};
+
+template<class E> struct has_describe_enumerators_or_nested_describe_enumerators : std::integral_constant<bool, 
+    has_nested_describe_enumerators<E>::value || has_describe_enumerators<E>::value>
+{
+};
 } // namespace detail
 
-template<class E> using has_describe_enumerators = detail::has_describe_enumerators<E>;
+template<class E> using has_describe_enumerators = detail::has_describe_enumerators_or_nested_describe_enumerators<E>;
 
 } // namespace describe
 } // namespace boost
