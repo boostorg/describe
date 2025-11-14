@@ -45,12 +45,16 @@ template<class... T> auto enum_descriptor_fn_impl( int, T... )
 
 #if __cplusplus >= 202002L || ( defined(_MSVC_LANG) && _MSVC_LANG >= 202002L )
 
+template<auto V, auto N> struct enum_desc
+{
+    static constexpr auto value() noexcept { return V; }
+    static constexpr auto name() noexcept { return N(); }
+};
+
 #define BOOST_DESCRIBE_ENUM_BEGIN(E) \
     inline decltype( boost::describe::detail::enum_descriptor_fn_impl( 0
 
-#define BOOST_DESCRIBE_ENUM_ENTRY(E, e) , []{ struct _boost_desc { \
-    static constexpr auto value() noexcept { return E::e; } \
-    static constexpr auto name() noexcept { return #e; } }; return _boost_desc(); }()
+#define BOOST_DESCRIBE_ENUM_ENTRY(E, e) , boost::describe::detail::enum_desc<E::e, []{ return #e; }>{}
 
 #define BOOST_DESCRIBE_ENUM_END(E) ) ) boost_enum_descriptor_fn( E** ) { return {}; }
 
