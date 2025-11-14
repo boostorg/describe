@@ -43,7 +43,7 @@ template<class... T> auto enum_descriptor_fn_impl( int, T... )
     return list<enum_descriptor<T>...>();
 }
 
-#if __cplusplus >= 202002L || ( defined(_MSVC_LANG) && _MSVC_LANG >= 202002L )
+#if defined(BOOST_DESCRIBE_CXX20)
 
 template<auto V, auto N> struct enum_desc
 {

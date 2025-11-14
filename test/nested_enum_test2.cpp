@@ -7,9 +7,9 @@
 #include <boost/config.hpp>
 #include <boost/config/pragma_message.hpp>
 
-#if BOOST_CXX_VERSION < 202002L
+#if !defined(BOOST_DESCRIBE_CXX20)
 
-BOOST_PRAGMA_MESSAGE("Skipping test because BOOST_CXX_VERSION < 202002L")
+BOOST_PRAGMA_MESSAGE("Skipping test because BOOST_DESCRIBE_CXX20 isn't defined")
 
 #else
 
