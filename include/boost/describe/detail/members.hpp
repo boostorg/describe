@@ -77,6 +77,15 @@ template<class C, class F> constexpr auto mfn( F * p ) { return p; }
 
 #endif
 
+#define BOOST_DESCRIBE_PUBLIC_MEMBERS_EMPTY(C) inline auto boost_public_member_descriptor_fn( C** ) \
+{ return boost::describe::detail::member_descriptor_fn_impl<boost::describe::mod_public>( 0 ); }
+
+#define BOOST_DESCRIBE_PROTECTED_MEMBERS_EMPTY(C) inline auto boost_protected_member_descriptor_fn( C** ) \
+{ return boost::describe::detail::member_descriptor_fn_impl<boost::describe::mod_protected>( 0 ); }
+
+#define BOOST_DESCRIBE_PRIVATE_MEMBERS_EMPTY(C) inline auto boost_private_member_descriptor_fn( C** ) \
+{ return boost::describe::detail::member_descriptor_fn_impl<boost::describe::mod_private>( 0 ); }
+
 } // namespace detail
 } // namespace describe
 } // namespace boost
