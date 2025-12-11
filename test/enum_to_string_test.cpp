@@ -35,6 +35,10 @@ int main()
     BOOST_TEST_CSTR_EQ( enum_to_string( E4::v4, "" ), "v4" );
     BOOST_TEST_EQ( enum_to_string( static_cast<E4>( 14 ), 0 ), static_cast<char const*>( 0 ) );
 
+#if defined(BOOST_DESCRIBE_HAS_CXX17_CONSTEXPR)
+    static_assert(enum_to_string(E2::v2, "")[1] == '2');
+    static_assert(enum_to_string(static_cast<E2>(10), "")[0] == 0);
+#endif
     return boost::report_errors();
 }
 
