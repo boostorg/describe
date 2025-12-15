@@ -23,9 +23,9 @@ namespace describe
 {
 
 template<class E, class De = describe_enumerators<E>>
-char const * enum_to_string( E e, char const* def ) noexcept
+constexpr char const* enum_to_string( E e, char const* def ) noexcept
 {
-    char const * r = def;
+    char const* r = def;
 
     mp11::mp_for_each<De>([&](auto D){
 
