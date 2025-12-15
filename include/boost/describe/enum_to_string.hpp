@@ -42,7 +42,10 @@ template<class E> struct ets_lambda
 } // namespace detail
 
 template<class E, class De = describe_enumerators<E>>
-constexpr char const* enum_to_string( E e, char const* def ) noexcept
+#if !( defined(_MSC_VER) && _MSC_VER == 1900 )
+constexpr
+#endif
+char const* enum_to_string( E e, char const* def ) noexcept
 {
     char const* r = def;
 

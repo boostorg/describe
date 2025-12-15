@@ -5,12 +5,15 @@
 #include <boost/describe/enum_to_string.hpp>
 #include <boost/describe/enum.hpp>
 #include <boost/describe/detail/cx_streq.hpp>
+#include <boost/config/pragma_message.hpp>
 
 #if !defined(BOOST_DESCRIBE_CXX14)
 
-#include <boost/config/pragma_message.hpp>
-
 BOOST_PRAGMA_MESSAGE("Skipping test because C++14 is not available")
+
+#elif defined(_MSC_VER) && _MSC_VER == 1900
+
+BOOST_PRAGMA_MESSAGE("Skipping test because _MSC_VER == 1900")
 
 #else
 
