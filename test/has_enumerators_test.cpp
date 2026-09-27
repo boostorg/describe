@@ -47,8 +47,18 @@ int main()
 
 #endif
 
+#if defined(BOOST_DESCRIBE_HAS_REFLECTION)
+
+    BOOST_TEST_TRAIT_TRUE((has_describe_enumerators<E5>));
+    BOOST_TEST_TRAIT_TRUE((has_describe_enumerators<E6>));
+
+#else
+
     BOOST_TEST_TRAIT_FALSE((has_describe_enumerators<E5>));
     BOOST_TEST_TRAIT_FALSE((has_describe_enumerators<E6>));
+
+#endif
+
     BOOST_TEST_TRAIT_FALSE((has_describe_enumerators<int>));
     BOOST_TEST_TRAIT_FALSE((has_describe_enumerators<void>));
 
