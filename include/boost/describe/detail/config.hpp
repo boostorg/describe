@@ -59,6 +59,21 @@
 #  undef BOOST_DESCRIBE_CXX20
 # endif
 
+# include <version>
+
+#endif
+
+#if !defined(BOOST_DESCRIBE_DISABLE_REFLECTION) \
+  && defined(__cpp_impl_reflection) && __cpp_impl_reflection >= 202506L \
+  && defined(__cpp_lib_reflection) && __cpp_lib_reflection >= 202506L
+
+# define BOOST_DESCRIBE_HAS_REFLECTION
+
+#endif
+
+#if defined(BOOST_DESCRIBE_HAS_REFLECTION) && defined(__GNUC__) && __GNUC__ == 16 && __GNUC_MINOR__ < 2
+// gcc-16.1 has bugs preventing our use of reflection
+# undef BOOST_DESCRIBE_HAS_REFLECTION
 #endif
 
 #endif // #ifndef BOOST_DESCRIBE_DETAIL_CONFIG_HPP_INCLUDED
