@@ -5,6 +5,7 @@
 // Distributed under the Boost Software License, Version 1.0.
 // https://www.boost.org/LICENSE_1_0.txt
 
+#include <boost/describe/detail/rf_enum.hpp>
 #include <boost/describe/detail/void_t.hpp>
 #include <boost/describe/detail/config.hpp>
 
