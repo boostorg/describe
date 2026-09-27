@@ -28,7 +28,7 @@ consteval int rf_compute_modifiers( std::meta::info J )
     if( is_private(J) ) m |= mod_private;
 
     if( is_static_member(J) ) m |= mod_static;
-    if( is_function(J) ) m |= mod_function;
+    if( std::meta::is_function(J) ) m |= mod_function;
     if( is_virtual(J) ) m |= mod_virtual;
 
     return m;
