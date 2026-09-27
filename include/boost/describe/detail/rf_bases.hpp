@@ -29,7 +29,7 @@ template<auto J> struct rf_base_descriptor
 } // namespace detail
 
 template<class T>
-requires std::is_class_v<T>
+requires std::is_class_v<T> || std::is_union_v<T>
 constexpr auto boost_base_descriptor_fn( T** )
 -> [: detail::rf_as_list( ^^detail::rf_base_descriptor, bases_of( ^^T, std::meta::access_context::unchecked() ) ) :]
 {
