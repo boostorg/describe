@@ -90,6 +90,7 @@ compile nested_enum_test2.cpp ;
 compile enum_to_string_test_cx.cpp ;
 
 run enumerators_test_rf.cpp ;
+run bases_test_rf.cpp ;
 
 # examples
 
