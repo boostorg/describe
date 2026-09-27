@@ -6,6 +6,7 @@
 // https://www.boost.org/LICENSE_1_0.txt
 
 #include <boost/describe/modifiers.hpp>
+#include <boost/describe/detail/rf_bases.hpp>
 #include <boost/describe/detail/void_t.hpp>
 #include <boost/describe/detail/config.hpp>
 
