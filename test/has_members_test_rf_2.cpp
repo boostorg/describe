@@ -20,6 +20,15 @@ struct X3
     union { int m1; };
 };
 
+#if !defined(BOOST_DESCRIBE_CXX11)
+
+#include <boost/config/pragma_message.hpp>
+
+BOOST_PRAGMA_MESSAGE("Skipping test because C++11 is not available")
+int main() {}
+
+#else
+
 int main()
 {
     using boost::describe::has_describe_members;
@@ -30,3 +39,5 @@ int main()
 
     return boost::report_errors();
 }
+
+#endif // !defined(BOOST_DESCRIBE_CXX11)
