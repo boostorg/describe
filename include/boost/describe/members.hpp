@@ -7,6 +7,7 @@
 
 #include <boost/describe/modifiers.hpp>
 #include <boost/describe/bases.hpp>
+#include <boost/describe/detail/rf_members.hpp>
 #include <boost/describe/detail/void_t.hpp>
 #include <boost/describe/detail/cx_streq.hpp>
 #include <boost/describe/detail/config.hpp>
