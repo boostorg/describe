@@ -105,6 +105,7 @@ run has_members_test_rf.cpp ;
 run has_members_test_rf_2.cpp ;
 
 run members_test_rf_2.cpp ;
+run members_test_rf_3.cpp ;
 
 # examples
 
