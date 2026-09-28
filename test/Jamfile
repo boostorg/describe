@@ -101,6 +101,9 @@ run members_test6_rf.cpp ;
 run members_test7_rf.cpp ;
 run members_test8_rf.cpp ;
 
+run has_members_test_rf.cpp ;
+run has_members_test_rf_2.cpp ;
+
 # examples
 
 obj describe_cxx14 : describe_cxx14.cpp ;
