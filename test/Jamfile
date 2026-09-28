@@ -92,6 +92,15 @@ compile enum_to_string_test_cx.cpp ;
 run enumerators_test_rf.cpp ;
 run bases_test_rf.cpp ;
 
+run members_test_rf.cpp ;
+run members_test2_rf.cpp ;
+run members_test3_rf.cpp ;
+run members_test4_rf.cpp ;
+run members_test5_rf.cpp ;
+run members_test6_rf.cpp ;
+run members_test7_rf.cpp ;
+run members_test8_rf.cpp ;
+
 # examples
 
 obj describe_cxx14 : describe_cxx14.cpp ;
