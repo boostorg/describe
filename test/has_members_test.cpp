@@ -46,11 +46,24 @@ int main()
 
 #endif
 
+#if defined(BOOST_DESCRIBE_HAS_REFLECTION)
+
+    BOOST_TEST_TRAIT_TRUE((has_describe_members<X3>));
+    BOOST_TEST_TRAIT_TRUE((has_describe_members<X4>));
+    BOOST_TEST_TRAIT_TRUE((has_describe_members<X5>));
+    BOOST_TEST_TRAIT_TRUE((has_describe_members<X6>));
+    BOOST_TEST_TRAIT_TRUE((has_describe_members<X7>));
+
+#else
+
     BOOST_TEST_TRAIT_FALSE((has_describe_members<X3>));
     BOOST_TEST_TRAIT_FALSE((has_describe_members<X4>));
     BOOST_TEST_TRAIT_FALSE((has_describe_members<X5>));
     BOOST_TEST_TRAIT_FALSE((has_describe_members<X6>));
     BOOST_TEST_TRAIT_FALSE((has_describe_members<X7>));
+
+#endif
+
     BOOST_TEST_TRAIT_FALSE((has_describe_members<int>));
     BOOST_TEST_TRAIT_FALSE((has_describe_members<void>));
 
