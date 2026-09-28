@@ -57,7 +57,7 @@ int main()
 
         // BOOST_TEST( D1::pointer == &X::f2 );
         BOOST_TEST_CSTR_EQ( D1::name, "f2" );
-        BOOST_TEST_EQ( D1::modifiers, mod_public | mod_function | mod_virtual );
+        BOOST_TEST_EQ( D1::modifiers, mod_protected | mod_function | mod_virtual );
     }
 
     {
@@ -69,7 +69,7 @@ int main()
 
         // BOOST_TEST( D1::pointer == &X::f3 );
         BOOST_TEST_CSTR_EQ( D1::name, "f3" );
-        BOOST_TEST_EQ( D1::modifiers, mod_public | mod_function | mod_virtual );
+        BOOST_TEST_EQ( D1::modifiers, mod_private | mod_function | mod_virtual );
     }
 
     return boost::report_errors();

@@ -84,7 +84,7 @@ struct X14
 
 struct X15
 {
-    auto operator<=>( X const& r ) const = default;
+    auto operator<=>( X15 const& r ) const = default;
 };
 
 struct X16
