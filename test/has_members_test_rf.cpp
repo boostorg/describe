@@ -87,6 +87,16 @@ struct X15
     auto operator<=>( X const& r ) const = default;
 };
 
+struct X16
+{
+    void f() = delete;
+};
+
+struct X17
+{
+    void operator=( int ) = delete;
+};
+
 int main()
 {
     using boost::describe::has_describe_members;
@@ -105,6 +115,8 @@ int main()
     BOOST_TEST_TRAIT_TRUE((has_describe_members<X13>));
     BOOST_TEST_TRAIT_TRUE((has_describe_members<X14>));
     BOOST_TEST_TRAIT_TRUE((has_describe_members<X15>));
+    BOOST_TEST_TRAIT_TRUE((has_describe_members<X16>));
+    BOOST_TEST_TRAIT_TRUE((has_describe_members<X17>));
 
     return boost::report_errors();
 }

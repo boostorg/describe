@@ -71,6 +71,7 @@ consteval bool rf_skip_member( std::meta::info J )
     if( is_destructor(J) ) return true;
     if( is_operator_function(J) ) return true;
     if( is_conversion_function(J) ) return true;
+    if( is_deleted(J) ) return true;
 
     return false;
 }
