@@ -97,6 +97,7 @@ template<class T> consteval bool rf_has_describe_members()
     std::meta::info J = ^^T;
 
     if( !is_class_type( J ) && !is_union_type( J ) ) return false;
+    if( has_template_arguments( J ) ) return false;
 
     std::vector<std::meta::info> v = rf_members_of( J );
     return std::ranges::all_of( v, rf_valid_member );
