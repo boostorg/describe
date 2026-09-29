@@ -106,6 +106,7 @@ run has_members_test_rf_2.cpp ;
 
 run members_test_rf_2.cpp ;
 run members_test_rf_3.cpp ;
+run members_test_rf_4.cpp ;
 
 local gcc-flags = -Wunused-parameter -Wconversion -Wsign-conversion -Wfloat-equal -Wshadow -Wno-variadic-macros ;
 
