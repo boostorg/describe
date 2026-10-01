@@ -59,7 +59,9 @@
 #  undef BOOST_DESCRIBE_CXX20
 # endif
 
-# include <version>
+# if __has_include(<version>)
+#  include <version>
+# endif
 
 #endif
 
