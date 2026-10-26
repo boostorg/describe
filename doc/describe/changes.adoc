@@ -8,6 +8,10 @@ https://www.boost.org/LICENSE_1_0.txt
 # Revision History
 :idprefix:
 
+## Changes in Boost 1.93.0
+
+* Added experimental support for reflection (requires GCC 16.2 and `-freflection`.)
+
 ## Changes in Boost 1.91.0
 
 * Under {cpp}20, described nested enums now work when the enclosing class is still incomplete. (Thanks to Julien Blanc.)
